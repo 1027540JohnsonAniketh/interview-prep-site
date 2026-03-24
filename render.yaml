@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: interview-prep
+    runtime: static
+    buildCommand: echo "Static site ready"
+    staticPublishPath: .
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=3600

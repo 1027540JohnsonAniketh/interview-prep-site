@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interview Prep | Backend &amp; Distributed Systems</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #232735;
+      --accent: #6c63ff;
+      --accent2: #ff6b6b;
+      --text: #e4e4e7;
+      --text-dim: #9ca3af;
+      --green: #10b981;
+      --blue: #3b82f6;
+      --orange: #f59e0b;
+      --red: #ef4444;
+      --border: #2d3148;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(15,17,23,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo { font-size: 1.1rem; font-weight: 700; color: var(--accent); }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: var(--text-dim); font-size: 0.9rem; font-weight: 500; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    /* HERO */
+    .hero {
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(108,99,255,0.08) 0%, transparent 60%);
+    }
+    .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .hero h1 span { color: var(--accent); }
+    .hero p { color: var(--text-dim); font-size: 1.15rem; max-width: 640px; margin: 0 auto 2rem; }
+    .hero-stats {
+      display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 0.85rem; color: var(--text-dim); }
+
+    /* SECTION */
+    .section { padding: 4rem 2rem; max-width: 960px; margin: 0 auto; }
+    .section-title {
+      font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .section-title .icon { font-size: 1.5rem; }
+    .section-desc { color: var(--text-dim); margin-bottom: 2rem; font-size: 1rem; }
+
+    /* TABS */
+    .tabs {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+      margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;
+    }
+    .tab-btn {
+      padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid var(--border);
+      background: transparent; color: var(--text-dim); font-size: 0.85rem;
+      cursor: pointer; transition: all 0.2s; font-weight: 500;
+    }
+    .tab-btn:hover { border-color: var(--accent); color: var(--text); }
+    .tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    /* QA CARD */
+    .qa-list { display: flex; flex-direction: column; gap: 1rem; }
+    .qa-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden; transition: border-color 0.2s;
+    }
+    .qa-card:hover { border-color: var(--accent); }
+    .qa-q {
+      padding: 1.25rem 1.5rem; cursor: pointer; display: flex;
+      justify-content: space-between; align-items: flex-start; gap: 1rem;
+    }
+    .qa-q-text { font-weight: 600; font-size: 0.95rem; }
+    .qa-q-num {
+      background: var(--accent); color: #fff; font-size: 0.75rem; font-weight: 700;
+      padding: 0.2rem 0.6rem; border-radius: 6px; white-space: nowrap; flex-shrink: 0;
+    }
+    .qa-arrow { color: var(--text-dim); transition: transform 0.2s; flex-shrink: 0; font-size: 1.2rem; }
+    .qa-card.open .qa-arrow { transform: rotate(180deg); }
+    .qa-a {
+      display: none; padding: 0 1.5rem 1.25rem; border-top: 1px solid var(--border);
+    }
+    .qa-card.open .qa-a { display: block; padding-top: 1.25rem; }
+    .qa-a p { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 0.75rem; }
+    .qa-tip {
+      background: rgba(108,99,255,0.1); border-left: 3px solid var(--accent);
+      padding: 0.75rem 1rem; border-radius: 0 8px 8px 0; margin-top: 0.75rem;
+      font-size: 0.85rem; color: var(--accent);
+    }
+    .qa-code {
+      background: #111318; border: 1px solid var(--border); border-radius: 8px;
+      padding: 1rem; font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.82rem; color: var(--green); overflow-x: auto; margin-top: 0.75rem;
+      white-space: pre-wrap;
+    }
+
+    /* KERNEL CONCEPT CARDS */
+    .concept-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    .concept-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.75rem; transition: border-color 0.2s;
+    }
+    .concept-card:hover { border-color: var(--accent); }
+    .concept-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+    .concept-card h3 .badge {
+      font-size: 0.7rem; padding: 0.15rem 0.5rem; border-radius: 4px;
+      font-weight: 600; text-transform: uppercase;
+    }
+    .badge-cpu { background: rgba(239,68,68,0.15); color: var(--red); }
+    .badge-mem { background: rgba(59,130,246,0.15); color: var(--blue); }
+    .badge-disk { background: rgba(245,158,11,0.15); color: var(--orange); }
+    .badge-net { background: rgba(16,185,129,0.15); color: var(--green); }
+    .concept-card p { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .concept-card .highlight {
+      background: var(--surface2); border-radius: 8px; padding: 0.75rem 1rem;
+      margin-top: 0.75rem; font-size: 0.85rem; border-left: 3px solid var(--accent);
+    }
+    .concept-card .cmd {
+      font-family: 'JetBrains Mono', monospace; background: #111318;
+      padding: 0.5rem 0.75rem; border-radius: 6px; color: var(--green);
+      font-size: 0.82rem; display: inline-block; margin-top: 0.5rem;
+    }
+
+    /* CHAIN DIAGRAM */
+    .chain {
+      display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+      margin: 1rem 0; padding: 1rem; background: var(--surface2); border-radius: 8px;
+    }
+    .chain-step {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.82rem; font-weight: 600;
+    }
+    .chain-arrow { color: var(--accent); font-weight: 700; }
+
+    /* DEBUG FRAMEWORK */
+    .debug-table {
+      width: 100%; border-collapse: collapse; margin-top: 1rem;
+      background: var(--surface); border-radius: 12px; overflow: hidden;
+    }
+    .debug-table th {
+      background: var(--surface2); padding: 0.75rem 1rem; text-align: left;
+      font-size: 0.82rem; color: var(--accent); text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .debug-table td {
+      padding: 0.75rem 1rem; border-top: 1px solid var(--border);
+      font-size: 0.88rem; color: var(--text-dim);
+    }
+
+    /* VERDICT */
+    .verdict-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .verdict-item {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 1rem; text-align: center;
+    }
+    .verdict-item .letter { font-size: 2rem; font-weight: 800; color: var(--accent); }
+    .verdict-item .word { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .verdict-item .desc { font-size: 0.78rem; color: var(--text-dim); }
+
+    /* FOOTER */
+    .footer {
+      text-align: center; padding: 3rem 2rem; border-top: 1px solid var(--border);
+      color: var(--text-dim); font-size: 0.85rem;
+    }
+
+    /* SEARCH */
+    .search-box {
+      width: 100%; padding: 0.75rem 1rem 0.75rem 2.5rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; color: var(--text); font-size: 0.95rem;
+      outline: none; margin-bottom: 1.5rem;
+    }
+    .search-box:focus { border-color: var(--accent); }
+    .search-wrap { position: relative; }
+    .search-icon {
+      position: absolute; left: 0.85rem; top: 50%; transform: translateY(-50%);
+      color: var(--text-dim); font-size: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .hero-stats { gap: 1.5rem; }
+      .nav-links { display: none; }
+      .section { padding: 3rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">AnikethPrep</div>
+    <div class="nav-links">
+      <a href="#questions">Questions</a>
+      <a href="#kernel">Kernel Concepts</a>
+      <a href="#debugging">Debugging</a>
+      <a href="#commands">Commands</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Interview <span>Q&A</span> Prep</h1>
+  <p>Backend Engineering, Distributed Systems &amp; Infrastructure — curated from Obsidian notes and X/Twitter tech bookmarks.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">95</div><div class="stat-label">Questions</div></div>
+    <div class="stat"><div class="stat-num">14</div><div class="stat-label">Sections</div></div>
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">Kernel Pillars</div></div>
+    <div class="stat"><div class="stat-num">5</div><div class="stat-label">Debug Commands</div></div>
+  </div>
+</section>
+
+<!-- ==================== KERNEL CONCEPTS ==================== -->
+<section class="section" id="kernel">
+  <div class="section-title"><span class="icon">🧠</span> Kernel-Level Systems Thinking</div>
+  <p class="section-desc">The kernel is the layer between your application and hardware. Understanding it is what separates senior engineers from staff-level systems thinkers.</p>
+
+  <div class="concept-card" style="margin-bottom:1.5rem; border-left: 3px solid var(--accent);">
+    <h3>What is a Kernel?</h3>
+    <p>The kernel sits between your application (Elasticsearch, Redis, etc.) and the hardware (CPU, RAM, Disk, Network). It decides how resources are allocated and used.</p>
+    <div class="highlight">
+      <strong>Your App</strong> (ES / Redis / Memcache) → <strong>Kernel</strong> (Linux) → <strong>Hardware</strong> (CPU, RAM, Disk, NIC)<br><br>
+      When someone says "learn kernels to survive in tech," they mean: <em>understand what happens below your application so you can debug and reason about performance from first principles.</em>
+    </div>
+  </div>
+
+  <div class="concept-grid">
+
+    <!-- MEMORY -->
+    <div class="concept-card">
+      <h3>Memory: Page Cache vs Heap <span class="badge badge-mem">Memory</span></h3>
+      <p><strong>Heap</strong> = your app's memory (JVM-controlled). <strong>Page Cache</strong> = OS memory (Linux-controlled) that automatically caches frequently read file data in RAM.</p>
+      <p>When Elasticsearch reads data, Linux checks the page cache first. If the data is there → fast (RAM speed). If not → goes to disk (slow).</p>
+      <div class="highlight">
+        <strong>Why ES recommends ~50% heap:</strong> Leaving ~50% of RAM for the OS allows Linux page cache to store frequently accessed data, reducing disk I/O and improving query performance.
+      </div>
+      <div class="chain">
+        <span class="chain-step">Slow Query</span>
+        <span class="chain-arrow">→</span>
+        <span class="chain-step">Page Cache Miss</span>
+        <span class="chain-arrow">→</span>
+        <span class="chain-step">Disk I/O</span>
+        <span class="chain-arrow">→</span>
+        <span class="chain-step">Higher Latency</span>
+      </div>
+      <p><strong>Key insight:</strong> If you increase heap from 50% → 75%, you reduce RAM available for page cache → more cache misses → more disk reads → slower queries. The problem isn't in ES config — it's in how Linux manages memory.</p>
+    </div>
+
+    <!-- CPU / THREADS -->
+    <div class="concept-card">
+      <h3>CPU: Thread Scheduling &amp; Context Switching <span class="badge badge-cpu">CPU</span></h3>
+      <p>Your code doesn't run directly on CPU — threads <strong>compete</strong> for CPU time. The Linux scheduler decides who gets a CPU core and for how long.</p>
+      <p><strong>Context switching:</strong> CPU stops one thread, saves its state, loads another. Too many threads → excessive context switching → overhead.</p>
+      <p><strong>Run queue:</strong> Threads waiting for CPU. If run queue &gt; number of cores, threads are waiting even if CPU isn't at 100%.</p>
+      <div class="highlight">
+        <strong>In Elasticsearch:</strong> Too many search threads + concurrent requests → run queue grows → threads wait → slow queries. Sometimes latency is NOT about CPU usage — it's about threads waiting for CPU time.
+      </div>
+    </div>
+
+    <!-- NETWORK -->
+    <div class="concept-card">
+      <h3>Network: Latency, Queueing &amp; TCP <span class="badge badge-net">Network</span></h3>
+      <p>Network delay is NOT just distance — it's a pipeline: App → OS network stack → NIC → routers → destination → response.</p>
+      <p><strong>Where latency comes from:</strong> DNS lookup, TCP handshake, queueing in network buffers, packet retransmissions, serialization/deserialization.</p>
+      <p><strong>TCP internals (critical for Redis/Mcrouter):</strong></p>
+      <p>• <strong>Socket backlog:</strong> If too many requests arrive, they queue in the kernel network stack<br>
+      • <strong>Retransmissions:</strong> Packet loss forces TCP to resend — even small % loss = big latency spike<br>
+      • <strong>Congestion control:</strong> TCP slows down when network is overloaded</p>
+      <div class="highlight">
+        <strong>Redis latency spike with low CPU and fine memory?</strong> Check network: connection backlog, TCP retransmissions, packet drops. Requests are being queued in the kernel network stack, causing delays before reaching the application.
+      </div>
+    </div>
+
+    <!-- DISK -->
+    <div class="concept-card">
+      <h3>Disk: Sequential vs Random I/O <span class="badge badge-disk">Disk</span></h3>
+      <p><strong>Sequential read</strong> = reading a book page by page (fast, predictable). <strong>Random read</strong> = flipping to random pages (slow, disk seeks).</p>
+      <p>Even SSDs are slower for random than sequential access. Your query pattern affects disk behavior:</p>
+      <p>• Aggregations / filters → more random access<br>
+      • Full scans → more sequential access<br>
+      • Lucene segments in ES are optimized for sequential reads</p>
+      <div class="highlight">
+        <strong>Many small random reads are much worse for latency than one big sequential read.</strong> This is why ES uses segment merging and why storage engines (LSM trees, B-trees) are designed around I/O patterns.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== DEBUGGING FRAMEWORK ==================== -->
+<section class="section" id="debugging">
+  <div class="section-title"><span class="icon">🔍</span> 5-Minute Debugging Framework</div>
+  <p class="section-desc">A systematic approach to diagnosing any production performance issue.</p>
+
+  <div class="concept-card" style="margin-bottom: 1.5rem;">
+    <h3>Step-by-Step Flow</h3>
+    <p><strong>Step 1: Classify</strong> — Is it doing work, or waiting? (CPU high = working, CPU low = waiting)</p>
+    <p><strong>Step 2: Map to 4 resources</strong> — CPU, Memory, Disk, Network</p>
+    <p><strong>Step 3: Eliminate</strong> — Check each resource, cross off what's normal</p>
+    <p><strong>Step 4: Hypothesize</strong> — Form a kernel-level hypothesis ("page cache miss due to memory pressure")</p>
+    <p><strong>Step 5: Validate</strong> — Use 1–2 commands to confirm</p>
+  </div>
+
+  <div class="concept-card" style="margin-bottom: 1.5rem;">
+    <h3>VERDICT-7 Framework</h3>
+    <p>Systematic debugging when server CPU spikes or performance degrades unexpectedly:</p>
+    <div class="verdict-grid">
+      <div class="verdict-item"><div class="letter">V</div><div class="word">Version changes</div><div class="desc">Config, code, or dependency changes</div></div>
+      <div class="verdict-item"><div class="letter">E</div><div class="word">Environment scope</div><div class="desc">One server or all?</div></div>
+      <div class="verdict-item"><div class="letter">R</div><div class="word">Resource pressure</div><div class="desc">CPU, memory, disk I/O</div></div>
+      <div class="verdict-item"><div class="letter">D</div><div class="word">Dependencies</div><div class="desc">Downstream service slow?</div></div>
+      <div class="verdict-item"><div class="letter">I</div><div class="word">Infrastructure health</div><div class="desc">Hardware issues?</div></div>
+      <div class="verdict-item"><div class="letter">C</div><div class="word">Connectivity paths</div><div class="desc">Network saturation?</div></div>
+      <div class="verdict-item"><div class="letter">T</div><div class="word">Telemetry signals</div><div class="desc">Metrics, dashboards, alerts</div></div>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <h3>Quick Diagnosis Table</h3>
+    <table class="debug-table">
+      <thead>
+        <tr><th>Symptom</th><th>Kernel Concept</th><th>Check With</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Slow queries, high disk I/O</td><td>Page cache miss</td><td><code>free -m</code>, <code>iostat -x</code></td></tr>
+        <tr><td>High latency, low CPU</td><td>Network queueing</td><td><code>ss -s</code>, <code>netstat</code></td></tr>
+        <tr><td>CPU not 100% but latency spikes</td><td>Run queue / context switches</td><td><code>vmstat 1</code></td></tr>
+        <tr><td>Network latency spikes</td><td>TCP retransmissions</td><td><code>ss -ti</code></td></tr>
+        <tr><td>Redis/Memcache slow, CPU+mem fine</td><td>Socket backlog / packet loss</td><td><code>ss -ltn</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ==================== COMMANDS ==================== -->
+<section class="section" id="commands">
+  <div class="section-title"><span class="icon">⚡</span> Essential Linux Commands</div>
+  <p class="section-desc">The only signals you need to master for production debugging.</p>
+
+  <div class="concept-grid">
+    <div class="concept-card">
+      <h3>top <span class="badge badge-cpu">CPU</span></h3>
+      <p><strong>%us</strong> = user CPU, <strong>%sy</strong> = system (kernel work), <strong>%wa</strong> = waiting on disk</p>
+      <div class="highlight">If <code>%wa</code> is high → CPU is waiting on disk. The app isn't slow because of compute — it's waiting for I/O.</div>
+      <div class="cmd">top -b -n 1 | head -20</div>
+    </div>
+    <div class="concept-card">
+      <h3>free -m <span class="badge badge-mem">Memory</span></h3>
+      <p>Shows available memory and buff/cache (your page cache). Low <code>available</code> = memory pressure → page cache eviction → more disk I/O.</p>
+      <div class="highlight">Low free ≠ bad. Linux uses "free" RAM for caching. Check <code>available</code> instead.</div>
+      <div class="cmd">free -m</div>
+    </div>
+    <div class="concept-card">
+      <h3>vmstat <span class="badge badge-cpu">CPU</span> <span class="badge badge-mem">Memory</span></h3>
+      <p><strong>r</strong> = run queue (threads waiting for CPU). <strong>b</strong> = blocked (waiting on I/O).</p>
+      <div class="highlight">If <code>r</code> &gt; number of cores → CPU contention (threads waiting). If <code>b</code> is high → disk or network wait.</div>
+      <div class="cmd">vmstat 1 5</div>
+    </div>
+    <div class="concept-card">
+      <h3>iostat -x <span class="badge badge-disk">Disk</span></h3>
+      <p><strong>await</strong> = I/O latency, <strong>%util</strong> = disk busy percentage.</p>
+      <div class="highlight">If <code>await</code> is high and <code>%util</code> near 100% → disk is your bottleneck.</div>
+      <div class="cmd">iostat -x 1 5</div>
+    </div>
+    <div class="concept-card">
+      <h3>ss / netstat <span class="badge badge-net">Network</span></h3>
+      <p>Check retransmissions, connection backlog, and open connections.</p>
+      <div class="highlight">High retransmits → network instability / packet loss. Full backlog → requests queued before reaching app.</div>
+      <div class="cmd">ss -s && ss -ti | head -30</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== INTERVIEW QUESTIONS ==================== -->
+<section class="section" id="questions">
+  <div class="section-title"><span class="icon">📝</span> Interview Questions &amp; Answers</div>
+  <p class="section-desc">95 questions across 14 sections covering microservices, distributed systems, databases, caching, infrastructure, and more.</p>
+
+  <div class="search-wrap">
+    <span class="search-icon">🔎</span>
+    <input type="text" class="search-box" id="searchBox" placeholder="Search questions... (e.g. 'kafka', 'redis', 'circuit breaker')">
+  </div>
+
+  <div class="tabs" id="sectionTabs"></div>
+  <div class="qa-list" id="qaList"></div>
+</section>
+
+<footer class="footer">
+  <p>Built for Aniketh's interview preparation</p>
+  <p style="margin-top:0.25rem;">Backend Engineering &bull; Distributed Systems &bull; Infrastructure</p>
+</footer>
+
+<script>
+// ==================== Q&A DATA ====================
+const sections = [
+  { id: 1, name: "Microservices", questions: [
+    { q: "What design patterns have you used in microservices?", a: "Key patterns: (1) API Gateway — single entry point for routing, auth, rate limiting. (2) Circuit Breaker — prevents cascading failures using Resilience4j/Hystrix. (3) Service Discovery — dynamic registration via Eureka or Consul. (4) Database per Service — loose coupling with independent DBs. (5) Event Sourcing — stores event sequence instead of current state. (6) SAGA Pattern — manages distributed transactions as a series of local transactions. (7) Strangler Pattern — incremental migration from monolith. (8) Bulkhead Pattern — isolates resources to prevent cross-service failures.", tip: "Always tie each pattern to a real problem you solved." },
+    { q: "Which API gateway have you used and how does it work?", a: "Spring Cloud Gateway — uses Spring WebFlux for reactive, non-blocking routing. Key features: route predicates (match on path, headers, params), filters (pre/post processing like adding headers, rate limiting), integration with Spring Security for auth, and circuit breaker support.", tip: "Know the difference between Spring Cloud Gateway (reactive) and Zuul (servlet-based, now legacy)." },
+    { q: "How does a cloud load balancer balance the load?", a: "(1) Round Robin — sequential distribution. (2) Least Connections — routes to server with fewest active connections. (3) Least Response Time — based on lowest latency. (4) IP Hash — consistent routing based on client IP. (5) Weighted Round Robin — distributes based on server capacity. (6) Consistent Hashing — minimal disruption when servers are added/removed.", tip: "For streaming services, network bandwidth might be more important than CPU for LB decisions." },
+    { q: "How do you handle distributed transactions in microservices?", a: "Two approaches: (1) SAGA Pattern — series of local transactions with compensating actions for rollback. Two types: Choreography (event-driven, each service listens and reacts) and Orchestration (central coordinator manages the flow). (2) Two-Phase Commit (2PC) — prepare phase + commit phase, ensures atomicity but blocks resources.", tip: "SAGAs are preferred for microservices due to loose coupling. 2PC is for strong consistency needs." },
+    { q: "How does Circuit Breaker pattern work?", a: "Three states: CLOSED (requests flow normally, failures counted), OPEN (requests fail fast, no calls to failing service), HALF-OPEN (limited requests to test recovery). Configured with: failure threshold, wait duration, permitted calls in half-open. Tools: Resilience4j, Hystrix (deprecated). Also supports fallback responses.", tip: "Know the exact state transitions and mention Resilience4j." },
+    { q: "What is an Idempotency Key and why is it important?", a: "A unique identifier sent with each request ensuring the operation produces the same result even if retried. Crucial for payment processing, order creation, etc. Implementation: client generates UUID, server checks if key was already processed, stores result for duplicate requests.", tip: "Mention real examples: Stripe uses idempotency keys for payment APIs." },
+    { q: "How would you implement rate limiting?", a: "Algorithms: (1) Token Bucket — tokens added at fixed rate, consumed per request. (2) Sliding Window — counts requests in a rolling time window. (3) Fixed Window Counter — simple but has boundary burst issues. (4) Leaky Bucket — processes at constant rate, queues excess. Implementation: Redis + Lua script for distributed rate limiting.", tip: "Token Bucket is most common. Know the Redis + Lua pattern." },
+    { q: "What is service mesh and when would you use it?", a: "A dedicated infrastructure layer for service-to-service communication. Sidecar proxy (like Envoy) runs alongside each service. Handles: traffic management, security (mTLS), observability, retries, circuit breaking. Tools: Istio, Linkerd. Use when: many microservices, need consistent policies across services, complex traffic routing.", tip: "Know the sidecar pattern — it's key to understanding service mesh." },
+    { q: "How do you manage configuration across microservices?", a: "Centralized config: Spring Cloud Config Server, Consul, etcd. Features: environment-specific configs, dynamic refresh without restart, encryption for secrets, version control. For secrets specifically: HashiCorp Vault, AWS Secrets Manager. Pattern: Config server backed by Git repo, services pull config on startup and can refresh via /actuator/refresh or bus events.", tip: "Mention the difference between config (can be in Git) and secrets (must use Vault or similar)." },
+    { q: "What is the Strangler Fig pattern?", a: "Incrementally migrate from monolith to microservices by gradually replacing functionality. Steps: (1) Identify a bounded context. (2) Build new microservice. (3) Route traffic to new service (using API gateway). (4) Keep monolith running for unreplaced parts. (5) Repeat. Benefits: zero downtime migration, rollback capability, gradual learning.", tip: "Mention that some monoliths are fine — only migrate if benefits justify the cost." },
+    { q: "How do you handle API versioning?", a: "Strategies: (1) URI versioning — /api/v1/users (most common). (2) Header versioning — Accept: application/vnd.api.v1+json. (3) Query parameter — /api/users?version=1. Best practices: maintain backward compatibility, deprecation notices, sunset headers. Support at least N-1 version.", tip: "URI versioning is most practical. Header versioning is more RESTful but harder for clients." },
+  ]},
+  { id: 2, name: "Sharding & Partitioning", questions: [
+    { q: "What is database sharding and what are the types?", a: "Splitting a database into smaller pieces (shards) across multiple servers. Types: (1) Range-based — shard by value range (e.g., users A-M, N-Z). (2) Hash-based — hash(key) mod N determines shard. (3) Directory-based — lookup table maps keys to shards. (4) Geographic — shard by region.", tip: "Hash-based is most common for even distribution. Range-based can cause hotspots." },
+    { q: "How do you choose a shard key?", a: "Criteria: (1) High cardinality — many unique values. (2) Even distribution — avoids hotspots. (3) Query pattern aligned — most queries should hit single shard. (4) Immutable — shouldn't change. Bad choices: timestamps (range queries span all shards), boolean fields (only 2 values). Good: user_id, tenant_id.", tip: "A bad shard key can be worse than no sharding. Always analyze query patterns first." },
+    { q: "What is consistent hashing and why is it important?", a: "Maps both servers and keys to a ring. Keys are assigned to the nearest server clockwise. When a server is added/removed, only K/N keys need to be remapped (K=keys, N=servers). Virtual nodes ensure even distribution. Used by: DynamoDB, Cassandra, Redis Cluster, CDNs.", tip: "Know virtual nodes — without them, distribution can be very uneven." },
+    { q: "How do you handle cross-shard queries?", a: "Approaches: (1) Scatter-gather — query all shards, merge results. Slow for many shards. (2) Global index — secondary index spanning all shards. (3) Denormalization — duplicate data to avoid cross-shard joins. (4) Application-level joins. Best practice: design schema so most queries hit single shard.", tip: "Cross-shard joins are the biggest pain point. Design to avoid them." },
+    { q: "What is rebalancing and how do you handle it?", a: "Moving data between shards when adding/removing nodes. Strategies: (1) Fixed partitions — pre-create many partitions, reassign to new nodes. (2) Dynamic splitting — split hot partitions. (3) Consistent hashing with virtual nodes. Challenges: data migration takes time, need to handle reads/writes during rebalance. Tools: Kafka partition reassignment, ES shard allocation.", tip: "Pre-creating extra partitions makes future rebalancing much easier." },
+  ]},
+  { id: 3, name: "Consistency & Replication", questions: [
+    { q: "Explain the different consistency models.", a: "Strong consistency — all reads see latest write (linearizability). Eventual consistency — all replicas converge eventually. Causal consistency — respects causal ordering. Read-your-writes — you always see your own writes. Session consistency — consistency within a session. Monotonic reads — won't see older data after seeing newer.", tip: "Most distributed systems use eventual consistency with mechanisms to handle conflicts." },
+    { q: "What is the CAP theorem and how does it apply in practice?", a: "In a distributed system, during a network partition, you must choose between Consistency and Availability. CP systems (e.g., ZooKeeper, HBase) — sacrifice availability for consistency. AP systems (e.g., Cassandra, DynamoDB) — sacrifice consistency for availability. In practice, it's about tuning the trade-off, not a binary choice. PACELC extends CAP: Even without partition, choose between Latency and Consistency.", tip: "Mention PACELC — it's more practical than CAP alone." },
+    { q: "How does master-slave replication work?", a: "Master handles all writes, replicates to slaves. Slaves serve read queries. Replication can be: synchronous (master waits for slave ACK — strong consistency, higher latency) or asynchronous (master doesn't wait — eventual consistency, lower latency). Issues: replication lag, split-brain if master fails. Failover: promote slave to master (manual or automatic via sentinel/orchestrator).", tip: "Know the trade-off: sync replication = safety but slower, async = fast but risk of data loss on failover." },
+    { q: "What is Change Data Capture (CDC)?", a: "Captures changes from database WAL/binlog and propagates as events. Approaches: (1) Log-based (Debezium) — reads WAL, minimal performance impact. (2) Trigger-based — database triggers write to change table. (3) Timestamp-based polling. (4) Dual writes (risky). Best practice: Debezium → Kafka → downstream consumers.", tip: "CDC is critical for microservices data consistency without tight coupling." },
+    { q: "How do you handle conflicts in multi-master replication?", a: "Strategies: (1) Last-writer-wins (LWW) — timestamp-based, simple but can lose data. (2) Vector clocks — detect concurrent writes, application resolves. (3) CRDTs — conflict-free replicated data types, mathematically guaranteed to converge. (4) Application-level resolution — custom merge logic. DynamoDB uses vector clocks, Riak uses CRDTs.", tip: "CRDTs are the most elegant solution but only work for specific data types." },
+  ]},
+  { id: 4, name: "Redis", questions: [
+    { q: "How does Redis achieve high performance?", a: "Single-threaded event loop (no context switching), in-memory data store, efficient data structures (SDS, ziplist, intset, skiplist), I/O multiplexing (epoll/kqueue), no disk I/O on reads (unless persistence), pipeline support for batch commands.", tip: "Single-threaded is a feature, not a limitation — it avoids locking overhead." },
+    { q: "Explain Redis persistence: RDB vs AOF.", a: "RDB: point-in-time snapshots at intervals. Fast recovery, compact files, but data loss between snapshots. AOF: logs every write command. More durable (configurable fsync), but larger files. AOF rewrite compacts the log. Best practice: use both — AOF for durability, RDB for fast recovery/backups. Redis 7+ has multi-part AOF.", tip: "Know the fsync options: always (safest, slowest), everysec (good balance), no (fastest, riskiest)." },
+    { q: "What is Redis Cluster and how does it work?", a: "Distributed Redis with automatic sharding across multiple nodes. Uses hash slots (16384 slots divided among masters). Each master has replicas. Client redirects via MOVED/ASK. Gossip protocol for node discovery. No central coordinator — fully distributed.", tip: "Know the hash slot concept and MOVED redirect." },
+    { q: "How does Redis handle memory management?", a: "maxmemory config sets limit. Eviction policies: noeviction (return errors), allkeys-lru, volatile-lru, allkeys-random, volatile-random, volatile-ttl, allkeys-lfu, volatile-lfu. Memory fragmentation: jemalloc allocator, MEMORY PURGE command. Monitor with INFO memory.", tip: "LFU (least frequently used) is often better than LRU for cache workloads." },
+    { q: "Explain Redis Pub/Sub vs Streams.", a: "Pub/Sub: fire-and-forget, no persistence, message lost if subscriber is offline. Streams: persistent, consumer groups, message acknowledgment, replay capability. Streams are like a lightweight Kafka within Redis. Use Pub/Sub for real-time notifications, Streams for reliable message processing.", tip: "Streams with consumer groups can replace simple Kafka use cases." },
+    { q: "What is Redis Sentinel?", a: "High availability solution: monitors master/slave setup, automatic failover when master goes down, notifies clients of topology changes. Sentinel quorum determines when to failover. Configuration: minimum 3 sentinels, quorum typically 2. Limitations: no sharding (that's Redis Cluster).", tip: "Know the difference: Sentinel = HA, Cluster = HA + sharding." },
+    { q: "How does Redis master-slave replication work?", a: "Full sync: slave sends PSYNC, master creates RDB snapshot, sends to slave, then sends buffered commands. Incremental sync: after disconnect, uses replication backlog to send only missed commands. Replication is asynchronous by default. WAIT command can make it synchronous for specific writes.", tip: "The replication backlog size is critical — if it overflows during disconnect, full sync is needed." },
+    { q: "What are Redis data types and when to use each?", a: "Strings: simple key-value, counters (INCR). Lists: message queues, recent items. Sets: unique collections, intersections. Sorted Sets: leaderboards, priority queues. Hashes: objects with multiple fields. Streams: event logs. HyperLogLog: cardinality estimation. Bitmaps: boolean flags per user. Geospatial: location-based queries.", tip: "Sorted Sets are incredibly powerful — know the ZADD/ZRANGE/ZRANGEBYSCORE patterns." },
+  ]},
+  { id: 5, name: "Kafka", questions: [
+    { q: "How does Kafka ensure message ordering?", a: "Ordering is guaranteed within a partition, not across partitions. Producer sends messages with a key — same key always goes to same partition (via hash). Consumer reads from partition in order. If you need global ordering: use single partition (limits throughput) or design around partition-level ordering.", tip: "Most use cases only need ordering per entity (user, order) — partition by entity ID." },
+    { q: "What is Kafka's ISR and how does replication work?", a: "ISR (In-Sync Replicas) = replicas that are fully caught up with leader. Writes go to leader, replicas fetch. A message is 'committed' when all ISR replicas have it. If a replica falls behind, it's removed from ISR. min.insync.replicas sets minimum ISR size for writes. acks=all ensures write to all ISR before acknowledging.", tip: "acks=all + min.insync.replicas=2 + replication.factor=3 is a common production config." },
+    { q: "Explain Kafka consumer groups.", a: "Multiple consumers sharing a group ID cooperatively consume from a topic. Each partition is assigned to exactly one consumer in the group. If consumers > partitions, some consumers are idle. Rebalancing happens when consumers join/leave. Cooperative rebalancing (incremental) avoids stop-the-world pauses.", tip: "Design partition count based on expected consumer parallelism." },
+    { q: "How do you handle exactly-once semantics in Kafka?", a: "Three levels: (1) At-most-once — fire and forget. (2) At-least-once — retry with potential duplicates. (3) Exactly-once — idempotent producer (enable.idempotence=true) + transactional API. For consumer side: idempotent processing or transactional offset commits. Kafka Streams has built-in exactly-once support.", tip: "True exactly-once requires idempotent producer + transactional consumer + idempotent downstream processing." },
+    { q: "What is Kafka tiered storage?", a: "Moves older log segments from local broker disk to remote storage (S3, HDFS). Benefits: brokers need less local disk, longer retention without cost explosion, faster broker replacement. Hot data stays local, cold data in remote tier. Introduced in KIP-405.", tip: "Tiered storage changes the economics of Kafka — you can retain data for months/years cheaply." },
+  ]},
+  { id: 6, name: "Backend Communication", questions: [
+    { q: "Compare Request-Response, Push, and Pub/Sub patterns.", a: "Request-Response: client sends request, waits for response (HTTP, gRPC). Simple but blocking. Push: server sends data to client without request (WebSocket, SSE). Good for real-time updates. Pub/Sub: publisher sends to topic, multiple subscribers receive (Kafka, Redis). Decoupled, scalable, but eventually consistent.", tip: "Most systems use a mix — REST for CRUD, WebSocket for real-time, Kafka for async processing." },
+    { q: "What is the Sidecar pattern?", a: "A helper process deployed alongside your main application. Handles cross-cutting concerns: logging, monitoring, security, networking. Each service instance gets its own sidecar. Examples: Envoy proxy in Istio, Fluentd for logging. Benefits: language-agnostic, separation of concerns, consistent behavior across services.", tip: "Sidecar pattern is the foundation of service mesh architecture." },
+    { q: "gRPC vs REST — when to use which?", a: "gRPC: binary (protobuf), HTTP/2, bidirectional streaming, code generation, faster serialization. Best for: internal microservice communication, high-throughput, low-latency. REST: JSON over HTTP/1.1, human-readable, browser-friendly, widely supported. Best for: public APIs, simple CRUD, third-party integrations.", tip: "Internal services: gRPC. External/public APIs: REST. Many companies use both." },
+    { q: "How do WebSockets work and when to use them?", a: "Full-duplex communication over a single TCP connection. Starts as HTTP upgrade request, then switches to WebSocket protocol. Use for: real-time chat, live dashboards, collaborative editing, gaming. Alternatives: Server-Sent Events (SSE) for one-way server→client, Long polling as fallback.", tip: "WebSockets need connection management at scale — consider using a pub/sub backend." },
+    { q: "What is back-pressure and how do you handle it?", a: "When a producer generates data faster than the consumer can process. Handling: (1) Buffering — queue messages (bounded buffer). (2) Dropping — discard excess messages. (3) Sampling — process subset. (4) Flow control — signal producer to slow down. (5) Reactive streams — built-in back-pressure (Project Reactor, RxJava).", tip: "Unbounded buffers are dangerous — they just delay the OOM. Always use bounded queues." },
+    { q: "Explain long polling vs SSE vs WebSocket.", a: "Long polling: client makes HTTP request, server holds until data available, then responds. Client immediately reconnects. Overhead: repeated connections. SSE: server pushes events over single HTTP connection (one-way). Automatic reconnection. Good for notifications. WebSocket: full-duplex, bidirectional. Best for interactive real-time apps.", tip: "SSE is underrated — simpler than WebSocket for server→client use cases." },
+    { q: "What is event-driven architecture vs message queue architecture?", a: "Event-driven: services emit events representing facts ('OrderPlaced'). Producers don't know consumers. Events are immutable. Supports replay. Pub/sub model. Message Queue: point-to-point, messages are commands ('ProcessPayment'). Ensures delivery with backpressure. Typically one consumer per message. Key differences: EDA is many-to-many, MQ is one-to-one. Events are facts, messages are commands.", tip: "Many systems use both — event-driven for inter-service, message queues for task processing." },
+  ]},
+  { id: 7, name: "Spring Boot", questions: [
+    { q: "How does Spring Boot auto-configuration work?", a: "Uses @EnableAutoConfiguration and spring.factories files. Spring Boot scans classpath, detects available libraries, and auto-configures beans. Conditional annotations: @ConditionalOnClass, @ConditionalOnMissingBean, @ConditionalOnProperty. You can override any auto-config by defining your own bean. spring-boot-autoconfigure module contains all auto-config classes.", tip: "Know the @Conditional annotations — that's the real mechanism." },
+    { q: "How does Spring handle dependency injection?", a: "IoC (Inversion of Control) container manages bean lifecycle. Types: Constructor injection (preferred — immutable, testable), Setter injection (optional dependencies), Field injection (@Autowired — not recommended). Bean scopes: singleton (default), prototype, request, session. Spring creates beans, resolves dependencies, and injects at startup.", tip: "Always prefer constructor injection — it makes dependencies explicit and enables easier testing." },
+    { q: "What is Spring WebFlux and when to use it?", a: "Reactive, non-blocking web framework. Uses Project Reactor (Mono/Flux). Runs on Netty (non-blocking I/O). Best for: high-concurrency scenarios (many simultaneous connections), streaming data, API gateways. Not suitable for: CPU-intensive work, simple CRUD, teams unfamiliar with reactive paradigm.", tip: "WebFlux shines when your app is I/O-bound with many concurrent connections." },
+    { q: "How does Spring Security work?", a: "Filter chain architecture: SecurityFilterChain processes each request. Key filters: UsernamePasswordAuthenticationFilter, JwtAuthenticationFilter. Authentication: verify identity (login). Authorization: check permissions (@PreAuthorize, @Secured). Supports: form login, OAuth2, JWT, LDAP, SAML. SecurityContext holds authenticated user (ThreadLocal).", tip: "Know the filter chain order and how to create custom filters." },
+    { q: "What is Spring Cloud and its key components?", a: "Suite for building cloud-native microservices. Key components: Spring Cloud Gateway (API gateway), Spring Cloud Config (centralized config), Spring Cloud Netflix (Eureka for discovery, Resilience4j for circuit breaker), Spring Cloud Stream (messaging abstraction over Kafka/RabbitMQ), Spring Cloud Sleuth/Micrometer (distributed tracing).", tip: "Spring Cloud Stream abstracts the messaging provider — good for portability." },
+    { q: "Explain Spring Boot Actuator.", a: "Production-ready features: health checks (/actuator/health), metrics (/actuator/metrics), environment info, thread dump, heap dump. Integrates with Prometheus for metrics export. Custom health indicators for application-specific checks. Security: expose only needed endpoints in production.", tip: "Custom health indicators + Prometheus integration is a common production setup." },
+    { q: "How do you handle transactions in Spring?", a: "@Transactional annotation: proxy-based (self-invocation doesn't work), propagation levels (REQUIRED, REQUIRES_NEW, NESTED), isolation levels (READ_COMMITTED, REPEATABLE_READ, SERIALIZABLE), rollback rules (rollbackFor, noRollbackFor). Distributed transactions: Saga pattern, or JTA with XA for 2PC.", tip: "Know that @Transactional doesn't work on private methods or self-invocation (proxy limitation)." },
+    { q: "What are Spring Boot profiles and how to use them?", a: "Environment-specific configuration: application-{profile}.yml. Activate: spring.profiles.active=dev. Use @Profile annotation to conditionally load beans. Common setup: dev, staging, prod profiles with different DB connections, logging levels, feature flags. Can combine multiple profiles.", tip: "Use profiles for env-specific config but externalize secrets using Vault or env variables." },
+    { q: "How does Spring handle caching?", a: "@Cacheable, @CachePut, @CacheEvict annotations. Cache providers: Caffeine (in-memory, preferred), Redis (distributed), EhCache. CacheManager bean configures provider. Best practices: cache key design, TTL settings, cache-aside pattern, handle cache misses gracefully.", tip: "Caffeine for local cache + Redis for distributed cache is a powerful combination." },
+  ]},
+  { id: 8, name: "System Design Problems", questions: [
+    { q: "Design a music streaming service (like Spotify).", a: "Key components: CDN for audio delivery, metadata service (song, artist, album), user service, playlist service, recommendation engine, search service (Elasticsearch). Audio: chunked streaming, adaptive bitrate. Scale: CDN edge caching, database sharding by user_id, async processing for recommendations. Storage: object storage (S3) for audio files, Postgres for metadata, Redis for sessions.", tip: "Focus on: CDN delivery, metadata vs audio storage separation, offline mode sync." },
+    { q: "Design a subscribe-and-save system (like Amazon).", a: "Requirements: recurring orders, flexible scheduling, payment retry logic. Components: Subscription service (CRUD), Scheduler (cron/event-based), Order service, Payment service, Notification service. Database: subscription table with frequency, next_delivery_date, status. Key challenges: payment failures (retry with backoff), inventory checks, price changes, skip/pause/cancel flows.", tip: "The hardest part is handling edge cases: payment failures, out-of-stock items, price changes between subscription creation and delivery." },
+    { q: "Design a distributed rate limiter.", a: "Requirements: limit requests per user/API key across multiple servers. Approach: Token Bucket algorithm with Redis backend. Implementation: Redis key per user, Lua script for atomic check-and-decrement. Handle: distributed clock skew, Redis failures (fail-open vs fail-closed), sliding window for smoother limits. Scale: Redis Cluster for sharding, local in-memory cache as L1 with Redis as L2.", tip: "Always discuss fail-open vs fail-closed and what happens when Redis is unavailable." },
+  ]},
+  { id: 9, name: "Elasticsearch", questions: [
+    { q: "How does Elasticsearch execute a search query?", a: "Two phases: (1) Query phase — coordinating node sends query to all relevant shards, each shard returns top-N doc IDs with scores. (2) Fetch phase — coordinating node asks specific shards for full documents. This scatter-gather approach distributes work. Relevance scoring uses BM25 by default.", tip: "Know the query-then-fetch flow — it's a classic interview question." },
+    { q: "What are Elasticsearch slow logs and how to use them?", a: "Logs queries/indexing operations that exceed a threshold. Configuration: index.search.slowlog.threshold.query.warn: 10s. Types: search slow log and indexing slow log. Shows the actual query, shard, time taken. Essential for identifying problematic queries in production.", tip: "Always set up slow logs in production — they're your first line of defense for query performance." },
+    { q: "How does Elasticsearch handle sharding and replication?", a: "Index divided into primary shards (write targets) and replica shards (copies for HA/read scaling). Shard allocation handled by cluster. Number of primary shards set at index creation (can't change easily). Replicas can be adjusted dynamically. Rebalancing happens automatically when nodes join/leave.", tip: "Choose shard count wisely upfront — too many = overhead, too few = can't scale reads." },
+    { q: "What is an inverted index?", a: "Maps terms to documents containing them (reverse of document→terms). Each term points to a posting list (doc IDs + positions). Enables fast full-text search. Lucene stores inverted index per segment. Additional structures: doc values for sorting/aggregations, stored fields for document retrieval.", tip: "Inverted index is why ES is fast for search but slow for updates (need to rebuild segments)." },
+  ]},
+  { id: 10, name: "Caching & Memcached", questions: [
+    { q: "Compare Memcached and Redis for caching.", a: "Memcached: simple key-value, multi-threaded, no persistence, slab allocator for memory. Best for simple caching with high throughput. Redis: rich data types, single-threaded event loop, persistence, pub/sub, Lua scripting. Best when you need data structures, persistence, or advanced features. Memcached wins on raw multi-threaded performance for simple gets/sets.", tip: "If you just need a simple cache → Memcached. If you need features → Redis." },
+    { q: "What is cache-aside (lazy loading) pattern?", a: "Application checks cache first. Cache hit → return data. Cache miss → query database, store in cache, return. Write: update database, invalidate cache (or update cache). Benefits: only caches what's needed. Drawbacks: cache miss penalty (DB + cache write), potential stale data.", tip: "Cache-aside is the most common pattern. Know the alternatives: write-through, write-behind." },
+    { q: "How does Mcrouter work as a Memcached proxy?", a: "Facebook's proxy for Memcached. Features: connection pooling, consistent hashing, replication, failover, prefix-based routing. Sits between app and Memcached instances. Handles: automatic sharding, shadow traffic, warm-up, cold cache handling. Scales Memcached horizontally without application changes.", tip: "Mcrouter is essential knowledge for anyone working with Memcached at scale." },
+    { q: "What is cache stampede and how to prevent it?", a: "When a cache key expires, all concurrent requests hit the database simultaneously. Prevention: (1) Locking/mutex — only one request fetches from DB. (2) Stale-while-revalidate — serve stale data while refreshing. (3) Probabilistic early revalidation. (4) Request coalescing. (5) Pre-warming. (6) Multi-layer caching.", tip: "Draw the timeline in interviews: key expires → N requests hit DB → DB overloads → cascading failure." },
+  ]},
+  { id: 11, name: "Infrastructure & Networking", questions: [
+    { q: "How does DNS resolution work?", a: "Browser cache → OS cache → Recursive resolver → Root nameserver → TLD nameserver → Authoritative nameserver. Returns IP address. TTL controls caching duration. DNS can be used for load balancing (round-robin DNS), geographic routing, and failover.", tip: "Know the full resolution chain and the role of TTL." },
+    { q: "What is a CDN and how does it work?", a: "Content Delivery Network: geographically distributed servers caching content close to users. How: DNS routes to nearest PoP (Point of Presence). Cache hit → serve from edge. Cache miss → fetch from origin, cache, serve. Types: push CDN (you upload), pull CDN (fetches on demand). Providers: CloudFront, Cloudflare, Akamai.", tip: "Know push vs pull CDN and cache invalidation strategies." },
+    { q: "Explain container orchestration with Kubernetes.", a: "Manages containerized applications: deployment, scaling, networking, storage. Key concepts: Pods (smallest deployable unit), Deployments (declarative updates), Services (stable networking), Ingress (external access), ConfigMaps/Secrets, HPA (auto-scaling). Control plane: API server, etcd, scheduler, controller manager.", tip: "Know the Pod lifecycle and how Services provide stable networking." },
+    { q: "What is Infrastructure as Code (IaC)?", a: "Managing infrastructure through code/config files. Tools: Terraform (multi-cloud, declarative), Ansible (configuration management), Pulumi (programming languages). Benefits: version control, reproducibility, automation, drift detection. State management in Terraform: tracks current infra state, plans changes before applying.", tip: "Terraform for infrastructure provisioning + Ansible for configuration management is a common combo." },
+    { q: "How do you implement blue-green and canary deployments?", a: "Blue-Green: two identical environments, switch traffic between them. Zero downtime, instant rollback. Canary: gradually route small % of traffic to new version, monitor, increase. Safer but slower. Tools: Kubernetes rolling updates, Istio traffic splitting, AWS CodeDeploy. Feature flags can complement both strategies.", tip: "Canary is preferred for critical services — you catch issues before full rollout." },
+    { q: "What is observability and the three pillars?", a: "Understanding system state from external outputs. Three pillars: (1) Logs — discrete events (ELK stack, Fluentd). (2) Metrics — numerical measurements over time (Prometheus, Grafana). (3) Traces — request path across services (Jaeger, Zipkin). Combined: logs tell what happened, metrics tell how bad, traces tell where it broke.", tip: "Observability is NOT just monitoring. It's the ability to ask new questions about your system." },
+    { q: "Explain how Kubernetes scales to millions of containers (Uber's case).", a: "Uber migrated to Kubernetes: 3 million CPU cores, 1.5 million pod launches daily. Key challenges: etcd performance at scale, API server throughput, scheduler efficiency, network plugin performance (Calico/Cilium for eBPF). Solutions: federated clusters, custom schedulers, optimized resource requests, pod topology constraints.", tip: "At extreme scale, every Kubernetes component becomes a bottleneck that needs custom optimization." },
+  ]},
+  { id: 12, name: "Java Coding", questions: [
+    { q: "What causes java.lang.OutOfMemoryError?", a: "(1) Heap exhaustion — memory leaks, unbounded collections. (2) Metaspace overflow — too many loaded classes. (3) GC overhead — >98% time in GC recovering <2% memory. (4) Thread exhaustion — 'unable to create native thread', each thread uses ~1MB stack. (5) Direct buffer overflow — NIO buffers outside heap. Diagnosis: -XX:+HeapDumpOnOutOfMemoryError, analyze with Eclipse MAT.", tip: "Thread-based OOM is subtle — it's not a heap issue. Reduce stack size (-Xss) or use thread pools." },
+    { q: "Explain Java's ConcurrentHashMap.", a: "Thread-safe HashMap. Java 8+: uses Node array with synchronized blocks per bucket (not segment locking). CAS operations for non-contended paths. Key features: no full table lock, concurrent reads without locking, size() is approximate, computeIfAbsent for atomic check-and-insert. Better than Hashtable and Collections.synchronizedMap.", tip: "Know the difference: Hashtable = full lock, ConcurrentHashMap = per-bucket lock + CAS." },
+    { q: "What are Java Streams and how do they differ from collections?", a: "Declarative data processing pipeline. Lazy evaluation — intermediate operations don't execute until terminal operation. Parallel streams for multi-core processing. Key operations: filter, map, flatMap, reduce, collect. Difference from collections: streams are consumed once, don't store data, support lazy evaluation.", tip: "Be careful with parallel streams — overhead of thread management can make them slower for small datasets." },
+    { q: "How does Java Garbage Collection work?", a: "Generational model: Young Gen (Eden + Survivor spaces) and Old Gen. Minor GC collects Young Gen (fast, stop-the-world). Major/Full GC collects Old Gen (slower). Collectors: G1 (default since Java 9, region-based), ZGC (ultra-low pause), Shenandoah (concurrent). Key tuning: heap size, GC algorithm choice, GC logging for analysis.", tip: "G1 is the safe default. ZGC for sub-millisecond pauses. Always enable GC logging in production." },
+    { q: "Explain CompletableFuture in Java.", a: "Async programming primitive. Chain operations: thenApply (transform), thenCompose (flatMap), thenCombine (combine two futures). Error handling: exceptionally, handle. Execution: supplyAsync runs on ForkJoinPool by default, or custom executor. Key methods: allOf (wait for all), anyOf (wait for first), join (blocking get).", tip: "Always provide a custom executor for production code — don't rely on the common ForkJoinPool." },
+  ]},
+  { id: 13, name: "Behavioral & Scenario", questions: [
+    { q: "Describe a time you debugged a complex production issue.", a: "Structure: STAR format (Situation, Task, Action, Result). Include: what monitoring/alerting caught it, your systematic debugging approach (the 4 kernel resources), what the root cause was, how you fixed it, what you did to prevent recurrence (monitoring, alerts, runbooks). Show ownership and calm under pressure.", tip: "Have 2-3 war stories ready. Include metrics: 'reduced latency from 5s to 200ms'." },
+    { q: "How do you approach system design trade-offs?", a: "Framework: (1) Clarify requirements — functional and non-functional. (2) Identify constraints — latency, throughput, consistency needs. (3) List options with pros/cons. (4) Make a decision and justify it. (5) Acknowledge what you're giving up. Common trade-offs: consistency vs availability, latency vs throughput, simplicity vs scalability.", tip: "The best answer is: 'It depends on...' followed by specific criteria for your decision." },
+    { q: "How do you handle disagreements with team members on technical decisions?", a: "Approach: (1) Listen fully to understand their perspective. (2) Ask clarifying questions. (3) Present your view with data/evidence. (4) Seek common ground — often both sides have valid points. (5) If stuck, propose a time-boxed experiment or POC. (6) Disagree and commit if team decides differently. Focus on the problem, not the person.", tip: "Show that you value collaboration over being right. Mention specific examples." },
+    { q: "Tell me about a time you improved system performance significantly.", a: "Structure: What was the problem (with numbers), what did you investigate, what changes did you make, what was the result (with numbers). Example areas: query optimization, caching layer, indexing strategy, architecture change, infrastructure tuning. Always quantify: 'reduced p99 latency from 2s to 200ms, saving $X/month in compute costs.'", tip: "Numbers make your story credible. Before/after metrics are essential." },
+    { q: "How do you stay current with technology?", a: "Mention specific sources: engineering blogs (Netflix, Uber, Stripe), X/Twitter tech community, conference talks, open source contributions, personal projects, book clubs. Show that you don't just read — you apply: 'I read about CDC in the Netflix blog, then implemented Debezium in our pipeline.'", tip: "Demonstrate curiosity and initiative, not just passive consumption." },
+    { q: "How do you prioritize technical debt vs feature work?", a: "Framework: (1) Quantify the impact of tech debt (developer velocity, incident frequency, onboarding time). (2) Categorize: blocking (fix now), degrading (plan to fix), cosmetic (nice to have). (3) Embed tech debt work in feature sprints (20% rule). (4) Track and make visible to stakeholders. (5) Some tech debt is intentional and acceptable.", tip: "Show pragmatism — not all tech debt needs fixing. Prioritize what impacts velocity and reliability." },
+    { q: "How would you migrate a monolith to microservices?", a: "Strangler Fig pattern: (1) Identify bounded contexts. (2) Start with least-coupled, highest-value service. (3) Create new service alongside monolith. (4) Route traffic gradually (feature flags, canary). (5) Ensure new service can call back to monolith. (6) Repeat. Key: don't rewrite everything at once. Use anti-corruption layer.", tip: "Mention that some monoliths are fine — microservices add complexity. Only migrate if benefits justify cost." },
+  ]},
+  { id: 14, name: "From X/Twitter Bookmarks", questions: [
+    { q: "Your Postgres database is at 95% disk usage. You delete 1 million rows but disk space doesn't decrease. Why?", a: "Postgres uses MVCC — deleted rows become 'dead tuples' not immediately removed. VACUUM marks them as reusable within Postgres but doesn't return space to OS. For that, you need VACUUM FULL (locks table) or pg_repack (online). Tune autovacuum: autovacuum_vacuum_scale_factor, autovacuum_vacuum_threshold. For large deletes, partitioned tables let you drop partitions instead.", tip: "VACUUM = frees space for reuse within Postgres. VACUUM FULL = frees space back to OS but locks table." },
+    { q: "Server CPU spikes to 100% with no deployments. What do you do?", a: "Use VERDICT-7: Version changes (config?), Environment scope (one or all servers?), Resource pressure (CPU/mem/disk), Dependencies (downstream slow?), Infrastructure health (hardware?), Connectivity paths (network?), Telemetry signals (dashboards). Commands: top (check %wa), vmstat (run queue), iostat (disk), ss (network). Don't jump to 'check logs' — think systematically.", tip: "Structured thinking beats 'check logs'. Show you can narrow down methodically." },
+    { q: "API latency p99 is 5 seconds during peak. Metrics are aggregated. How to get per-endpoint breakdown?", a: "Add endpoint labels to Prometheus metrics. Use histogram buckets for latency distribution. Distributed tracing (Jaeger/Zipkin). Canonical log lines (Stripe pattern): emit one comprehensive log per request with endpoint, duration, status, trace_id. APM tools for automatic breakdown. Key: p99 of 5s at scale means many users are affected.", tip: "Mention Stripe's canonical log lines — shows you know real production patterns." },
+    { q: "Why does OFFSET-based pagination become slow at scale?", a: "SELECT * FROM products ORDER BY id LIMIT 20 OFFSET 100000 scans and discards 100K rows. Solution: cursor-based pagination — WHERE id > last_seen_id ORDER BY id LIMIT 20. Uses index directly, O(1) regardless of page number. Trade-off: can't jump to arbitrary page, only next/previous. For search: use search_after in Elasticsearch.", tip: "Cursor pagination is efficient but doesn't support random page access — explain the trade-off." },
+    { q: "What are the different distributed locking mechanisms?", a: "(1) Redis SETNX — atomic set-if-not-exists with TTL. Simple, fast, not safe on failover. (2) Redlock — lock across N Redis nodes, majority agreement. (3) ZooKeeper — ephemeral sequential nodes. Strong guarantees. (4) Database lock — INSERT with unique constraint. (5) Lease/TTL — auto-expire to prevent deadlock. (6) Fencing token — monotonic token prevents split-brain writes.", tip: "Know the Redlock controversy (Martin Kleppmann) — demonstrates deep understanding." },
+    { q: "What is Stripe's Canonical Log Lines pattern?", a: "Instead of scattered logs across multiple lines per request, emit one comprehensive log line at the end of every request containing all fields: endpoint, status, duration, user_id, error details, DB queries, cache hits. Benefits: easy to search/aggregate, each line is complete, cheaper to process, great for anomaly detection.", tip: "Practical production pattern that shows you think about observability at scale." },
+    { q: "What is cache stampede and how to prevent it?", a: "When cache key expires or cache layer fails, all requests hit DB simultaneously. Solutions: (1) Mutex/locking — one request fetches, others wait. (2) Stale-while-revalidate. (3) Probabilistic early revalidation. (4) Request coalescing. (5) Pre-warming. (6) Multi-layer caching (L1 local + L2 Redis).", tip: "Draw the timeline: key expires → N requests → DB overloads → cascading failure." },
+    { q: "What is Change Data Capture (CDC) and what approaches exist?", a: "Captures DB changes as events for downstream systems. (1) Log-based (Debezium) — reads WAL/binlog, minimal impact. (2) Trigger-based — DB triggers. (3) Timestamp-based polling. (4) Dual writes (risky). Best: Debezium → Kafka → consumers. Ensures near real-time sync without tight coupling.", tip: "CDC is how you keep separate microservice databases in sync." },
+    { q: "Explain WAL (Write-Ahead Logging) and force/steal policies.", a: "WAL: before data pages go to disk, log records are persisted first. Enables recovery via redo/undo. Force/No-Force: whether to flush dirty pages at commit. Steal/No-Steal: whether uncommitted pages can be evicted. Most DBs use No-Force/Steal — fast commits with WAL recovery. Key insight: Memory is fast but volatile, Disk is slow but stable — WAL bridges the gap.", tip: "No-Force/Steal with UNDO/REDO recovery is the standard for production databases." },
+    { q: "What 5 things must you master before building distributed systems?", a: "(1) Distributed transactions — 2PC for strong consistency, SAGAs for eventual. (2) Failure handling — Circuit Breaker + fallbacks. (3) Retry + Idempotency — exponential backoff with jitter. (4) Schema evolution — backward/forward compatibility, versioned schemas. (5) Observability — distributed tracing + centralized logging.", tip: "Have concrete examples for each — when you encountered the problem and how you solved it." },
+    { q: "What is a skip list and why does RocksDB use it?", a: "Multi-level linked list providing O(log n) search/insert/delete. Higher levels are 'express lanes'. RocksDB uses skip lists for LSM memtable (in-memory write buffer). Why: lock-free concurrent insertions, simpler than balanced trees, good cache locality, no rebalancing needed.", tip: "Know the LSM pipeline: writes → memtable (skip list) → flush to SSTable → compaction." },
+    { q: "What causes java.lang.OutOfMemoryError and how to diagnose?", a: "Causes: heap exhaustion (leaks), Metaspace overflow (classloader leaks), GC overhead limit, thread exhaustion (each thread ~1MB), direct buffer overflow. Diagnose: -XX:+HeapDumpOnOutOfMemoryError, Eclipse MAT, check for unbounded collections. Thread OOM is not a heap issue — reduce -Xss or use thread pools.", tip: "Thread-based OOM is the tricky one — it's an OS resource issue, not JVM heap." },
+    { q: "How does Kubernetes networking work at the pod level?", a: "Each pod gets its own IP. Virtual ethernet pairs (veth) connect pods to a bridge on the host. Same node: traffic through bridge. Cross-node: CNI plugin handles (overlay with Flannel/Weave, native routing with Calico BGP, cloud CNI). Services use kube-proxy (iptables/IPVS) for load balancing. Key rules: every pod can talk to every pod without NAT.", tip: "Know CNI (Container Network Interface) — it's how K8s delegates networking to plugins." },
+    { q: "What is the path to becoming a staff engineer in distributed systems?", a: "(1) Master one backend language deeply. (2) Go deep on fundamentals — networking, OS, concurrency, storage engines, consensus. (3) Build real systems — rate limiter, job queue, distributed cache. (4) Learn trade-offs, not definitions. (5) Master observability — logs/metrics/traces. (6) Write design docs — problem, constraints, design, bottlenecks, rollback plan.", tip: "Staff level is less about coding, more about technical judgment and the ability to make the right trade-offs." },
+    { q: "How do vmstat, context switches, and run queues help in debugging?", a: "vmstat: r (run queue — threads waiting for CPU), b (blocked on I/O), wa (CPU waiting on disk). If r > cores → CPU contention even without 100% usage. Context switches: CPU saving/loading thread state — too many = overhead. High r with moderate CPU = threads competing for time slots. Combined with top/iostat/ss, gives complete resource picture.", tip: "vmstat's 'r' column is gold — if r >> cores, your threads are starving for CPU time." },
+  ]},
+];
+
+// ==================== RENDER ====================
+const tabsEl = document.getElementById('sectionTabs');
+const listEl = document.getElementById('qaList');
+const searchEl = document.getElementById('searchBox');
+let activeSection = 0; // 0 = all
+
+function renderTabs() {
+  let html = `<button class="tab-btn ${activeSection===0?'active':''}" onclick="setSection(0)">All (95)</button>`;
+  sections.forEach(s => {
+    html += `<button class="tab-btn ${activeSection===s.id?'active':''}" onclick="setSection(${s.id})">${s.name} (${s.questions.length})</button>`;
+  });
+  tabsEl.innerHTML = html;
+}
+
+function renderQuestions() {
+  const search = searchEl.value.toLowerCase();
+  let html = '';
+  let num = 0;
+  sections.forEach(s => {
+    if (activeSection !== 0 && activeSection !== s.id) return;
+    s.questions.forEach((qa, i) => {
+      num++;
+      const matchQ = qa.q.toLowerCase().includes(search);
+      const matchA = qa.a.toLowerCase().includes(search);
+      const matchT = qa.tip && qa.tip.toLowerCase().includes(search);
+      if (search && !matchQ && !matchA && !matchT) return;
+      html += `<div class="qa-card" onclick="this.classList.toggle('open')">
+        <div class="qa-q">
+          <span class="qa-q-num">Q${num}</span>
+          <span class="qa-q-text">${qa.q}</span>
+          <span class="qa-arrow">▼</span>
+        </div>
+        <div class="qa-a">
+          <p>${qa.a}</p>
+          ${qa.code ? `<div class="qa-code">${qa.code}</div>` : ''}
+          ${qa.tip ? `<div class="qa-tip">💡 ${qa.tip}</div>` : ''}
+        </div>
+      </div>`;
+    });
+  });
+  if (!html) html = '<p style="color:var(--text-dim);text-align:center;padding:2rem;">No questions match your search.</p>';
+  listEl.innerHTML = html;
+}
+
+function setSection(id) { activeSection = id; renderTabs(); renderQuestions(); }
+
+searchEl.addEventListener('input', renderQuestions);
+renderTabs();
+renderQuestions();
+</script>
+</body>
+</html>
