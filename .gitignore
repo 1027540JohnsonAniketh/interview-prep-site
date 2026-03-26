@@ -1,0 +1,4 @@
+.DS_Store
+.sfdx/
+__pycache__/
+*.py[cod]
