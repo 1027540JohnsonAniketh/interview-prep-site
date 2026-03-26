@@ -203,59 +203,6 @@
       color: var(--text-dim); font-size: 1rem;
     }
 
-    /* EXPANDABLE TOPIC CARDS */
-    .topic-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 12px; margin-bottom: 1rem; overflow: hidden; transition: border-color 0.2s;
-    }
-    .topic-card:hover { border-color: var(--accent); }
-    .topic-header {
-      padding: 1.25rem 1.5rem; cursor: pointer; display: flex;
-      justify-content: space-between; align-items: center; gap: 1rem;
-      user-select: none;
-    }
-    .topic-header h3 { font-size: 1.05rem; font-weight: 700; display: flex; align-items: center; gap: 0.6rem; margin: 0; }
-    .topic-header .arrow { color: var(--text-dim); transition: transform 0.3s; font-size: 1.2rem; flex-shrink: 0; }
-    .topic-card.open .topic-header .arrow { transform: rotate(180deg); }
-    .topic-body {
-      display: none; padding: 0 1.5rem 1.5rem; border-top: 1px solid var(--border);
-    }
-    .topic-card.open .topic-body { display: block; padding-top: 1.25rem; }
-    .topic-body p { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 0.75rem; }
-    .topic-body ul { color: var(--text-dim); font-size: 0.9rem; margin: 0.5rem 0 1rem 1.25rem; }
-    .topic-body ul li { margin-bottom: 0.4rem; }
-    .topic-body .sub-card {
-      background: var(--surface2); border-radius: 8px; padding: 1rem 1.25rem;
-      margin: 0.75rem 0; border-left: 3px solid var(--accent);
-    }
-    .topic-body .sub-card h4 { font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--text); }
-    .topic-body .formula {
-      background: #111318; border: 1px solid var(--border); border-radius: 8px;
-      padding: 0.75rem 1rem; font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem; color: var(--green); margin: 0.5rem 0;
-    }
-    .nines-table {
-      width: 100%; border-collapse: collapse; margin: 0.75rem 0;
-      font-size: 0.85rem;
-    }
-    .nines-table th {
-      background: var(--surface); padding: 0.5rem 0.75rem; text-align: left;
-      color: var(--accent); font-size: 0.78rem; text-transform: uppercase;
-    }
-    .nines-table td {
-      padding: 0.5rem 0.75rem; border-top: 1px solid var(--border); color: var(--text-dim);
-    }
-    .pillar-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; margin: 1rem 0;
-    }
-    .pillar-item {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-      padding: 0.75rem; text-align: center;
-    }
-    .pillar-item .pillar-icon { font-size: 1.5rem; margin-bottom: 0.25rem; }
-    .pillar-item .pillar-name { font-size: 0.85rem; font-weight: 600; color: var(--text); }
-    .pillar-item .pillar-desc { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.15rem; }
-
     @media (max-width: 768px) {
       .hero h1 { font-size: 2rem; }
       .hero-stats { gap: 1.5rem; }
@@ -272,7 +219,6 @@
     <div class="nav-links">
       <a href="#questions">Questions</a>
       <a href="#kernel">Kernel Concepts</a>
-      <a href="#distributed">Distributed</a>
       <a href="#debugging">Debugging</a>
       <a href="#commands">Commands</a>
     </div>
@@ -283,8 +229,8 @@
   <h1>Interview <span>Q&A</span> Prep</h1>
   <p>Backend Engineering, Distributed Systems &amp; Infrastructure — curated from Obsidian notes and X/Twitter tech bookmarks.</p>
   <div class="hero-stats">
-    <div class="stat"><div class="stat-num">117</div><div class="stat-label">Questions</div></div>
-    <div class="stat"><div class="stat-num">15</div><div class="stat-label">Sections</div></div>
+    <div class="stat"><div class="stat-num">95</div><div class="stat-label">Questions</div></div>
+    <div class="stat"><div class="stat-num">14</div><div class="stat-label">Sections</div></div>
     <div class="stat"><div class="stat-num">4</div><div class="stat-label">Kernel Pillars</div></div>
     <div class="stat"><div class="stat-num">5</div><div class="stat-label">Debug Commands</div></div>
   </div>
@@ -450,308 +396,10 @@
   </div>
 </section>
 
-<!-- ==================== DISTRIBUTED SYSTEMS & NETWORKING ==================== -->
-<section class="section" id="distributed">
-  <div class="section-title"><span class="icon">🌐</span> Distributed Systems &amp; Networking Deep Dive</div>
-  <p class="section-desc">How networks actually work, how distributed systems fail, how to debug production issues, and how to design for 99.99% uptime. Click each topic to expand.</p>
-
-  <!-- TOPIC 1: Networking Fundamentals -->
-  <div class="topic-card" onclick="this.classList.toggle('open')">
-    <div class="topic-header">
-      <h3><span class="badge badge-net">Network</span> Networking Fundamentals for Backend Engineers</h3>
-      <span class="arrow">▼</span>
-    </div>
-    <div class="topic-body">
-      <p>Every API call, database query, and cache lookup traverses the network stack. Understanding it lets you diagnose latency that has nothing to do with your code.</p>
-
-      <div class="sub-card">
-        <h4>The Request Lifecycle</h4>
-        <p>When your service calls another service, this is what actually happens:</p>
-        <div class="chain">
-          <span class="chain-step">DNS Resolve</span><span class="chain-arrow">→</span>
-          <span class="chain-step">TCP Handshake</span><span class="chain-arrow">→</span>
-          <span class="chain-step">TLS Handshake</span><span class="chain-arrow">→</span>
-          <span class="chain-step">Send Request</span><span class="chain-arrow">→</span>
-          <span class="chain-step">Server Processing</span><span class="chain-arrow">→</span>
-          <span class="chain-step">Response</span>
-        </div>
-        <p>DNS can add 1-100ms. TCP handshake = 1 RTT. TLS = 1-2 more RTTs. That's 3-4 round trips before any data flows. This is why <strong>connection pooling</strong> and <strong>HTTP/2 multiplexing</strong> matter so much.</p>
-      </div>
-
-      <div class="sub-card">
-        <h4>TCP vs UDP — When and Why</h4>
-        <p><strong>TCP:</strong> Reliable, ordered delivery. 3-way handshake, flow control, congestion control. Use for: APIs, databases, file transfers.</p>
-        <p><strong>UDP:</strong> Fire-and-forget. No handshake, no guarantees. Use for: DNS, video streaming, real-time gaming, service discovery (mDNS).</p>
-        <p><strong>Key TCP concepts for debugging:</strong></p>
-        <ul>
-          <li><strong>SYN backlog:</strong> Queue of half-open connections. If full → new connections dropped</li>
-          <li><strong>Accept backlog:</strong> Queue of fully established but unaccepted connections. If full → client sees timeouts</li>
-          <li><strong>TIME_WAIT:</strong> Socket stays reserved for 2*MSL (~60s) after close. Too many = port exhaustion</li>
-          <li><strong>Nagle's Algorithm:</strong> Buffers small packets to reduce overhead. Can add latency — disable with TCP_NODELAY for low-latency apps</li>
-        </ul>
-      </div>
-
-      <div class="sub-card">
-        <h4>DNS — The Silent Bottleneck</h4>
-        <p>DNS resolution happens on every new connection (unless cached). Problems:</p>
-        <ul>
-          <li><strong>TTL too low:</strong> Frequent lookups, higher latency. TTL too high: slow failover</li>
-          <li><strong>DNS provider outage:</strong> Your entire system goes down even though your servers are fine</li>
-          <li><strong>Resolution inside containers:</strong> CoreDNS/kube-dns can become a bottleneck in Kubernetes</li>
-        </ul>
-        <div class="formula">dig +trace example.com  # Trace full DNS resolution path
-ss -s                    # Check connection states (TIME_WAIT, ESTABLISHED)
-sysctl net.ipv4.tcp_max_syn_backlog  # Check SYN queue size</div>
-      </div>
-
-      <div class="sub-card">
-        <h4>Load Balancing — L4 vs L7</h4>
-        <p><strong>L4 (Transport):</strong> Routes based on IP:port. Fast, no request inspection. Examples: AWS NLB, HAProxy in TCP mode.</p>
-        <p><strong>L7 (Application):</strong> Routes based on HTTP headers, path, cookies. Can do sticky sessions, A/B routing. Examples: AWS ALB, Nginx, Envoy.</p>
-        <p><strong>When to use which:</strong> L4 for raw throughput (databases, gRPC). L7 for HTTP routing, canary deploys, header-based routing.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- TOPIC 2: How Distributed Systems Work -->
-  <div class="topic-card" onclick="this.classList.toggle('open')">
-    <div class="topic-header">
-      <h3><span class="badge badge-cpu">Systems</span> How Distributed Systems Actually Work</h3>
-      <span class="arrow">▼</span>
-    </div>
-    <div class="topic-body">
-      <p>A distributed system is a group of computers working together that appears as a single system to end users. The hard part: they fail independently and can't agree on time.</p>
-
-      <div class="sub-card">
-        <h4>The 8 Fallacies of Distributed Computing</h4>
-        <p>Every architect eventually learns these the hard way:</p>
-        <ul>
-          <li>The network is <strong>NOT</strong> reliable (packets drop, connections reset)</li>
-          <li>Latency is <strong>NOT</strong> zero (cross-region calls = 50-200ms)</li>
-          <li>Bandwidth is <strong>NOT</strong> infinite (large payloads cause backpressure)</li>
-          <li>The network is <strong>NOT</strong> secure (encrypt everything in transit)</li>
-          <li>Topology <strong>DOES</strong> change (servers come and go, IPs change)</li>
-          <li>There is <strong>NOT</strong> one administrator (multiple teams, cloud providers)</li>
-          <li>Transport cost is <strong>NOT</strong> zero (serialization, compression, bandwidth fees)</li>
-          <li>The network is <strong>NOT</strong> homogeneous (mixed hardware, protocols, versions)</li>
-        </ul>
-      </div>
-
-      <div class="sub-card">
-        <h4>Consensus — How Nodes Agree</h4>
-        <p>The fundamental problem: how do N nodes agree on a value when some may crash or lose messages?</p>
-        <p><strong>Raft:</strong> Leader-based consensus. Leader receives writes, replicates to followers, commits when majority ACKs. Used by: etcd, CockroachDB, Consul.</p>
-        <p><strong>Paxos:</strong> More theoretical, harder to implement. Proposers → Acceptors → Learners. Used by: Google Spanner (Multi-Paxos).</p>
-        <p><strong>ZAB (ZooKeeper Atomic Broadcast):</strong> Similar to Raft but optimized for ZooKeeper's primary-backup model.</p>
-        <p><strong>Key insight:</strong> Consensus requires a <em>majority quorum</em> (N/2 + 1). In a 5-node cluster, 3 must agree. This means you can tolerate 2 failures.</p>
-      </div>
-
-      <div class="sub-card">
-        <h4>Replication Strategies</h4>
-        <p><strong>Synchronous:</strong> Writer waits for all/majority replicas to ACK. Strong consistency, higher latency. Example: Raft-based systems.</p>
-        <p><strong>Asynchronous:</strong> Writer gets ACK immediately, replicas catch up later. Lower latency, risk of data loss. Example: MySQL async replication.</p>
-        <p><strong>Semi-synchronous:</strong> Writer waits for at least 1 replica to ACK. Balance of safety and speed. Example: MySQL semi-sync.</p>
-        <p><strong>Quorum-based:</strong> W + R > N ensures overlap between writes and reads. DynamoDB, Cassandra use this. W=2, R=2, N=3 gives strong consistency.</p>
-      </div>
-
-      <div class="sub-card">
-        <h4>Partitioning & Sharding Patterns</h4>
-        <p><strong>Hash partitioning:</strong> hash(key) % N — even distribution but range queries hit all partitions.</p>
-        <p><strong>Range partitioning:</strong> Key ranges map to partitions — great for range queries but risk of hotspots.</p>
-        <p><strong>Consistent hashing:</strong> Virtual ring with virtual nodes. Adding/removing nodes only moves K/N keys. Used by DynamoDB, Cassandra.</p>
-        <p><strong>The hot partition problem:</strong> One celebrity user's data gets hammered. Fix: add randomness to key (key + random_suffix), then scatter-gather on read.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- TOPIC 3: Debugging Production Issues -->
-  <div class="topic-card" onclick="this.classList.toggle('open')">
-    <div class="topic-header">
-      <h3><span class="badge badge-cpu">Debug</span> Debugging Production Issues in Distributed Systems</h3>
-      <span class="arrow">▼</span>
-    </div>
-    <div class="topic-body">
-      <p>Production debugging in distributed systems is fundamentally different from debugging a monolith. The bug might not even be in your service.</p>
-
-      <div class="sub-card">
-        <h4>The 3 Pillars of Observability</h4>
-        <div class="pillar-grid">
-          <div class="pillar-item"><div class="pillar-icon">📊</div><div class="pillar-name">Metrics</div><div class="pillar-desc">Aggregated numbers over time (latency p50/p99, error rates, throughput)</div></div>
-          <div class="pillar-item"><div class="pillar-icon">📝</div><div class="pillar-name">Logs</div><div class="pillar-desc">Discrete events with context (structured JSON logs, canonical log lines)</div></div>
-          <div class="pillar-item"><div class="pillar-icon">🔗</div><div class="pillar-name">Traces</div><div class="pillar-desc">Request path across services (Jaeger, Zipkin, Datadog APM)</div></div>
-        </div>
-        <p><strong>Canonical Log Lines (Stripe pattern):</strong> One structured log per request at the boundary of each service. Contains: request_id, user_id, duration_ms, status, upstream latencies. Makes debugging 10x easier — grep for a request_id and see the entire journey.</p>
-      </div>
-
-      <div class="sub-card">
-        <h4>Common Production Failure Patterns</h4>
-        <p><strong>1. Cascading Failures:</strong> Service A → B → C. If C is slow, B's thread pool fills up, then A's. Fix: circuit breakers, timeouts, bulkheads.</p>
-        <p><strong>2. Thundering Herd:</strong> Cache expires → 1000 requests hit database simultaneously. Fix: cache stampede prevention (locking, probabilistic early expiry).</p>
-        <p><strong>3. Retry Storms:</strong> Service fails → all clients retry simultaneously → 3x the load. Fix: exponential backoff with jitter, retry budgets.</p>
-        <p><strong>4. Memory Leaks:</strong> Gradual increase in memory → OOM kill → restart → leak again. Fix: heap dumps, profiling, track object allocations.</p>
-        <p><strong>5. Clock Skew:</strong> Different servers have different times → event ordering breaks, tokens expire prematurely. Fix: NTP, use logical clocks (vector clocks, Lamport timestamps).</p>
-        <p><strong>6. Split Brain:</strong> Network partition makes both sides think they're the leader. Fix: fencing tokens, quorum-based leader election.</p>
-      </div>
-
-      <div class="sub-card">
-        <h4>The Systematic Debug Flow</h4>
-        <div class="chain">
-          <span class="chain-step">1. Alert fires</span><span class="chain-arrow">→</span>
-          <span class="chain-step">2. Check dashboards</span><span class="chain-arrow">→</span>
-          <span class="chain-step">3. Narrow scope</span><span class="chain-arrow">→</span>
-          <span class="chain-step">4. Check dependencies</span><span class="chain-arrow">→</span>
-          <span class="chain-step">5. Read logs/traces</span><span class="chain-arrow">→</span>
-          <span class="chain-step">6. Form hypothesis</span><span class="chain-arrow">→</span>
-          <span class="chain-step">7. Fix & verify</span>
-        </div>
-        <p><strong>Step 3 is critical:</strong> Is it one host or all? One region or all? One endpoint or all? Correlate with deployments (<code>git log --since="1 hour ago"</code>). If it's one host → hardware/config. If all → code change or upstream dependency.</p>
-      </div>
-
-      <div class="sub-card">
-        <h4>Latency Debugging Checklist</h4>
-        <div class="formula">1. Check p50 vs p99 — if p99 is 10x p50, you have tail latency
-2. Check GC pauses — Java: -XX:+PrintGCDetails, Go: GODEBUG=gctrace=1
-3. Check connection pool — exhausted pools cause queueing
-4. Check thread pool — full pools = requests waiting in queue
-5. Check downstream dependencies — trace the slowest span
-6. Check network — ss -ti for retransmits, ping for RTT
-7. Check disk — iostat -x for await, %util
-8. Check DNS — dig timing, check resolution cache TTLs</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TOPIC 4: Designing for 99.99% Uptime -->
-  <div class="topic-card" onclick="this.classList.toggle('open')">
-    <div class="topic-header">
-      <h3><span class="badge badge-mem">Design</span> Designing for 99.99% Uptime</h3>
-      <span class="arrow">▼</span>
-    </div>
-    <div class="topic-body">
-      <p>99.99% uptime (four nines) means less than 52.6 minutes of downtime per year. Every architectural decision must be made with failure in mind.</p>
-
-      <div class="sub-card">
-        <h4>The Nines — What They Actually Mean</h4>
-        <table class="nines-table">
-          <thead><tr><th>Availability</th><th>Downtime/Year</th><th>Downtime/Month</th><th>Downtime/Week</th></tr></thead>
-          <tbody>
-            <tr><td><strong>99%</strong> (two nines)</td><td>3.65 days</td><td>7.3 hours</td><td>1.68 hours</td></tr>
-            <tr><td><strong>99.9%</strong> (three nines)</td><td>8.76 hours</td><td>43.8 min</td><td>10.1 min</td></tr>
-            <tr><td><strong>99.99%</strong> (four nines)</td><td>52.6 min</td><td>4.38 min</td><td>1.01 min</td></tr>
-            <tr><td><strong>99.999%</strong> (five nines)</td><td>5.26 min</td><td>26.3 sec</td><td>6.05 sec</td></tr>
-          </tbody>
-        </table>
-        <p><strong>Compound availability:</strong> If Service A (99.99%) calls Service B (99.99%), combined availability = 99.99% × 99.99% = 99.98%. More dependencies = lower availability. This is why reducing the critical path matters.</p>
-        <div class="formula">Combined = A₁ × A₂ × A₃ × ... × Aₙ
-With redundancy: 1 - (1 - A)ⁿ
-Example: Two 99% servers in active-active = 1 - (0.01)² = 99.99%</div>
-      </div>
-
-      <div class="sub-card">
-        <h4>The 7 Pillars of High Availability</h4>
-        <div class="pillar-grid">
-          <div class="pillar-item"><div class="pillar-icon">🔄</div><div class="pillar-name">Redundancy</div><div class="pillar-desc">No single points of failure</div></div>
-          <div class="pillar-item"><div class="pillar-icon">⚡</div><div class="pillar-name">Failover</div><div class="pillar-desc">Automatic recovery in seconds</div></div>
-          <div class="pillar-item"><div class="pillar-icon">📊</div><div class="pillar-name">Monitoring</div><div class="pillar-desc">Detect before users notice</div></div>
-          <div class="pillar-item"><div class="pillar-icon">🛡️</div><div class="pillar-name">Isolation</div><div class="pillar-desc">Blast radius containment</div></div>
-          <div class="pillar-item"><div class="pillar-icon">🔁</div><div class="pillar-name">Graceful Degradation</div><div class="pillar-desc">Partial function > total failure</div></div>
-          <div class="pillar-item"><div class="pillar-icon">🚀</div><div class="pillar-name">Safe Deployments</div><div class="pillar-desc">Canary, blue-green, rollback</div></div>
-          <div class="pillar-item"><div class="pillar-icon">🔥</div><div class="pillar-name">Chaos Engineering</div><div class="pillar-desc">Test failures in production</div></div>
-        </div>
-      </div>
-
-      <div class="sub-card">
-        <h4>Redundancy Patterns</h4>
-        <p><strong>Active-Active:</strong> All instances serve traffic. Load balanced. No failover delay. Example: web servers behind ALB.</p>
-        <p><strong>Active-Passive:</strong> Standby takes over on failure. Brief failover delay (seconds). Example: RDS Multi-AZ.</p>
-        <p><strong>Multi-Region:</strong> Replicate across AWS regions. Handles entire region failures. Complexity: data replication lag, DNS failover latency.</p>
-        <p><strong>Cell-Based Architecture:</strong> Divide users into independent cells. Failure in cell-1 doesn't affect cell-2. Used by: AWS (availability zones), Slack (per-workspace isolation).</p>
-      </div>
-
-      <div class="sub-card">
-        <h4>Graceful Degradation Strategies</h4>
-        <p>When things go wrong, serve reduced functionality instead of erroring out:</p>
-        <ul>
-          <li><strong>Feature flags:</strong> Disable expensive features under load (recommendations, analytics)</li>
-          <li><strong>Read-only mode:</strong> When writes fail, still serve cached/stale reads</li>
-          <li><strong>Static fallback:</strong> Serve cached HTML when backend is down (e.g., e-commerce product pages)</li>
-          <li><strong>Circuit breakers:</strong> Stop calling failing dependencies, return fallback/cached data</li>
-          <li><strong>Load shedding:</strong> Reject low-priority requests to protect critical ones (HTTP 503 + Retry-After)</li>
-          <li><strong>Timeout budgets:</strong> Allocate total request budget (e.g., 500ms) across dependencies. If 300ms spent on service A, only 200ms left for service B</li>
-        </ul>
-      </div>
-
-      <div class="sub-card">
-        <h4>Safe Deployment Practices</h4>
-        <p>Most outages are caused by deployments. Deploy like you expect it to fail:</p>
-        <p><strong>Canary deploy:</strong> Route 1-5% traffic to new version. Monitor error rates and latency for 15-30 min. If good → gradually increase. If bad → instant rollback.</p>
-        <p><strong>Blue-Green deploy:</strong> Two identical environments. Switch traffic atomically via load balancer. Rollback = switch back.</p>
-        <p><strong>Feature flags:</strong> Deploy code without activating it. Enable per-user, per-region, or percentage-based. Decouple deploy from release.</p>
-        <div class="formula">Deploy checklist for 4-nines:
-1. Pre-deploy: Run integration tests, check dependency health
-2. Deploy to canary (1-5% traffic)
-3. Monitor: error rate, p99 latency, business metrics (15 min)
-4. Gradual rollout: 25% → 50% → 100% with bake time
-5. Post-deploy: Monitor for 1 hour, keep rollback ready</div>
-      </div>
-
-      <div class="sub-card">
-        <h4>Data Layer High Availability</h4>
-        <p><strong>Database:</strong> Primary + synchronous replica (RDS Multi-AZ). Read replicas for read scaling. Automated failover < 30 seconds.</p>
-        <p><strong>Cache:</strong> Redis Cluster with replicas per shard. If one node dies, replica promotes automatically. ElastiCache supports Multi-AZ.</p>
-        <p><strong>Message Queue:</strong> Kafka with replication factor 3, min.insync.replicas=2. Can lose 1 broker without data loss or downtime.</p>
-        <p><strong>Object Storage:</strong> S3 gives 99.999999999% (11 nines) durability. Cross-region replication for disaster recovery.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- TOPIC 5: Service Communication Patterns -->
-  <div class="topic-card" onclick="this.classList.toggle('open')">
-    <div class="topic-header">
-      <h3><span class="badge badge-net">Patterns</span> Service Communication &amp; Resilience Patterns</h3>
-      <span class="arrow">▼</span>
-    </div>
-    <div class="topic-body">
-      <p>How services talk to each other determines how your system behaves under failure.</p>
-
-      <div class="sub-card">
-        <h4>Synchronous vs Asynchronous Communication</h4>
-        <p><strong>Sync (HTTP/gRPC):</strong> Request-response. Caller blocks until response. Simple but creates tight coupling. If downstream dies, caller fails.</p>
-        <p><strong>Async (Message Queues):</strong> Fire-and-forget via Kafka, RabbitMQ, SQS. Decouples services. Downstream can be slow/down without affecting caller. Trade-off: eventual consistency, harder debugging.</p>
-        <p><strong>Rule of thumb:</strong> Use sync for queries (need immediate answer). Use async for commands (fire-and-forget, process later).</p>
-      </div>
-
-      <div class="sub-card">
-        <h4>gRPC vs REST vs GraphQL</h4>
-        <p><strong>REST:</strong> HTTP/JSON, human-readable, universal. Use for: public APIs, CRUD operations, browser clients.</p>
-        <p><strong>gRPC:</strong> HTTP/2, Protobuf binary, strongly typed. Use for: internal service-to-service, streaming, low-latency. 5-10x faster serialization than JSON.</p>
-        <p><strong>GraphQL:</strong> Single endpoint, client specifies data shape. Use for: mobile apps (reduce over-fetching), BFF (backend-for-frontend). Watch out: N+1 query problems, caching complexity.</p>
-      </div>
-
-      <div class="sub-card">
-        <h4>Resilience Patterns for Production</h4>
-        <p><strong>Timeouts:</strong> Always set them. Connect timeout (fast, ~1s) + read timeout (slower, ~5s). Never use infinite timeouts.</p>
-        <p><strong>Retries with exponential backoff:</strong> base_delay × 2^attempt + random_jitter. Cap at max_retries. Add jitter to prevent thundering herd.</p>
-        <p><strong>Circuit Breaker:</strong> CLOSED → OPEN (after N failures) → HALF-OPEN (test with few requests) → CLOSED (if tests pass).</p>
-        <p><strong>Bulkhead:</strong> Isolate thread pools per dependency. If service-A's pool is full, service-B calls still work.</p>
-        <p><strong>Idempotency:</strong> Make every operation safe to retry. Use idempotency keys for mutations. Critical for payment flows.</p>
-        <div class="formula">Retry with jitter:
-delay = min(base_delay * 2^attempt, max_delay) + random(0, base_delay)
-
-Circuit breaker config:
-- failure_threshold: 5 failures in 60s → OPEN
-- open_duration: 30s → try HALF-OPEN
-- half_open_requests: 3 → if all pass → CLOSED</div>
-      </div>
-    </div>
-  </div>
-
-</section>
-
 <!-- ==================== INTERVIEW QUESTIONS ==================== -->
 <section class="section" id="questions">
   <div class="section-title"><span class="icon">📝</span> Interview Questions &amp; Answers</div>
-  <p class="section-desc">117 questions across 15 sections covering microservices, distributed systems, databases, caching, infrastructure, Linux/DevOps, and more.</p>
+  <p class="section-desc">95 questions across 14 sections covering microservices, distributed systems, databases, caching, infrastructure, and more.</p>
 
   <div class="search-wrap">
     <span class="search-icon">🔎</span>
@@ -893,30 +541,6 @@ const sections = [
     { q: "What is the path to becoming a staff engineer in distributed systems?", a: "(1) Master one backend language deeply. (2) Go deep on fundamentals — networking, OS, concurrency, storage engines, consensus. (3) Build real systems — rate limiter, job queue, distributed cache. (4) Learn trade-offs, not definitions. (5) Master observability — logs/metrics/traces. (6) Write design docs — problem, constraints, design, bottlenecks, rollback plan.", tip: "Staff level is less about coding, more about technical judgment and the ability to make the right trade-offs." },
     { q: "How do vmstat, context switches, and run queues help in debugging?", a: "vmstat: r (run queue — threads waiting for CPU), b (blocked on I/O), wa (CPU waiting on disk). If r > cores → CPU contention even without 100% usage. Context switches: CPU saving/loading thread state — too many = overhead. High r with moderate CPU = threads competing for time slots. Combined with top/iostat/ss, gives complete resource picture.", tip: "vmstat's 'r' column is gold — if r >> cores, your threads are starving for CPU time." },
   ]},
-  { id: 15, name: "Linux for DevOps", questions: [
-    { q: "How do you troubleshoot high CPU usage on a Linux server?", a: "Scenario: Production server is slow. Use top/htop to identify the process consuming the most CPU. Then ps -ef | grep <process> to get details. Steps: (1) Identify high CPU process. (2) Get PID. (3) Kill or deprioritize using kill, nice, renice. Check if it's a runaway process, infinite loop, or legitimate load spike.", tip: "Always check if it's user CPU (%us) or system CPU (%sy) — system CPU means kernel work like I/O or context switching.", code: "top\nps -ef | grep <process>\nkill -9 <PID>\nrenice +10 <PID>" },
-    { q: "How do you troubleshoot a slow Linux server?", a: "Systematic approach: (1) top — check CPU, memory, load average. (2) free -g — check available memory and swap usage. (3) iostat — check disk I/O wait. (4) df -h — check disk space. (5) du -sh — check directory sizes. (6) Check logs in /var/log for errors. Look at all four resources: CPU, memory, disk, network.", tip: "Don't jump to one tool — systematically check all resources.", code: "top\nfree -g\niostat\ndf -h\ndu -sh *\ntail -f /var/log/syslog" },
-    { q: "How do you troubleshoot disk space issues?", a: "Use df -h to see overall disk usage per mount. Then du -sh * to find which directories are largest. Common culprits: /var/log (logs), /tmp (temp files), Docker images/volumes. Steps: identify large files, clean old logs, archive unused data, set up log rotation to prevent recurrence.", tip: "Don't just delete — find out WHY disk filled up. Often it's unrotated logs or Docker build cache.", code: "df -h\ndu -sh * | sort -rh | head -20" },
-    { q: "How do you find large files in Linux?", a: "Use the find command with -size flag to locate files above a certain size. This is crucial when disk is full and you need to quickly identify what's consuming space.", tip: "Combine with -mtime to find large AND old files that are safe to delete.", code: "find / -type f -size +100M\nfind / -type f -size +100M -exec ls -lh {} \\;" },
-    { q: "How do you implement log rotation in Linux?", a: "When logs are filling /var/log: (1) Compress logs older than 7 days. (2) Delete logs older than 30 days. (3) Automate via cron job or use logrotate. Configure /etc/logrotate.d/ for application-specific rotation with size limits, compression, and retention policies.", tip: "Use logrotate with copytruncate for apps that hold log file handles open.", code: "# /etc/logrotate.d/myapp\n/var/log/myapp/*.log {\n  daily\n  rotate 30\n  compress\n  missingok\n  copytruncate\n}" },
-    { q: "How do you clear cache in Linux?", a: "For package cache: sudo apt clean. For page cache (memory): echo 3 > /proc/sys/vm/drop_caches (drops pagecache, dentries, inodes). For DNS cache: systemd-resolve --flush-caches. Important: dropping page cache in production can cause temporary performance degradation as caches rebuild.", tip: "Dropping page cache in production is usually a bad idea — it forces disk I/O for everything.", code: "sudo apt clean\nsudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'" },
-    { q: "How do you troubleshoot 'permission denied' errors?", a: "Steps: (1) Check file permissions with ls -la. (2) Check file ownership. (3) Make executable if needed: chmod +x script.sh. (4) Check if SELinux/AppArmor is blocking. (5) Check if running as correct user. (6) For directories, ensure execute permission (needed to cd into them).", tip: "If chmod +x doesn't fix it, check SELinux with getenforce and audit logs.", code: "ls -la script.sh\nchmod +x script.sh\nchown user:group script.sh" },
-    { q: "Explain chmod permissions in Linux.", a: "Permissions are represented as three digits for owner, group, others. Each digit is sum of: 4 (read) + 2 (write) + 1 (execute). So 755 = owner rwx (7), group rx (5), others rx (5). 644 = owner rw, group r, others r. Special permissions: setuid (4xxx), setgid (2xxx), sticky bit (1xxx).", tip: "Know common combos: 755 for directories/scripts, 644 for files, 600 for secrets.", code: "chmod 755 script.sh    # rwxr-xr-x\nchmod 644 config.txt   # rw-r--r--\nchmod 600 secret.key   # rw-------" },
-    { q: "How do you troubleshoot SSH connection issues?", a: "Scenario: Unable to SSH into EC2 instance. Checklist: (1) Correct IP address? (2) PEM file permissions (must be 400). (3) Port 22 open in Security Group? (4) systemctl status ssh — is SSH daemon running? (5) Check firewall: ufw status. (6) Check ~/.ssh/authorized_keys on server. (7) Use ssh -v for verbose debugging.", tip: "Most common cause: Security Group doesn't allow port 22 from your IP. Second: wrong PEM file permissions.", code: "chmod 400 key.pem\nssh -v -i key.pem ec2-user@<ip>\nsystemctl status sshd\nufw status" },
-    { q: "How do you troubleshoot 'connection refused' errors?", a: "Scenario: Nginx application not accessible. Steps: (1) systemctl status nginx — is it running? (2) Check logs: /var/log/nginx/error.log. (3) Verify ports: ss -tlnp | grep 80. (4) Check firewall rules. (5) Check ALB/API Gateway configuration. (6) Verify the app behind Nginx is actually listening.", tip: "Connection refused means the port is not open — either service isn't running or firewall is blocking.", code: "systemctl status nginx\ntail -f /var/log/nginx/error.log\nss -tlnp | grep :80\nufw status" },
-    { q: "How do you check and manage service status in Linux?", a: "Use systemctl for service management: status, start, stop, restart, enable (start on boot), disable. For logs: journalctl -u <service> shows service-specific logs. journalctl -f follows live. journalctl --since '1 hour ago' for recent logs.", tip: "journalctl -u nginx --since '5 min ago' is faster than grep-ing through log files.", code: "systemctl status nginx\nsystemctl restart nginx\njournalctl -u nginx -f\njournalctl -u nginx --since '1 hour ago'" },
-    { q: "How do you monitor services automatically and restart them?", a: "Write a bash script that: (1) Checks service status. (2) Restarts if stopped. (3) Logs the action. Schedule with cron. Better alternatives: systemd's Restart=always in unit files, or process managers like supervisord. In containers: Docker restart policies or K8s liveness probes.", tip: "Prefer systemd Restart=always over cron scripts — it's more reliable and immediate.", code: "# In /etc/systemd/system/myapp.service\n[Service]\nRestart=always\nRestartSec=5" },
-    { q: "How do you find and delete old log files?", a: "Use find with -mtime (modification time in days). find /var/log -type f -name '*.log' -mtime +7 finds logs older than 7 days. Add -delete or pipe to xargs rm to remove them. Schedule via cron for automation.", tip: "Always test with find first (without -delete) to verify what will be removed.", code: "find /var/log -type f -name '*.log' -mtime +7\nfind /var/log -type f -name '*.log' -mtime +30 -delete" },
-    { q: "How do you create users in bulk in Linux?", a: "Use a CSV file with usernames and a bash loop. Read the CSV line by line, create users with useradd, set passwords. Can also set groups, home directories, and shells per user.", tip: "Use --disabled-password and force password change on first login for security.", code: "while IFS=, read -r user group; do\n  useradd -m -G \"$group\" \"$user\"\n  echo \"$user:temppass\" | chpasswd\ndone < users.csv" },
-    { q: "How do you check memory and CPU info in Linux?", a: "Memory: free -g (in GB), free -m (in MB). Shows total, used, free, shared, buff/cache, available. CPU cores: nproc. Detailed CPU info: lscpu. /proc/meminfo and /proc/cpuinfo for raw kernel data.", tip: "Remember: 'available' memory is what matters, not 'free' — Linux uses free RAM for page cache.", code: "free -g\nnproc\nlscpu\ncat /proc/meminfo" },
-    { q: "How do you debug shell scripts?", a: "Key flags: set -x (prints each command before executing — debug mode). set -e (exit immediately on error). set -o pipefail (catch errors in piped commands). Combine as set -euxo pipefail at top of script. Also use echo statements and trap for debugging.", tip: "set -euxo pipefail should be at the top of every production bash script.", code: "#!/bin/bash\nset -euxo pipefail\n\n# Your script here..." },
-    { q: "Explain stdin, stdout, stderr and piping in Linux.", a: "Every Linux process has 3 streams: stdin (fd 0, input), stdout (fd 1, output), stderr (fd 2, errors). Piping (|) connects stdout of one command to stdin of another. Redirection: > (stdout to file), 2> (stderr to file), &> (both). Important for scripting and log management.", tip: "Know the difference: cmd > file 2>&1 (both to file) vs cmd 2>&1 | tee file (both to file AND screen).", code: "ps -ef | grep nginx          # pipe stdout\ncmd > output.log 2>&1        # redirect both\ncmd 2>/dev/null              # suppress errors" },
-    { q: "How do you use awk and sed for text processing?", a: "awk: Column-based processing. Print specific fields, filter rows, compute aggregates. sed: Stream editor for text substitution, deletion, insertion. Both are essential for parsing logs, config files, and command output in production.", tip: "awk is for columnar data, sed is for find-and-replace. Master both for log analysis.", code: "ps -ef | awk '{print $2}'              # print PIDs\nawk -F: '{print $1}' /etc/passwd       # print usernames\nsed 's/error/warning/g' file.txt       # replace text\nsed -i '1d;$d' file.txt                # delete first and last line" },
-    { q: "How do you download files and prevent script interruption?", a: "Download: curl <url> (fetch/display data) or wget <url> (download files). curl is more versatile (supports POST, headers, APIs). wget is better for recursive downloads. Prevent interruption: trap command catches signals. Use trap to clean up temp files on exit.", tip: "Use curl -fsSL for scripts (fail silently, show errors, follow redirects).", code: "curl -O https://example.com/file.tar.gz\nwget https://example.com/file.tar.gz\ntrap 'echo Cleanup; rm -f /tmp/lockfile' EXIT" },
-    { q: "How do you automate tasks and manage cron jobs?", a: "Use cron for scheduled tasks. crontab -e to edit, crontab -l to list. Format: minute hour day month weekday command. For EC2: user data scripts run on launch. systemd timers are a modern alternative to cron with better logging and dependency management.", tip: "Always redirect cron output to a log file so you can debug failures.", code: "crontab -e\n# Run daily at 2am\n0 2 * * * /scripts/backup.sh >> /var/log/backup.log 2>&1\n# Run every 5 minutes\n*/5 * * * * /scripts/health-check.sh" },
-    { q: "How do you increase disk size on an EC2 instance?", a: "Steps: (1) Increase EBS volume size in AWS Console or CLI. (2) Extend the partition: growpart /dev/xvda 1. (3) Resize the filesystem: resize2fs /dev/xvda1 (ext4) or xfs_growfs / (xfs). No reboot needed for modern instances.", tip: "Always take a snapshot before resizing. xfs uses xfs_growfs, ext4 uses resize2fs.", code: "lsblk\nsudo growpart /dev/xvda 1\nsudo resize2fs /dev/xvda1    # for ext4\nsudo xfs_growfs /            # for xfs" },
-    { q: "What is the difference between encryption and hashing?", a: "Encryption: reversible transformation using a key. Used for secure communication (TLS, AES). Can decrypt back to original. Hashing: irreversible one-way function. Used for passwords (bcrypt, argon2) and data integrity (SHA-256). Cannot recover original from hash. Key difference: encryption needs a key and is reversible; hashing is one-way.", tip: "Never store passwords with encryption — always use hashing with salt (bcrypt/argon2)." },
-  ]},
 ];
 
 // ==================== RENDER ====================
@@ -926,7 +550,7 @@ const searchEl = document.getElementById('searchBox');
 let activeSection = 0; // 0 = all
 
 function renderTabs() {
-  let html = `<button class="tab-btn ${activeSection===0?'active':''}" onclick="setSection(0)">All (117)</button>`;
+  let html = `<button class="tab-btn ${activeSection===0?'active':''}" onclick="setSection(0)">All (95)</button>`;
   sections.forEach(s => {
     html += `<button class="tab-btn ${activeSection===s.id?'active':''}" onclick="setSection(${s.id})">${s.name} (${s.questions.length})</button>`;
   });
