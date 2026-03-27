@@ -1085,6 +1085,18 @@ createApp({
       }
       terminal.scrollTop = terminal.scrollHeight;
     },
+    markPythonSessionClosed(reason = "") {
+      this.stopPythonPolling();
+      this.pythonSessionId = "";
+      this.pythonCursor = 0;
+      if (reason) {
+        this.pythonError = reason;
+      }
+      if (!this.pythonTerminalText.endsWith("\n[session closed]\n")) {
+        this.pythonTerminalText += "\n[session closed]\n";
+        this.$nextTick(() => this.scrollPythonTerminal());
+      }
+    },
     async startPythonSession() {
       if (this.pythonSessionId) {
         return;
@@ -1139,9 +1151,13 @@ createApp({
         this.pythonCursor = payload.cursor || this.pythonCursor;
 
         if (!payload.alive) {
-          this.stopPythonPolling();
+          this.markPythonSessionClosed("Python session ended. Start a new session to continue.");
         }
       } catch (error) {
+        if (String(error?.message || "").toLowerCase().includes("not found")) {
+          this.markPythonSessionClosed("Python CLI session not found. Start a new session.");
+          return;
+        }
         this.pythonError = error?.message || "Python output polling failed";
         this.stopPythonPolling();
       } finally {
@@ -1152,10 +1168,13 @@ createApp({
       if (!this.pythonSessionId) {
         return;
       }
-      const text = overrideText === null ? this.pythonInput : String(overrideText);
+      const text =
+        overrideText === null || typeof overrideText === "object"
+          ? this.pythonInput
+          : String(overrideText);
 
       this.pythonTerminalText += text === "" ? "\n" : `${text}\n`;
-      if (overrideText === null) {
+      if (overrideText === null || typeof overrideText === "object") {
         this.pythonInput = "";
       }
       this.$nextTick(() => this.scrollPythonTerminal());
@@ -1171,6 +1190,10 @@ createApp({
           throw new Error(payload?.detail || `Failed to send input (${response.status})`);
         }
       } catch (error) {
+        if (String(error?.message || "").toLowerCase().includes("not found")) {
+          this.markPythonSessionClosed("Python CLI session not found. Start a new session.");
+          return;
+        }
         this.pythonError = error?.message || "Failed to send Python input";
       }
     },
@@ -1505,7 +1528,7 @@ createApp({
 
           <pre class="python-terminal" ref="pythonTerminal">{{ pythonTerminalText || "Start a session to begin interactive Python learning..." }}</pre>
 
-          <form class="python-input-row" @submit.prevent="sendPythonInput">
+          <form class="python-input-row" @submit.prevent="sendPythonInput()">
             <input
               class="search-input"
               type="text"
