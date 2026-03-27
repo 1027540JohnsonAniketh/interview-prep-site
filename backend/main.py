@@ -336,14 +336,17 @@ def python_cli_output(
 def python_cli_input(
     session_id: str,
     request: Request,
-    payload: dict[str, str] = Body(...),
+    payload: dict[str, Any] = Body(...),
 ) -> dict[str, bool]:
     if not python_cli_enabled_for_request(request):
         raise HTTPException(status_code=403, detail="Python CLI is disabled for this client")
     session = get_python_cli_session(session_id)
-    text = payload.get("text", "")
-    if text == "":
-        raise HTTPException(status_code=400, detail="input text cannot be empty")
+    text_value = payload.get("text", "")
+    if text_value is None:
+        text_value = ""
+    if not isinstance(text_value, str):
+        raise HTTPException(status_code=400, detail="input text must be a string")
+    text = text_value
     if not text.endswith("\n"):
         text = f"{text}\n"
 

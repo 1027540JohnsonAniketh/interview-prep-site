@@ -1148,17 +1148,16 @@ createApp({
         this.pythonPollInFlight = false;
       }
     },
-    async sendPythonInput() {
+    async sendPythonInput(overrideText = null) {
       if (!this.pythonSessionId) {
         return;
       }
-      const text = this.pythonInput.trim();
-      if (!text) {
-        return;
-      }
+      const text = overrideText === null ? this.pythonInput : String(overrideText);
 
-      this.pythonTerminalText += `${text}\n`;
-      this.pythonInput = "";
+      this.pythonTerminalText += text === "" ? "\n" : `${text}\n`;
+      if (overrideText === null) {
+        this.pythonInput = "";
+      }
       this.$nextTick(() => this.scrollPythonTerminal());
 
       try {
@@ -1514,10 +1513,18 @@ createApp({
               :disabled="!pythonSessionId"
               placeholder="Type input (example: 1, L, P, Q, B, q) and press Enter"
             />
-            <button class="ghost-btn" type="submit" :disabled="!pythonSessionId || !pythonInput.trim()">
+            <button class="ghost-btn" type="submit" :disabled="!pythonSessionId">
               Send
             </button>
           </form>
+          <div class="python-quick-actions">
+            <button class="ghost-btn" :disabled="!pythonSessionId" @click="sendPythonInput('')">Enter</button>
+            <button class="ghost-btn" :disabled="!pythonSessionId" @click="sendPythonInput('B')">Back</button>
+            <button class="ghost-btn" :disabled="!pythonSessionId" @click="sendPythonInput('L')">Learn</button>
+            <button class="ghost-btn" :disabled="!pythonSessionId" @click="sendPythonInput('P')">Practice</button>
+            <button class="ghost-btn" :disabled="!pythonSessionId" @click="sendPythonInput('Q')">Quiz</button>
+            <button class="ghost-btn" :disabled="!pythonSessionId" @click="sendPythonInput('q')">Quit</button>
+          </div>
 
           <p class="python-error" v-if="pythonError">{{ pythonError }}</p>
         </section>

@@ -698,6 +698,16 @@ input {
   flex: 1;
 }
 
+.python-quick-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.python-quick-actions .ghost-btn {
+  font-size: 0.74rem;
+}
+
 .python-error {
   color: #9f1239;
   font-size: 0.86rem;
@@ -770,6 +780,11 @@ input {
 
   .python-input-row {
     flex-direction: column;
+  }
+
+  .python-quick-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .python-terminal {
