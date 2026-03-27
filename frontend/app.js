@@ -837,7 +837,19 @@ createApp({
       payload: null,
       searchText: "",
       activeSection: "all",
+      activeWorkspace: "interview",
       openQuestionIds: {},
+      pythonStatusChecked: false,
+      pythonAvailable: false,
+      pythonReason: "",
+      pythonSessionId: "",
+      pythonCursor: 0,
+      pythonTerminalText: "",
+      pythonInput: "",
+      pythonBusy: false,
+      pythonError: "",
+      pythonPollTimer: null,
+      pythonPollInFlight: false,
     };
   },
   computed: {
@@ -964,6 +976,11 @@ createApp({
       });
     },
     syncSimulations() {
+      if (this.activeWorkspace !== "interview") {
+        this.destroySimulations();
+        return;
+      }
+
       if (!this._simulationControllers) {
         this._simulationControllers = {};
       }
@@ -1021,6 +1038,164 @@ createApp({
       });
       this.refreshSimulationVisibility();
     },
+    setWorkspace(value) {
+      this.activeWorkspace = value;
+      if (value === "python") {
+        this.fetchPythonStatus();
+      }
+    },
+    async fetchPythonStatus(force = false) {
+      if (this.pythonStatusChecked && !force) {
+        return;
+      }
+      try {
+        const response = await fetch("/api/python-cli/status");
+        if (!response.ok) {
+          throw new Error(`Failed to read Python lab status (${response.status})`);
+        }
+        const payload = await response.json();
+        this.pythonAvailable = Boolean(payload.available && payload.module_exists);
+        this.pythonReason = payload.reason || "";
+      } catch (error) {
+        this.pythonAvailable = false;
+        this.pythonReason = error?.message || "Python lab status unavailable";
+      } finally {
+        this.pythonStatusChecked = true;
+      }
+    },
+    startPythonPolling() {
+      if (this.pythonPollTimer) {
+        return;
+      }
+      this.pythonPollTimer = window.setInterval(() => {
+        this.pollPythonOutput();
+      }, 700);
+    },
+    stopPythonPolling() {
+      if (!this.pythonPollTimer) {
+        return;
+      }
+      window.clearInterval(this.pythonPollTimer);
+      this.pythonPollTimer = null;
+    },
+    scrollPythonTerminal() {
+      const terminal = this.$refs.pythonTerminal;
+      if (!terminal) {
+        return;
+      }
+      terminal.scrollTop = terminal.scrollHeight;
+    },
+    async startPythonSession() {
+      if (this.pythonSessionId) {
+        return;
+      }
+      await this.fetchPythonStatus();
+      if (!this.pythonAvailable) {
+        this.pythonError = this.pythonReason || "Python CLI is unavailable";
+        return;
+      }
+
+      this.pythonBusy = true;
+      this.pythonError = "";
+      this.pythonTerminalText = "";
+      this.pythonCursor = 0;
+
+      try {
+        const response = await fetch("/api/python-cli/sessions", { method: "POST" });
+        const payload = await response.json();
+        if (!response.ok) {
+          throw new Error(payload?.detail || `Failed to start Python session (${response.status})`);
+        }
+        this.pythonSessionId = payload.session_id;
+        this.pythonCursor = payload.cursor || 0;
+        this.pythonTerminalText = payload.output || "";
+        this.startPythonPolling();
+        this.$nextTick(() => this.scrollPythonTerminal());
+      } catch (error) {
+        this.pythonError = error?.message || "Unable to start Python session";
+      } finally {
+        this.pythonBusy = false;
+      }
+    },
+    async pollPythonOutput() {
+      if (!this.pythonSessionId || this.pythonPollInFlight) {
+        return;
+      }
+
+      this.pythonPollInFlight = true;
+      try {
+        const response = await fetch(
+          `/api/python-cli/sessions/${this.pythonSessionId}/output?cursor=${this.pythonCursor}`,
+        );
+        const payload = await response.json();
+        if (!response.ok) {
+          throw new Error(payload?.detail || `Output polling failed (${response.status})`);
+        }
+
+        if (payload.output) {
+          this.pythonTerminalText += payload.output;
+          this.$nextTick(() => this.scrollPythonTerminal());
+        }
+        this.pythonCursor = payload.cursor || this.pythonCursor;
+
+        if (!payload.alive) {
+          this.stopPythonPolling();
+        }
+      } catch (error) {
+        this.pythonError = error?.message || "Python output polling failed";
+        this.stopPythonPolling();
+      } finally {
+        this.pythonPollInFlight = false;
+      }
+    },
+    async sendPythonInput() {
+      if (!this.pythonSessionId) {
+        return;
+      }
+      const text = this.pythonInput.trim();
+      if (!text) {
+        return;
+      }
+
+      this.pythonTerminalText += `${text}\n`;
+      this.pythonInput = "";
+      this.$nextTick(() => this.scrollPythonTerminal());
+
+      try {
+        const response = await fetch(`/api/python-cli/sessions/${this.pythonSessionId}/input`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text }),
+        });
+        const payload = await response.json();
+        if (!response.ok) {
+          throw new Error(payload?.detail || `Failed to send input (${response.status})`);
+        }
+      } catch (error) {
+        this.pythonError = error?.message || "Failed to send Python input";
+      }
+    },
+    async stopPythonSession(quiet = false) {
+      this.stopPythonPolling();
+      const sessionId = this.pythonSessionId;
+      this.pythonSessionId = "";
+      this.pythonCursor = 0;
+
+      if (!sessionId) {
+        return;
+      }
+
+      try {
+        await fetch(`/api/python-cli/sessions/${sessionId}`, { method: "DELETE" });
+      } catch (error) {
+        this.pythonError = error?.message || "Failed to close Python session";
+      }
+
+      if (!quiet) {
+        this.pythonTerminalText += "\n[session closed]\n";
+        this.$nextTick(() => this.scrollPythonTerminal());
+      }
+    },
     async fetchPayload() {
       try {
         this.loading = true;
@@ -1076,6 +1251,8 @@ createApp({
   beforeUnmount() {
     window.removeEventListener("resize", this.handleResize);
     window.removeEventListener("scroll", this.refreshSimulationVisibility);
+    this.stopPythonPolling();
+    this.stopPythonSession(true);
     this.destroySimulations();
   },
   template: `
@@ -1108,6 +1285,24 @@ createApp({
       </header>
 
       <main class="content" v-if="!loading && !error">
+        <section class="workspace-switcher">
+          <button
+            class="workspace-tab"
+            :class="{ active: activeWorkspace === 'interview' }"
+            @click="setWorkspace('interview')"
+          >
+            Interview Prep Studio
+          </button>
+          <button
+            class="workspace-tab"
+            :class="{ active: activeWorkspace === 'python' }"
+            @click="setWorkspace('python')"
+          >
+            Python Interactive Lab
+          </button>
+        </section>
+
+        <template v-if="activeWorkspace === 'interview'">
         <section class="control-panel">
           <label class="search-label" for="search">Search Questions</label>
           <input
@@ -1282,6 +1477,49 @@ createApp({
         <section class="empty-state" v-else>
           <h3>No questions match this filter</h3>
           <p>Try clearing search text or switching sections.</p>
+        </section>
+        </template>
+
+        <section class="python-lab" v-else>
+          <h2>Python Interactive Learning</h2>
+          <p>
+            This runs your existing <code>python/run.py</code> lesson CLI inside the app.
+            Pick a lesson and mode exactly like terminal usage.
+          </p>
+
+          <div class="python-lab-status">
+            <span class="status-chip" :class="{ active: pythonAvailable }">
+              {{ pythonAvailable ? "CLI Available" : "CLI Restricted" }}
+            </span>
+            <small v-if="pythonReason">{{ pythonReason }}</small>
+          </div>
+
+          <div class="python-controls">
+            <button class="ghost-btn" @click="fetchPythonStatus(true)">Refresh Status</button>
+            <button class="ghost-btn" :disabled="pythonBusy || pythonSessionId || !pythonAvailable" @click="startPythonSession">
+              Start Session
+            </button>
+            <button class="ghost-btn" :disabled="!pythonSessionId" @click="stopPythonSession()">
+              Stop Session
+            </button>
+          </div>
+
+          <pre class="python-terminal" ref="pythonTerminal">{{ pythonTerminalText || "Start a session to begin interactive Python learning..." }}</pre>
+
+          <form class="python-input-row" @submit.prevent="sendPythonInput">
+            <input
+              class="search-input"
+              type="text"
+              v-model="pythonInput"
+              :disabled="!pythonSessionId"
+              placeholder="Type input (example: 1, L, P, Q, B, q) and press Enter"
+            />
+            <button class="ghost-btn" type="submit" :disabled="!pythonSessionId || !pythonInput.trim()">
+              Send
+            </button>
+          </form>
+
+          <p class="python-error" v-if="pythonError">{{ pythonError }}</p>
         </section>
       </main>
 

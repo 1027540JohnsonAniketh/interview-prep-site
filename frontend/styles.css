@@ -127,6 +127,39 @@ input {
   animation: rise-in 420ms ease;
 }
 
+.workspace-switcher {
+  display: inline-flex;
+  gap: 0.45rem;
+  margin-bottom: 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.35rem;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.workspace-tab {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-soft);
+  padding: 0.45rem 0.78rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 170ms ease;
+}
+
+.workspace-tab:hover {
+  border-color: #d9d3c2;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.workspace-tab.active {
+  border-color: #8bcfc8;
+  background: #e6f4f2;
+  color: #0f766e;
+  font-weight: 600;
+}
+
 .control-panel {
   background: var(--surface);
   border: 1px solid var(--line);
@@ -243,6 +276,12 @@ input {
 .ghost-btn:hover {
   border-color: var(--accent);
   color: var(--accent);
+}
+
+.ghost-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  border-style: dashed;
 }
 
 .question-grid {
@@ -565,6 +604,105 @@ input {
   color: var(--brand);
 }
 
+.python-lab {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 1.05rem 1rem 1rem;
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 0.9rem;
+}
+
+.python-lab h2 {
+  margin: 0;
+  font-size: 1.18rem;
+}
+
+.python-lab p {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.54;
+}
+
+.python-lab code {
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  font-size: 0.88em;
+  background: #eff5f4;
+  border: 1px solid #dbe9e7;
+  border-radius: 6px;
+  padding: 0.08rem 0.35rem;
+  color: #0d5e57;
+}
+
+.python-lab-status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #e4bf9f;
+  border-radius: 999px;
+  background: #fdf3ea;
+  color: #b45309;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+}
+
+.status-chip.active {
+  border-color: #8dcfbe;
+  background: #e7f5f0;
+  color: #0f766e;
+}
+
+.python-lab-status small {
+  color: #5f6b7a;
+  font-size: 0.8rem;
+}
+
+.python-controls {
+  display: flex;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.python-terminal {
+  margin: 0;
+  border: 1px solid #c2d7d4;
+  border-radius: 12px;
+  background: #0e1a22;
+  color: #d8f4f0;
+  min-height: 320px;
+  max-height: 480px;
+  overflow: auto;
+  padding: 0.85rem;
+  line-height: 1.45;
+  font-size: 0.82rem;
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  white-space: pre-wrap;
+}
+
+.python-input-row {
+  display: flex;
+  gap: 0.55rem;
+}
+
+.python-input-row .search-input {
+  flex: 1;
+}
+
+.python-error {
+  color: #9f1239;
+  font-size: 0.86rem;
+}
+
 .empty-state,
 .state-block {
   margin-top: 1rem;
@@ -618,6 +756,24 @@ input {
 
   .ghost-btn {
     flex: 1;
+  }
+
+  .workspace-switcher {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+
+  .workspace-tab {
+    text-align: center;
+  }
+
+  .python-input-row {
+    flex-direction: column;
+  }
+
+  .python-terminal {
+    min-height: 260px;
   }
 
   .concept-canvas {

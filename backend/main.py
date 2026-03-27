@@ -1,11 +1,18 @@
 from __future__ import annotations
 
 import json
+import os
+import subprocess
+import sys
+import threading
+import time
+import uuid
+from dataclasses import dataclass, field
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import Body, FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -13,6 +20,8 @@ from fastapi.staticfiles import StaticFiles
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_PATH = BASE_DIR / "backend" / "data" / "question_bank.json"
 FRONTEND_DIR = BASE_DIR / "frontend"
+PYTHON_MODULE_DIR = BASE_DIR / "python"
+PYTHON_SESSION_IDLE_SECONDS = 30 * 60
 
 
 @lru_cache(maxsize=1)
@@ -64,6 +73,106 @@ def filter_questions(
             )
 
     return results
+
+
+@dataclass
+class PythonCliSession:
+    session_id: str
+    process: subprocess.Popen[str]
+    created_at: float = field(default_factory=time.time)
+    last_active_at: float = field(default_factory=time.time)
+    output: str = ""
+    output_lock: threading.Lock = field(default_factory=threading.Lock)
+    reader_thread: threading.Thread | None = None
+
+    def start_reader(self) -> None:
+        self.reader_thread = threading.Thread(target=self._read_output, daemon=True)
+        self.reader_thread.start()
+
+    def _read_output(self) -> None:
+        stream = self.process.stdout
+        if stream is None:
+            return
+        while True:
+            chunk = stream.read(1)
+            if chunk == "" and self.process.poll() is not None:
+                break
+            if not chunk:
+                time.sleep(0.01)
+                continue
+            self.append_output(chunk)
+
+    def append_output(self, text: str) -> None:
+        with self.output_lock:
+            self.output += text
+            self.last_active_at = time.time()
+
+    def output_since(self, cursor: int) -> tuple[str, int]:
+        with self.output_lock:
+            bounded_cursor = max(0, min(cursor, len(self.output)))
+            chunk = self.output[bounded_cursor:]
+            return chunk, len(self.output)
+
+    def write_input(self, text: str) -> None:
+        if self.process.poll() is not None:
+            raise RuntimeError("session process has already exited")
+        if self.process.stdin is None:
+            raise RuntimeError("session stdin is unavailable")
+        self.process.stdin.write(text)
+        self.process.stdin.flush()
+        self.last_active_at = time.time()
+
+    def terminate(self) -> None:
+        if self.process.poll() is not None:
+            return
+        self.process.terminate()
+        try:
+            self.process.wait(timeout=4)
+        except subprocess.TimeoutExpired:
+            self.process.kill()
+            self.process.wait(timeout=2)
+
+    def is_alive(self) -> bool:
+        return self.process.poll() is None
+
+
+python_cli_sessions: dict[str, PythonCliSession] = {}
+python_cli_sessions_lock = threading.Lock()
+
+
+def python_cli_enabled_for_request(request: Request) -> bool:
+    # Running lesson practice executes arbitrary Python code. Keep this local-only
+    # by default; explicitly enable for remote requests via env var when desired.
+    explicit_enable = os.getenv("ENABLE_PYTHON_CLI", "").strip().lower()
+    if explicit_enable in {"1", "true", "yes", "on"}:
+        return True
+
+    client_host = (request.client.host if request.client else "").strip()
+    return client_host in {"127.0.0.1", "::1", "localhost"}
+
+
+def cleanup_python_cli_sessions() -> None:
+    now = time.time()
+    expired: list[PythonCliSession] = []
+
+    with python_cli_sessions_lock:
+        for session_id, session in list(python_cli_sessions.items()):
+            idle_too_long = now - session.last_active_at > PYTHON_SESSION_IDLE_SECONDS
+            dead_process = (not session.is_alive()) and (now - session.last_active_at > 120)
+            if idle_too_long or dead_process:
+                expired.append(session)
+                del python_cli_sessions[session_id]
+
+    for session in expired:
+        session.terminate()
+
+
+def get_python_cli_session(session_id: str) -> PythonCliSession:
+    with python_cli_sessions_lock:
+        session = python_cli_sessions.get(session_id)
+    if session is None:
+        raise HTTPException(status_code=404, detail="Python CLI session not found")
+    return session
 
 
 app = FastAPI(
@@ -148,6 +257,113 @@ def questions(
         "total_matched": len(items),
         "items": items[:limit],
     }
+
+
+@app.get("/api/python-cli/status")
+def python_cli_status(request: Request) -> dict[str, Any]:
+    available = python_cli_enabled_for_request(request)
+    return {
+        "available": available,
+        "module_exists": PYTHON_MODULE_DIR.exists(),
+        "module_path": str(PYTHON_MODULE_DIR),
+        "reason": (
+            "ok"
+            if available
+            else "Python CLI is local-only by default. Set ENABLE_PYTHON_CLI=true to enable remotely."
+        ),
+    }
+
+
+@app.post("/api/python-cli/sessions")
+def create_python_cli_session(request: Request) -> dict[str, Any]:
+    cleanup_python_cli_sessions()
+    if not python_cli_enabled_for_request(request):
+        raise HTTPException(status_code=403, detail="Python CLI is disabled for this client")
+    if not PYTHON_MODULE_DIR.exists():
+        raise HTTPException(status_code=500, detail=f"Python module not found at {PYTHON_MODULE_DIR}")
+
+    session_id = uuid.uuid4().hex
+    env = os.environ.copy()
+    env["PYTHONUNBUFFERED"] = "1"
+
+    process = subprocess.Popen(
+        [sys.executable, "run.py"],
+        cwd=PYTHON_MODULE_DIR,
+        stdin=subprocess.PIPE,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        bufsize=0,
+        env=env,
+    )
+    session = PythonCliSession(session_id=session_id, process=process)
+    session.start_reader()
+    time.sleep(0.08)
+
+    with python_cli_sessions_lock:
+        python_cli_sessions[session_id] = session
+
+    output, cursor = session.output_since(0)
+    return {
+        "session_id": session_id,
+        "cursor": cursor,
+        "output": output,
+        "alive": session.is_alive(),
+    }
+
+
+@app.get("/api/python-cli/sessions/{session_id}/output")
+def python_cli_output(
+    session_id: str,
+    request: Request,
+    cursor: int = Query(0, ge=0),
+) -> dict[str, Any]:
+    if not python_cli_enabled_for_request(request):
+        raise HTTPException(status_code=403, detail="Python CLI is disabled for this client")
+    cleanup_python_cli_sessions()
+
+    session = get_python_cli_session(session_id)
+    output, next_cursor = session.output_since(cursor)
+    return {
+        "output": output,
+        "cursor": next_cursor,
+        "alive": session.is_alive(),
+        "exit_code": session.process.poll(),
+    }
+
+
+@app.post("/api/python-cli/sessions/{session_id}/input")
+def python_cli_input(
+    session_id: str,
+    request: Request,
+    payload: dict[str, str] = Body(...),
+) -> dict[str, bool]:
+    if not python_cli_enabled_for_request(request):
+        raise HTTPException(status_code=403, detail="Python CLI is disabled for this client")
+    session = get_python_cli_session(session_id)
+    text = payload.get("text", "")
+    if text == "":
+        raise HTTPException(status_code=400, detail="input text cannot be empty")
+    if not text.endswith("\n"):
+        text = f"{text}\n"
+
+    try:
+        session.write_input(text)
+    except RuntimeError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+    return {"ok": True}
+
+
+@app.delete("/api/python-cli/sessions/{session_id}")
+def close_python_cli_session(session_id: str, request: Request) -> dict[str, bool]:
+    if not python_cli_enabled_for_request(request):
+        raise HTTPException(status_code=403, detail="Python CLI is disabled for this client")
+    with python_cli_sessions_lock:
+        session = python_cli_sessions.pop(session_id, None)
+    if session is None:
+        raise HTTPException(status_code=404, detail="Python CLI session not found")
+    session.terminate()
+    return {"closed": True}
 
 
 @app.exception_handler(FileNotFoundError)
