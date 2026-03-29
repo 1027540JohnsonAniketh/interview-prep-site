@@ -44,7 +44,7 @@ struct WorkspaceHostView: View {
                     ContentUnavailableView(
                         "Invalid URL",
                         systemImage: "wifi.exclamationmark",
-                        description: Text("Open Setup and enter a valid hosted or local server URL.")
+                        description: Text("Open Setup and choose On Device mode or enter a valid hosted/local server URL.")
                     )
                 }
 
@@ -103,9 +103,9 @@ struct SetupView: View {
                         VStack(alignment: .leading, spacing: 12) {
                             Text("Connection")
                                 .font(.title3.weight(.semibold))
-                            Text("Use the hosted site on a physical iPhone. Use localhost only when the app runs in the simulator on the same Mac as the server.")
+                            Text("On Device mode runs the bundled site, lessons, and Python challenge engine directly on iPhone. Hosted and localhost remain available when you want to point the app somewhere else.")
                                 .foregroundStyle(.secondary)
-                            TextField("https://interview-prep.onrender.com", text: $settings.baseURLString)
+                            TextField("app://local/index.html", text: $settings.baseURLString)
                                 .textInputAutocapitalization(.never)
                                 .autocorrectionDisabled()
                                 .padding(12)
@@ -113,10 +113,15 @@ struct SetupView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
 
                             HStack {
+                                Button("On Device") {
+                                    settings.useOnDeviceMode()
+                                }
+                                .buttonStyle(.borderedProminent)
+
                                 Button("Use Hosted Site") {
                                     settings.useHostedSite()
                                 }
-                                .buttonStyle(.borderedProminent)
+                                .buttonStyle(.bordered)
 
                                 Button("Use Localhost") {
                                     settings.useLocalhost()
@@ -134,12 +139,24 @@ struct SetupView: View {
 
                     CompanionCard {
                         VStack(alignment: .leading, spacing: 10) {
+                            Text("On-device mode")
+                                .font(.headline)
+                            Text(settings.onDeviceBaseURLString)
+                                .font(.system(.footnote, design: .monospaced))
+                                .textSelection(.enabled)
+                            Text("Quest, Lab, and the interview browser all run from bundled assets with local lesson data and an on-device Python validator.")
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+
+                    CompanionCard {
+                        VStack(alignment: .leading, spacing: 10) {
                             Text("Hosted site")
                                 .font(.headline)
                             Text(settings.hostedBaseURLString)
                                 .font(.system(.footnote, design: .monospaced))
                                 .textSelection(.enabled)
-                            Text("This should mirror the website exactly because Quest and Lab load the same web app with different `workspace` routes.")
+                            Text("Use this when you want the iOS shell to point at the deployed website instead of the on-device bundle.")
                                 .foregroundStyle(.secondary)
                         }
                     }
@@ -160,7 +177,7 @@ struct SetupView: View {
                         VStack(alignment: .leading, spacing: 10) {
                             Text("What the tabs load")
                                 .font(.headline)
-                            Text("Quest loads `?workspace=quest` and Lab loads `?workspace=python`, so the iOS app stays aligned with the exact website feature set.")
+                            Text("Quest loads `?workspace=quest` and Lab loads `?workspace=python`, so the iOS app stays aligned with the same product surface whether it runs on device, against localhost, or against the hosted site.")
                                 .foregroundStyle(.secondary)
                         }
                     }

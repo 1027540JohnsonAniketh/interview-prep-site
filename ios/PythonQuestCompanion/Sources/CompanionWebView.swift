@@ -12,6 +12,7 @@ struct CompanionWebView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> WKWebView {
         let configuration = WKWebViewConfiguration()
+        configuration.setURLSchemeHandler(context.coordinator.offlineSchemeHandler, forURLScheme: "app")
         let webView = WKWebView(frame: .zero, configuration: configuration)
         webView.allowsBackForwardNavigationGestures = true
         webView.scrollView.contentInsetAdjustmentBehavior = .never
@@ -36,6 +37,7 @@ struct CompanionWebView: UIViewRepresentable {
     final class Coordinator: NSObject, WKNavigationDelegate {
         var isLoading: Binding<Bool>
         var loadError: Binding<String?>
+        let offlineSchemeHandler = OfflineBundleSchemeHandler()
 
         init(isLoading: Binding<Bool>, loadError: Binding<String?>) {
             self.isLoading = isLoading

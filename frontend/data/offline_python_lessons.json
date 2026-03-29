@@ -1,0 +1,1890 @@
+{
+  "stats": {
+    "lesson_count": 10,
+    "challenge_count": 36,
+    "quiz_question_count": 50
+  },
+  "validation_enabled": true,
+  "validation_reason": "On-device Python engine",
+  "lessons": [
+    {
+      "id": 1,
+      "slug": "basics-variables-types",
+      "title": "Basics (Variables & Types)",
+      "summary": "Variables store data. Python is dynamically typed \u2014 you don't declare the type, Python figures it out from the value you assign.",
+      "checkpoint_titles": [
+        "Built-in Types",
+        "Checking Types with type()",
+        "f-strings (Formatted String Literals)",
+        "Getting User Input",
+        "Useful String Methods"
+      ],
+      "learn_cards": [
+        {
+          "kind": "concept",
+          "title": "Variables",
+          "body": "Variables store data. Python is dynamically typed \u2014 you don't declare the type, Python figures it out from the value you assign."
+        },
+        {
+          "kind": "code",
+          "code": "name = \"Aniketh\"\nage = 25\npi = 3.14\nis_learning = True",
+          "output": "# No output \u2014 variables are just stored in memory"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Built-in Types"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Checking Types with type()"
+        },
+        {
+          "kind": "code",
+          "code": "print(type(42))\nprint(type(\"hello\"))\nprint(type(3.14))\nprint(type(True))",
+          "output": "<class 'int'>\n<class 'str'>\n<class 'float'>\n<class 'bool'>"
+        },
+        {
+          "kind": "concept",
+          "title": "Key Insight",
+          "body": "Everything in Python is an object. Even 42 is an object of type int. You can call methods on it: (42).bit_length() returns 6."
+        },
+        {
+          "kind": "checkpoint",
+          "title": "f-strings (Formatted String Literals)"
+        },
+        {
+          "kind": "concept",
+          "title": "f-strings",
+          "body": "Prefix a string with 'f' to embed expressions inside {curly braces}. This is the modern, preferred way to format strings in Python 3.6+."
+        },
+        {
+          "kind": "code",
+          "code": "name = \"Aniketh\"\nage = 25\nprint(f\"Hi, I'm {name} and I'm {age} years old.\")\nprint(f\"Next year I'll be {age + 1}.\")\nprint(f\"Pi to 2 decimals: {3.14159:.2f}\")",
+          "output": "Hi, I'm Aniketh and I'm 25 years old.\nNext year I'll be 26.\nPi to 2 decimals: 3.14"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Getting User Input"
+        },
+        {
+          "kind": "concept",
+          "title": "input()",
+          "body": "input() reads text from the user. It ALWAYS returns a string, so you need to convert it with int() or float() for numbers."
+        },
+        {
+          "kind": "code",
+          "code": "name = input(\"What is your name? \")\nprint(f\"Hello, {name}!\")\n\nage = int(input(\"How old are you? \"))\nprint(f\"In 10 years you will be {age + 10}.\")",
+          "output": "What is your name? Aniketh\nHello, Aniketh!\nHow old are you? 25\nIn 10 years you will be 35."
+        }
+      ],
+      "practice": [
+        {
+          "index": 0,
+          "prompt": "Create a variable called 'greeting' with value 'Hello, Python!'",
+          "hint": "Just assign a string to a variable name",
+          "starter_code": "# Create the requested variables here"
+        },
+        {
+          "index": 1,
+          "prompt": "Create two variables: x = 10 and y = 3. Create a third variable 'result' with their sum.",
+          "hint": "Use the + operator",
+          "starter_code": "# Create the requested variables here"
+        },
+        {
+          "index": 2,
+          "prompt": "Create a variable 'message' using an f-string: 'I am learning Python in 2026'.\nUse a variable year = 2026 inside the f-string.",
+          "hint": "f'I am learning Python in {year}'",
+          "starter_code": "# Create the requested variables here"
+        },
+        {
+          "index": 3,
+          "prompt": "Convert the string '99' to an integer and store it in a variable called 'num'.",
+          "hint": "Use int() to convert",
+          "starter_code": "# Create the requested variables here"
+        },
+        {
+          "index": 4,
+          "prompt": "Create a variable 'name' with your name, and 'upper_name' with it in ALL CAPS.",
+          "hint": "Use the .upper() method",
+          "starter_code": "# Create the requested variables here"
+        }
+      ],
+      "quiz": [
+        {
+          "index": 0,
+          "question": "What does type(42) return?",
+          "options": [
+            "<class 'str'>",
+            "<class 'int'>",
+            "<class 'float'>",
+            "<class 'number'>"
+          ],
+          "answer": 1,
+          "explanation": "42 is a whole number, which is an int (integer) in Python."
+        },
+        {
+          "index": 1,
+          "question": "What does input() always return?",
+          "options": [
+            "An integer",
+            "A float",
+            "A string",
+            "Depends on what you type"
+          ],
+          "answer": 2,
+          "explanation": "input() ALWAYS returns a string. You must convert it with int() or float()."
+        },
+        {
+          "index": 2,
+          "question": "Which is the correct f-string syntax?",
+          "options": [
+            "f'Hello {name}'",
+            "'Hello {name}'",
+            "f(Hello {name})",
+            "format('Hello', name)"
+          ],
+          "answer": 0,
+          "explanation": "f-strings use the f prefix before the quote and {} for expressions."
+        },
+        {
+          "index": 3,
+          "question": "What is the value of bool('')?",
+          "options": [
+            "True",
+            "False",
+            "None",
+            "Error"
+          ],
+          "answer": 1,
+          "explanation": "Empty strings are 'falsy' in Python. bool('') returns False."
+        },
+        {
+          "index": 4,
+          "question": "How do you convert '3.14' to a float?",
+          "options": [
+            "int('3.14')",
+            "float('3.14')",
+            "str(3.14)",
+            "number('3.14')"
+          ],
+          "answer": 1,
+          "explanation": "float() converts a string to a floating-point number."
+        }
+      ],
+      "menu_title": "Lesson 1: Python Basics",
+      "practice_full": [
+        {
+          "index": 0,
+          "prompt": "Create a variable called 'greeting' with value 'Hello, Python!'",
+          "hint": "Just assign a string to a variable name",
+          "starter_code": "# Create the requested variables here",
+          "solution": "greeting = \"Hello, Python!\"",
+          "validator_source": "lambda ns, code: ns.get('greeting') == 'Hello, Python!'"
+        },
+        {
+          "index": 1,
+          "prompt": "Create two variables: x = 10 and y = 3. Create a third variable 'result' with their sum.",
+          "hint": "Use the + operator",
+          "starter_code": "# Create the requested variables here",
+          "solution": "x = 10\ny = 3\nresult = x + y",
+          "validator_source": "lambda ns, code: ns.get('x') == 10 and ns.get('y') == 3 and (ns.get('result') == 13)"
+        },
+        {
+          "index": 2,
+          "prompt": "Create a variable 'message' using an f-string: 'I am learning Python in 2026'.\nUse a variable year = 2026 inside the f-string.",
+          "hint": "f'I am learning Python in {year}'",
+          "starter_code": "# Create the requested variables here",
+          "solution": "year = 2026\nmessage = f\"I am learning Python in {year}\"",
+          "validator_source": "lambda ns, code: ns.get('message') == 'I am learning Python in 2026' and \"f'\" in code or 'f\"' in code"
+        },
+        {
+          "index": 3,
+          "prompt": "Convert the string '99' to an integer and store it in a variable called 'num'.",
+          "hint": "Use int() to convert",
+          "starter_code": "# Create the requested variables here",
+          "solution": "num = int(\"99\")",
+          "validator_source": "lambda ns, code: ns.get('num') == 99 and isinstance(ns.get('num'), int)"
+        },
+        {
+          "index": 4,
+          "prompt": "Create a variable 'name' with your name, and 'upper_name' with it in ALL CAPS.",
+          "hint": "Use the .upper() method",
+          "starter_code": "# Create the requested variables here",
+          "solution": "name = \"Aniketh\"\nupper_name = name.upper()",
+          "validator_source": "lambda ns, code: 'upper_name' in ns and ns['upper_name'] == ns.get('name', '').upper()"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "slug": "control-flow-if-else-loops",
+      "title": "Control Flow (if/else, loops)",
+      "summary": "Conditional statements let your code make decisions. Python uses indentation (4 spaces) to define blocks \u2014 no curly braces needed.",
+      "checkpoint_titles": [
+        "Comparison & Logical Operators",
+        "for Loops",
+        "range() Function",
+        "while Loops",
+        "break and continue"
+      ],
+      "learn_cards": [
+        {
+          "kind": "concept",
+          "title": "if / elif / else",
+          "body": "Conditional statements let your code make decisions. Python uses indentation (4 spaces) to define blocks \u2014 no curly braces needed."
+        },
+        {
+          "kind": "code",
+          "code": "age = 20\n\nif age >= 21:\n    print(\"Can drink\")\nelif age >= 18:\n    print(\"Can vote\")\nelse:\n    print(\"Minor\")",
+          "output": "Can vote"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Comparison & Logical Operators"
+        },
+        {
+          "kind": "code",
+          "code": "# Comparison: ==  !=  >  <  >=  <=\nprint(5 == 5)    # True\nprint(5 != 3)    # True\n\n# Logical: and, or, not\nprint(True and False)   # False\nprint(True or False)    # True\nprint(not True)         # False\n\n# Chaining\nx = 5\nprint(1 < x < 10)  # True \u2014 Python supports chaining!",
+          "output": "True\nTrue\nFalse\nTrue\nFalse\nTrue"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "for Loops"
+        },
+        {
+          "kind": "concept",
+          "title": "for loop",
+          "body": "Iterates over a sequence (list, string, range, etc). Think of it as: 'for each item in this collection, do something.'"
+        },
+        {
+          "kind": "code",
+          "code": "# Iterate over a list\nfruits = [\"apple\", \"banana\", \"cherry\"]\nfor fruit in fruits:\n    print(fruit)\n\n# Iterate over a string\nfor char in \"Hi\":\n    print(char)",
+          "output": "apple\nbanana\ncherry\nH\ni"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "range() Function"
+        },
+        {
+          "kind": "code",
+          "code": "# range(stop) \u2014 0 to stop-1\nfor i in range(5):\n    print(i, end=\" \")\nprint()\n\n# range(start, stop)\nfor i in range(2, 6):\n    print(i, end=\" \")\nprint()\n\n# range(start, stop, step)\nfor i in range(0, 10, 2):\n    print(i, end=\" \")",
+          "output": "0 1 2 3 4 \n2 3 4 5 \n0 2 4 6 8"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "while Loops"
+        },
+        {
+          "kind": "concept",
+          "title": "while loop",
+          "body": "Keeps running as long as the condition is True. Be careful \u2014 if the condition never becomes False, you get an infinite loop!"
+        },
+        {
+          "kind": "code",
+          "code": "count = 0\nwhile count < 3:\n    print(f\"count is {count}\")\n    count += 1  # Don't forget to update!",
+          "output": "count is 0\ncount is 1\ncount is 2"
+        }
+      ],
+      "practice": [
+        {
+          "index": 0,
+          "prompt": "Write code that creates a variable 'result' set to 'even' if 42 is even, else 'odd'.",
+          "hint": "Use the modulo operator % and a ternary expression",
+          "starter_code": "# Create the requested variables here"
+        },
+        {
+          "index": 1,
+          "prompt": "Create a list called 'evens' containing even numbers from 0 to 10 (inclusive) using a for loop.",
+          "hint": "Use range() and check with %",
+          "starter_code": "# Create the requested variables here"
+        },
+        {
+          "index": 2,
+          "prompt": "Use a for loop to create 'total' = sum of numbers 1 through 100.",
+          "hint": "Start with total = 0 and add each number",
+          "starter_code": "# Create the requested variables here"
+        },
+        {
+          "index": 3,
+          "prompt": "Create a variable 'first_big' \u2014 the first number in range(1, 100) divisible by 7 AND by 3. Use a loop with break.",
+          "hint": "Check: if i % 7 == 0 and i % 3 == 0",
+          "starter_code": "# Solve the challenge here"
+        }
+      ],
+      "quiz": [
+        {
+          "index": 0,
+          "question": "What does range(3) produce?",
+          "options": [
+            "[1, 2, 3]",
+            "[0, 1, 2]",
+            "[0, 1, 2, 3]",
+            "[3]"
+          ],
+          "answer": 1,
+          "explanation": "range(3) goes from 0 up to (but not including) 3."
+        },
+        {
+          "index": 1,
+          "question": "What does 'break' do inside a loop?",
+          "options": [
+            "Skips current iteration",
+            "Exits the loop immediately",
+            "Restarts the loop",
+            "Raises an error"
+          ],
+          "answer": 1,
+          "explanation": ""
+        },
+        {
+          "index": 2,
+          "question": "What is the output of: print(10 > 5 and 3 < 1)?",
+          "options": [
+            "True",
+            "False",
+            "Error",
+            "None"
+          ],
+          "answer": 1,
+          "explanation": "10 > 5 is True, but 3 < 1 is False. True and False = False."
+        },
+        {
+          "index": 3,
+          "question": "How does Python define code blocks?",
+          "options": [
+            "Curly braces {}",
+            "Indentation",
+            "Parentheses ()",
+            "Keywords begin/end"
+          ],
+          "answer": 1,
+          "explanation": "Python uses indentation (typically 4 spaces) to define blocks."
+        },
+        {
+          "index": 4,
+          "question": "What does 'continue' do inside a loop?",
+          "options": [
+            "Exits the loop",
+            "Skips to the next iteration",
+            "Pauses the loop",
+            "Repeats current iteration"
+          ],
+          "answer": 1,
+          "explanation": ""
+        }
+      ],
+      "menu_title": "Lesson 2: Control Flow",
+      "practice_full": [
+        {
+          "index": 0,
+          "prompt": "Write code that creates a variable 'result' set to 'even' if 42 is even, else 'odd'.",
+          "hint": "Use the modulo operator % and a ternary expression",
+          "starter_code": "# Create the requested variables here",
+          "solution": "result = \"even\" if 42 % 2 == 0 else \"odd\"",
+          "validator_source": "lambda ns, code: ns.get('result') == 'even'"
+        },
+        {
+          "index": 1,
+          "prompt": "Create a list called 'evens' containing even numbers from 0 to 10 (inclusive) using a for loop.",
+          "hint": "Use range() and check with %",
+          "starter_code": "# Create the requested variables here",
+          "solution": "evens = []\nfor i in range(11):\n    if i % 2 == 0:\n        evens.append(i)",
+          "validator_source": "lambda ns, code: ns.get('evens') == [0, 2, 4, 6, 8, 10]"
+        },
+        {
+          "index": 2,
+          "prompt": "Use a for loop to create 'total' = sum of numbers 1 through 100.",
+          "hint": "Start with total = 0 and add each number",
+          "starter_code": "# Create the requested variables here",
+          "solution": "total = 0\nfor i in range(1, 101):\n    total += i",
+          "validator_source": "lambda ns, code: ns.get('total') == 5050"
+        },
+        {
+          "index": 3,
+          "prompt": "Create a variable 'first_big' \u2014 the first number in range(1, 100) divisible by 7 AND by 3. Use a loop with break.",
+          "hint": "Check: if i % 7 == 0 and i % 3 == 0",
+          "starter_code": "# Solve the challenge here",
+          "solution": "for i in range(1, 100):\n    if i % 7 == 0 and i % 3 == 0:\n        first_big = i\n        break",
+          "validator_source": "lambda ns, code: ns.get('first_big') == 21 and 'break' in code"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "slug": "functions-def-args-lambda",
+      "title": "Functions (def, *args, lambda)",
+      "summary": "A reusable block of code that takes input (arguments), does something, and optionally returns output. Functions help you avoid repeating code and organize logic into named, testable pieces.",
+      "checkpoint_titles": [
+        "Defining and Calling Functions",
+        "Parameters & Default Values",
+        "Returning Multiple Values",
+        "*args \u2014 Variable Positional Arguments",
+        "**kwargs \u2014 Variable Keyword Arguments"
+      ],
+      "learn_cards": [
+        {
+          "kind": "concept",
+          "title": "What is a function?",
+          "body": "A reusable block of code that takes input (arguments), does something, and optionally returns output. Functions help you avoid repeating code and organize logic into named, testable pieces."
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Defining and Calling Functions"
+        },
+        {
+          "kind": "code",
+          "code": "def greet(name):\n    return f\"Hello, {name}!\"\n\nmessage = greet(\"Aniketh\")\nprint(message)",
+          "output": "Hello, Aniketh!"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Parameters & Default Values"
+        },
+        {
+          "kind": "code",
+          "code": "def power(base, exponent=2):\n    return base ** exponent\n\nprint(power(3))       # Uses default exponent=2\nprint(power(3, 3))    # Overrides to exponent=3\nprint(power(base=5, exponent=4))  # Keyword arguments",
+          "output": "9\n27\n625"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Returning Multiple Values"
+        },
+        {
+          "kind": "concept",
+          "title": "Tuple unpacking",
+          "body": "Python functions can return multiple values as a tuple. You can unpack them into separate variables."
+        },
+        {
+          "kind": "code",
+          "code": "def divide(a, b):\n    quotient = a // b\n    remainder = a % b\n    return quotient, remainder\n\nq, r = divide(17, 5)\nprint(f\"17 / 5 = {q} remainder {r}\")",
+          "output": "17 / 5 = 3 remainder 2"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "*args \u2014 Variable Positional Arguments"
+        },
+        {
+          "kind": "concept",
+          "title": "*args",
+          "body": "*args collects any number of positional arguments into a tuple. Use it when you don't know how many arguments will be passed."
+        },
+        {
+          "kind": "code",
+          "code": "def add_all(*args):\n    print(f\"args = {args}\")  # It's a tuple\n    return sum(args)\n\nprint(add_all(1, 2, 3))\nprint(add_all(10, 20, 30, 40))",
+          "output": "args = (1, 2, 3)\n6\nargs = (10, 20, 30, 40)\n100"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "**kwargs \u2014 Variable Keyword Arguments"
+        }
+      ],
+      "practice": [
+        {
+          "index": 0,
+          "prompt": "Write a function 'is_even' that takes a number and returns True if even, False if odd.",
+          "hint": "Use the modulo operator %",
+          "starter_code": "def is_even(n):\n    "
+        },
+        {
+          "index": 1,
+          "prompt": "Write a function 'factorial' that returns the factorial of n (e.g., factorial(5) = 120).",
+          "hint": "Use recursion: n * factorial(n-1), base case: n <= 1 returns 1",
+          "starter_code": "def factorial(n):\n    "
+        },
+        {
+          "index": 2,
+          "prompt": "Write a function 'multiply_all' that uses *args to multiply all its arguments together.",
+          "hint": "Start with result = 1 and multiply each arg",
+          "starter_code": "def multiply_all(*args):\n    "
+        },
+        {
+          "index": 3,
+          "prompt": "Create a lambda called 'to_upper' that takes a string and returns it in uppercase.",
+          "hint": "lambda s: s.upper()",
+          "starter_code": "to_upper = lambda "
+        }
+      ],
+      "quiz": [
+        {
+          "index": 0,
+          "question": "What does *args collect?",
+          "options": [
+            "A list",
+            "A tuple",
+            "A dictionary",
+            "A set"
+          ],
+          "answer": 1,
+          "explanation": "*args packs extra positional arguments into a tuple."
+        },
+        {
+          "index": 1,
+          "question": "What does **kwargs collect?",
+          "options": [
+            "A list",
+            "A tuple",
+            "A dictionary",
+            "A set"
+          ],
+          "answer": 2,
+          "explanation": "**kwargs packs extra keyword arguments into a dictionary."
+        },
+        {
+          "index": 2,
+          "question": "What is the output of: (lambda x, y: x + y)(3, 4)?",
+          "options": [
+            "7",
+            "34",
+            "Error",
+            "None"
+          ],
+          "answer": 0,
+          "explanation": "The lambda adds x + y. Called immediately with 3 and 4, returns 7."
+        },
+        {
+          "index": 3,
+          "question": "What happens if a function has no return statement?",
+          "options": [
+            "Error",
+            "Returns 0",
+            "Returns None",
+            "Returns empty string"
+          ],
+          "answer": 2,
+          "explanation": "Functions without return (or with bare return) return None by default."
+        },
+        {
+          "index": 4,
+          "question": "Can a local variable be accessed outside its function?",
+          "options": [
+            "Yes",
+            "No",
+            "Only with global keyword",
+            "Only if it's a string"
+          ],
+          "answer": 1,
+          "explanation": "Local variables only exist inside the function where they're defined."
+        }
+      ],
+      "menu_title": "Lesson 3: Functions",
+      "practice_full": [
+        {
+          "index": 0,
+          "prompt": "Write a function 'is_even' that takes a number and returns True if even, False if odd.",
+          "hint": "Use the modulo operator %",
+          "starter_code": "def is_even(n):\n    ",
+          "solution": "def is_even(n):\n    return n % 2 == 0",
+          "validator_source": "lambda ns, code: callable(ns.get('is_even')) and ns['is_even'](4) is True and (ns['is_even'](7) is False)"
+        },
+        {
+          "index": 1,
+          "prompt": "Write a function 'factorial' that returns the factorial of n (e.g., factorial(5) = 120).",
+          "hint": "Use recursion: n * factorial(n-1), base case: n <= 1 returns 1",
+          "starter_code": "def factorial(n):\n    ",
+          "solution": "def factorial(n):\n    return 1 if n <= 1 else n * factorial(n - 1)",
+          "validator_source": "lambda ns, code: callable(ns.get('factorial')) and ns['factorial'](5) == 120 and (ns['factorial'](0) == 1)"
+        },
+        {
+          "index": 2,
+          "prompt": "Write a function 'multiply_all' that uses *args to multiply all its arguments together.",
+          "hint": "Start with result = 1 and multiply each arg",
+          "starter_code": "def multiply_all(*args):\n    ",
+          "solution": "def multiply_all(*args):\n    result = 1\n    for n in args:\n        result *= n\n    return result",
+          "validator_source": "lambda ns, code: callable(ns.get('multiply_all')) and ns['multiply_all'](2, 3, 4) == 24"
+        },
+        {
+          "index": 3,
+          "prompt": "Create a lambda called 'to_upper' that takes a string and returns it in uppercase.",
+          "hint": "lambda s: s.upper()",
+          "starter_code": "to_upper = lambda ",
+          "solution": "to_upper = lambda s: s.upper()",
+          "validator_source": "lambda ns, code: callable(ns.get('to_upper')) and ns['to_upper']('hello') == 'HELLO' and ('lambda' in code)"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "slug": "data-structures-list-dict-set",
+      "title": "Data Structures (list, dict, set)",
+      "summary": "Lists are the workhorse of Python. They're ordered, mutable (you can change them), and can hold any mix of types. Created with square brackets [].",
+      "checkpoint_titles": [
+        "Lists \u2014 Ordered, Mutable Collections",
+        "Slicing \u2014 Extracting Parts of a List",
+        "Tuples \u2014 Ordered, Immutable Collections",
+        "Dictionaries \u2014 Key-Value Pairs",
+        "Sets \u2014 Unordered, Unique Elements"
+      ],
+      "learn_cards": [
+        {
+          "kind": "checkpoint",
+          "title": "Lists \u2014 Ordered, Mutable Collections"
+        },
+        {
+          "kind": "concept",
+          "title": "Lists",
+          "body": "Lists are the workhorse of Python. They're ordered, mutable (you can change them), and can hold any mix of types. Created with square brackets []."
+        },
+        {
+          "kind": "code",
+          "code": "nums = [10, 20, 30, 40, 50]\n\n# Access by index (0-based)\nprint(nums[0])     # 10\nprint(nums[-1])    # 50 (last item)\n\n# Modify\nnums[1] = 99\nprint(nums)        # [10, 99, 30, 40, 50]\n\n# Common methods\nnums.append(60)    # Add to end\nnums.insert(0, 5)  # Insert at index 0\nnums.pop()         # Remove last\nprint(len(nums))   # Length",
+          "output": "10\n50\n[10, 99, 30, 40, 50]\n6"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Slicing \u2014 Extracting Parts of a List"
+        },
+        {
+          "kind": "concept",
+          "title": "Slicing syntax: list[start:stop:step]",
+          "body": "start is inclusive, stop is exclusive. Omit start for beginning, omit stop for end. Negative indices count from the end."
+        },
+        {
+          "kind": "code",
+          "code": "nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n\nprint(nums[2:5])     # [2, 3, 4]\nprint(nums[:3])      # [0, 1, 2]\nprint(nums[7:])      # [7, 8, 9]\nprint(nums[::2])     # [0, 2, 4, 6, 8] \u2014 every 2nd\nprint(nums[::-1])    # [9, 8, 7, ...] \u2014 reversed!",
+          "output": "[2, 3, 4]\n[0, 1, 2]\n[7, 8, 9]\n[0, 2, 4, 6, 8]\n[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Tuples \u2014 Ordered, Immutable Collections"
+        },
+        {
+          "kind": "concept",
+          "title": "Tuples",
+          "body": "Like lists but IMMUTABLE \u2014 once created, you can't change them. Use tuples for data that shouldn't change (coordinates, RGB colors, etc)."
+        },
+        {
+          "kind": "code",
+          "code": "point = (3, 4)\nprint(point[0])      # 3\n\n# Unpacking\nx, y = point\nprint(f\"x={x}, y={y}\")\n\n# Tuples as dict keys (lists can't be!)\nlocations = {(0, 0): \"origin\", (1, 2): \"point A\"}\nprint(locations[(0, 0)])",
+          "output": "3\nx=3, y=4\norigin"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Dictionaries \u2014 Key-Value Pairs"
+        },
+        {
+          "kind": "concept",
+          "title": "Dictionaries",
+          "body": "Store data as key-value pairs. Keys must be immutable (strings, numbers, tuples). O(1) average lookup time \u2014 very fast!"
+        },
+        {
+          "kind": "code",
+          "code": "person = {\"name\": \"Aniketh\", \"age\": 25, \"role\": \"Engineer\"}\n\nprint(person[\"name\"])          # Aniketh\nperson[\"city\"] = \"NYC\"         # Add new key\nprint(person.get(\"salary\", 0)) # 0 (safe access with default)\n\n# Iterate\nfor key, value in person.items():\n    print(f\"  {key}: {value}\")",
+          "output": "Aniketh\n0\n  name: Aniketh\n  age: 25\n  role: Engineer\n  city: NYC"
+        }
+      ],
+      "practice": [
+        {
+          "index": 0,
+          "prompt": "Create a list 'squares' containing squares of 1 through 5: [1, 4, 9, 16, 25]",
+          "hint": "Use a loop or list comprehension",
+          "starter_code": "# Create the requested variables here"
+        },
+        {
+          "index": 1,
+          "prompt": "Create a dict 'word_lengths' mapping each word in ['hello', 'world', 'python'] to its length.",
+          "hint": "Use a loop or dict comprehension: {word: len(word) for ...}",
+          "starter_code": "# Create the requested variables here"
+        },
+        {
+          "index": 2,
+          "prompt": "Given nums = [1, 2, 2, 3, 3, 3, 4], create 'unique_nums' as a sorted list of unique values.",
+          "hint": "Convert to set, then back to sorted list",
+          "starter_code": "# Create the requested variables here"
+        },
+        {
+          "index": 3,
+          "prompt": "Create a variable 'reversed_list' that is [1,2,3,4,5] reversed using slicing.",
+          "hint": "Use [::-1]",
+          "starter_code": "# Create the requested variables here"
+        }
+      ],
+      "quiz": [
+        {
+          "index": 0,
+          "question": "What does [1,2,3][1:] return?",
+          "options": [
+            "[1]",
+            "[2, 3]",
+            "[1, 2]",
+            "[1, 2, 3]"
+          ],
+          "answer": 1,
+          "explanation": ""
+        },
+        {
+          "index": 1,
+          "question": "Which data structure does NOT allow duplicates?",
+          "options": [
+            "list",
+            "tuple",
+            "set",
+            "dict values"
+          ],
+          "answer": 2,
+          "explanation": ""
+        },
+        {
+          "index": 2,
+          "question": "What is the time complexity of 'x in my_set'?",
+          "options": [
+            "O(n)",
+            "O(1)",
+            "O(log n)",
+            "O(n^2)"
+          ],
+          "answer": 1,
+          "explanation": "Sets use hash tables, so membership testing is O(1) on average."
+        },
+        {
+          "index": 3,
+          "question": "Can a list be used as a dictionary key?",
+          "options": [
+            "Yes",
+            "No",
+            "Only if it's empty",
+            "Only with strings inside"
+          ],
+          "answer": 1,
+          "explanation": "Lists are mutable, so they can't be hashed. Use tuples instead."
+        },
+        {
+          "index": 4,
+          "question": "What does dict.get('key', 'default') do if 'key' doesn't exist?",
+          "options": [
+            "Raises KeyError",
+            "Returns None",
+            "Returns 'default'",
+            "Adds the key"
+          ],
+          "answer": 2,
+          "explanation": ".get() returns the default value instead of raising an error."
+        }
+      ],
+      "menu_title": "Lesson 4: Data Structures",
+      "practice_full": [
+        {
+          "index": 0,
+          "prompt": "Create a list 'squares' containing squares of 1 through 5: [1, 4, 9, 16, 25]",
+          "hint": "Use a loop or list comprehension",
+          "starter_code": "# Create the requested variables here",
+          "solution": "squares = [i**2 for i in range(1, 6)]",
+          "validator_source": "lambda ns, code: ns.get('squares') == [1, 4, 9, 16, 25]"
+        },
+        {
+          "index": 1,
+          "prompt": "Create a dict 'word_lengths' mapping each word in ['hello', 'world', 'python'] to its length.",
+          "hint": "Use a loop or dict comprehension: {word: len(word) for ...}",
+          "starter_code": "# Create the requested variables here",
+          "solution": "word_lengths = {w: len(w) for w in [\"hello\", \"world\", \"python\"]}",
+          "validator_source": "lambda ns, code: ns.get('word_lengths') == {'hello': 5, 'world': 5, 'python': 6}"
+        },
+        {
+          "index": 2,
+          "prompt": "Given nums = [1, 2, 2, 3, 3, 3, 4], create 'unique_nums' as a sorted list of unique values.",
+          "hint": "Convert to set, then back to sorted list",
+          "starter_code": "# Create the requested variables here",
+          "solution": "nums = [1, 2, 2, 3, 3, 3, 4]\nunique_nums = sorted(set(nums))",
+          "validator_source": "lambda ns, code: ns.get('unique_nums') == [1, 2, 3, 4]"
+        },
+        {
+          "index": 3,
+          "prompt": "Create a variable 'reversed_list' that is [1,2,3,4,5] reversed using slicing.",
+          "hint": "Use [::-1]",
+          "starter_code": "# Create the requested variables here",
+          "solution": "reversed_list = [1, 2, 3, 4, 5][::-1]",
+          "validator_source": "lambda ns, code: ns.get('reversed_list') == [5, 4, 3, 2, 1] and '::' in code"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "slug": "oop-classes-inheritance",
+      "title": "OOP (classes, inheritance)",
+      "summary": "OOP organizes code around 'objects' that bundle data (attributes) and behavior (methods). A class is the blueprint, an object is the instance. Think of a class as a cookie cutter and objects as cookies.",
+      "checkpoint_titles": [
+        "Defining a Class",
+        "Class vs Instance Attributes",
+        "Inheritance",
+        "Dunder (Magic) Methods",
+        "@property \u2014 Computed Attributes"
+      ],
+      "learn_cards": [
+        {
+          "kind": "concept",
+          "title": "What is OOP?",
+          "body": "OOP organizes code around 'objects' that bundle data (attributes) and behavior (methods). A class is the blueprint, an object is the instance. Think of a class as a cookie cutter and objects as cookies."
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Defining a Class"
+        },
+        {
+          "kind": "code",
+          "code": "class Dog:\n    def __init__(self, name, breed):\n        self.name = name      # instance attribute\n        self.breed = breed\n\n    def bark(self):           # instance method\n        return f\"{self.name} says Woof!\"\n\nmy_dog = Dog(\"Rex\", \"Labrador\")\nprint(my_dog.bark())\nprint(f\"{my_dog.name} is a {my_dog.breed}\")",
+          "output": "Rex says Woof!\nRex is a Labrador"
+        },
+        {
+          "kind": "concept",
+          "title": "__init__ and self",
+          "body": "__init__ is the constructor \u2014 called when you create an object. 'self' refers to the instance being created. Every method gets 'self' as its first parameter automatically."
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Class vs Instance Attributes"
+        },
+        {
+          "kind": "code",
+          "code": "class Counter:\n    count = 0  # Class attribute \u2014 shared by all instances\n\n    def __init__(self):\n        Counter.count += 1  # Modify via class name\n        self.id = Counter.count  # Instance attribute\n\na = Counter()\nb = Counter()\nc = Counter()\nprint(f\"Total counters: {Counter.count}\")  # 3\nprint(f\"c.id = {c.id}\")                    # 3",
+          "output": "Total counters: 3\nc.id = 3"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Inheritance"
+        },
+        {
+          "kind": "concept",
+          "title": "Inheritance",
+          "body": "A child class inherits all attributes and methods from a parent class, then can add or override them. This promotes code reuse."
+        },
+        {
+          "kind": "code",
+          "code": "class Animal:\n    def __init__(self, name):\n        self.name = name\n\n    def speak(self):\n        return \"...\"\n\nclass Cat(Animal):  # Cat inherits from Animal\n    def speak(self):  # Override parent method\n        return f\"{self.name} says Meow!\"\n\nclass Dog(Animal):\n    def speak(self):\n        return f\"{self.name} says Woof!\"\n\nfor animal in [Cat(\"Whiskers\"), Dog(\"Rex\")]:\n    print(animal.speak())",
+          "output": "Whiskers says Meow!\nRex says Woof!"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Dunder (Magic) Methods"
+        },
+        {
+          "kind": "concept",
+          "title": "Dunder methods",
+          "body": "Methods with double underscores like __str__, __repr__, __len__, __eq__. They let your objects work with Python's built-in operations."
+        },
+        {
+          "kind": "code",
+          "code": "class Point:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n\n    def __str__(self):       # print() uses this\n        return f\"Point({self.x}, {self.y})\"\n\n    def __repr__(self):      # Debug representation\n        return f\"Point(x={self.x}, y={self.y})\"\n\n    def __eq__(self, other):  # == comparison\n        return self.x == other.x and self.y == other.y\n\n    def __add__(self, other):  # + operator\n        return Point(self.x + other.x, self.y + other.y)\n\np1 = Point(1, 2)\np2 = Point(3, 4)\nprint(p1)            # Uses __str__\nprint(p1 + p2)       # Uses __add__\nprint(p1 == Point(1, 2))  # Uses __eq__",
+          "output": "Point(1, 2)\nPoint(4, 6)\nTrue"
+        }
+      ],
+      "practice": [
+        {
+          "index": 0,
+          "prompt": "Create a class 'Rectangle' with width and height. Add a method 'area' that returns width * height.",
+          "hint": "def __init__(self, width, height): ...",
+          "starter_code": "# Solve the challenge here"
+        },
+        {
+          "index": 1,
+          "prompt": "Create a class 'BankAccount' with a balance. Add 'deposit(amount)' and 'withdraw(amount)' methods.\nwithdraw should not allow going below 0 (just don't change balance).",
+          "hint": "Check if balance - amount >= 0 before withdrawing",
+          "starter_code": "# Solve the challenge here"
+        },
+        {
+          "index": 2,
+          "prompt": "Add a __str__ method to a class 'Student' with name and grade.\nprint(Student('Alice', 'A')) should output 'Student(Alice, grade=A)'",
+          "hint": "def __str__(self): return f'Student(...)'",
+          "starter_code": "# Solve the challenge here"
+        }
+      ],
+      "quiz": [
+        {
+          "index": 0,
+          "question": "What is 'self' in a Python class?",
+          "options": [
+            "A keyword like 'this' in Java",
+            "Reference to the current instance",
+            "A global variable",
+            "The class itself"
+          ],
+          "answer": 1,
+          "explanation": ""
+        },
+        {
+          "index": 1,
+          "question": "What method is called when you do print(my_object)?",
+          "options": [
+            "__repr__",
+            "__str__",
+            "__print__",
+            "__display__"
+          ],
+          "answer": 1,
+          "explanation": "print() calls __str__(). If __str__ isn't defined, it falls back to __repr__."
+        },
+        {
+          "index": 2,
+          "question": "What does @property do?",
+          "options": [
+            "Makes an attribute private",
+            "Lets you access a method like an attribute",
+            "Creates a class variable",
+            "Prevents modification"
+          ],
+          "answer": 1,
+          "explanation": ""
+        },
+        {
+          "index": 3,
+          "question": "In class Cat(Animal), what is Animal?",
+          "options": [
+            "Child class",
+            "Parent/base class",
+            "Interface",
+            "Module"
+          ],
+          "answer": 1,
+          "explanation": ""
+        },
+        {
+          "index": 4,
+          "question": "What is a class attribute?",
+          "options": [
+            "Defined in __init__ with self",
+            "Shared by all instances of the class",
+            "Only accessible inside methods",
+            "Automatically private"
+          ],
+          "answer": 1,
+          "explanation": "Class attributes are defined directly in the class body, shared by all instances."
+        }
+      ],
+      "menu_title": "Lesson 5: OOP",
+      "practice_full": [
+        {
+          "index": 0,
+          "prompt": "Create a class 'Rectangle' with width and height. Add a method 'area' that returns width * height.",
+          "hint": "def __init__(self, width, height): ...",
+          "starter_code": "# Solve the challenge here",
+          "solution": "class Rectangle:\n    def __init__(self, width, height):\n        self.width = width\n        self.height = height\n    def area(self):\n        return self.width * self.height",
+          "validator_source": "lambda ns, code: 'Rectangle' in ns and callable(ns['Rectangle']) and hasattr(ns['Rectangle'](3, 4), 'area') and (ns['Rectangle'](3, 4).area() == 12)"
+        },
+        {
+          "index": 1,
+          "prompt": "Create a class 'BankAccount' with a balance. Add 'deposit(amount)' and 'withdraw(amount)' methods.\nwithdraw should not allow going below 0 (just don't change balance).",
+          "hint": "Check if balance - amount >= 0 before withdrawing",
+          "starter_code": "# Solve the challenge here",
+          "solution": "class BankAccount:\n    def __init__(self, balance):\n        self.balance = balance\n    def deposit(self, amount):\n        self.balance += amount\n    def withdraw(self, amount):\n        if self.balance - amount >= 0:\n            self.balance -= amount",
+          "validator_source": "lambda ns, code: 'BankAccount' in ns and (lambda: ((a := ns['BankAccount'](100)) or True, a.deposit(50), a.withdraw(30), a.withdraw(200), a.balance == 120))()[-1]"
+        },
+        {
+          "index": 2,
+          "prompt": "Add a __str__ method to a class 'Student' with name and grade.\nprint(Student('Alice', 'A')) should output 'Student(Alice, grade=A)'",
+          "hint": "def __str__(self): return f'Student(...)'",
+          "starter_code": "# Solve the challenge here",
+          "solution": "class Student:\n    def __init__(self, name, grade):\n        self.name = name\n        self.grade = grade\n    def __str__(self):\n        return f'Student({self.name}, grade={self.grade})'",
+          "validator_source": "lambda ns, code: 'Student' in ns and str(ns['Student']('Alice', 'A')) == 'Student(Alice, grade=A)'"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "slug": "hash-maps-hashing-dicts-deep-dive",
+      "title": "Hash Maps (hashing, dicts deep dive)",
+      "summary": "A hash map (dict in Python) stores key-value pairs using a hash function to compute an index into an internal array. This gives O(1) average lookup, insert, and delete \u2014 much faster than searching a list.",
+      "checkpoint_titles": [
+        "How hash() Works in Python",
+        "How Python Dicts Work Internally",
+        "Hash Collisions",
+        "OrderedDict vs Regular Dict",
+        "Custom Hashable Objects as Dict Keys"
+      ],
+      "learn_cards": [
+        {
+          "kind": "concept",
+          "title": "What is a Hash Map?",
+          "body": "A hash map (dict in Python) stores key-value pairs using a hash function to compute an index into an internal array. This gives O(1) average lookup, insert, and delete \u2014 much faster than searching a list."
+        },
+        {
+          "kind": "checkpoint",
+          "title": "How hash() Works in Python"
+        },
+        {
+          "kind": "code",
+          "code": "print(hash(\"hello\"))      # Some integer\nprint(hash(42))           # 42 (ints hash to themselves for small values)\nprint(hash((1, 2, 3)))    # Tuples are hashable\n\n# Lists are NOT hashable (mutable = unhashable)\n# hash([1, 2, 3])  # TypeError!",
+          "output": "hash values vary by run, but you'll see integers"
+        },
+        {
+          "kind": "concept",
+          "title": "Hashable = Immutable",
+          "body": "Only immutable objects can be hashed: str, int, float, tuple, frozenset. Mutable objects (list, dict, set) CANNOT be dictionary keys."
+        },
+        {
+          "kind": "checkpoint",
+          "title": "How Python Dicts Work Internally"
+        },
+        {
+          "kind": "concept",
+          "title": "Internal structure",
+          "body": "Python's dict uses an open-addressing hash table. When you do d['key'], Python: (1) computes hash('key'), (2) uses the hash to find a slot in an internal array, (3) handles collisions by probing nearby slots. Since Python 3.7, dicts preserve insertion order."
+        },
+        {
+          "kind": "code",
+          "code": "# Building a dict step by step\nd = {}\nd[\"name\"] = \"Aniketh\"  # hash(\"name\") -> slot -> store\nd[\"age\"] = 25          # hash(\"age\") -> slot -> store\nd[\"role\"] = \"Engineer\" # hash(\"role\") -> slot -> store\n\n# All O(1) lookups\nprint(d[\"name\"])   # Direct hash lookup, no scanning\nprint(len(d))      # 3",
+          "output": "Aniketh\n3"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Hash Collisions"
+        },
+        {
+          "kind": "concept",
+          "title": "Collisions",
+          "body": "When two different keys hash to the same slot, it's a collision. Python handles this with open addressing (probing the next available slot). Good hash functions minimize collisions."
+        },
+        {
+          "kind": "code",
+          "code": "# Python handles collisions transparently\n# Even if two keys collide, both are stored correctly\nd = {}\nfor i in range(1000):\n    d[f\"key_{i}\"] = i\nprint(f\"Stored {len(d)} items without any issues\")\nprint(f\"Lookup: d['key_500'] = {d['key_500']}\")",
+          "output": "Stored 1000 items without any issues\nLookup: d['key_500'] = 500"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "OrderedDict vs Regular Dict"
+        },
+        {
+          "kind": "concept",
+          "title": "OrderedDict",
+          "body": "Since Python 3.7, regular dicts preserve insertion order. So when do you need OrderedDict? Two cases: (1) when equality comparison should consider order, (2) when you need move_to_end()."
+        }
+      ],
+      "practice": [
+        {
+          "index": 0,
+          "prompt": "Create a dict 'char_count' that counts how many times each character appears in 'mississippi'.",
+          "hint": "Loop through the string, use dict.get(char, 0) + 1 or defaultdict(int)",
+          "starter_code": "# Create the requested variables here"
+        },
+        {
+          "index": 1,
+          "prompt": "Create a dict 'inverted' that swaps keys and values of {'a': 1, 'b': 2, 'c': 3}.",
+          "hint": "Use a dict comprehension: {v: k for k, v in ...}",
+          "starter_code": "# Create the requested variables here"
+        },
+        {
+          "index": 2,
+          "prompt": "Using Counter from collections, find the 'most_common_word' in: 'to be or not to be that is the question to be'.",
+          "hint": "Counter(words).most_common(1)[0][0]",
+          "starter_code": "# Solve the challenge here"
+        }
+      ],
+      "quiz": [
+        {
+          "index": 0,
+          "question": "Why can't lists be dictionary keys?",
+          "options": [
+            "Too slow",
+            "They're mutable (unhashable)",
+            "They're too large",
+            "Python doesn't support it yet"
+          ],
+          "answer": 1,
+          "explanation": ""
+        },
+        {
+          "index": 1,
+          "question": "What is the average time complexity of dict lookup?",
+          "options": [
+            "O(n)",
+            "O(log n)",
+            "O(1)",
+            "O(n^2)"
+          ],
+          "answer": 2,
+          "explanation": ""
+        },
+        {
+          "index": 2,
+          "question": "What makes a @dataclass(frozen=True) special?",
+          "options": [
+            "It runs faster",
+            "It's immutable and hashable",
+            "It uses less memory",
+            "It can't have methods"
+          ],
+          "answer": 1,
+          "explanation": ""
+        },
+        {
+          "index": 3,
+          "question": "What does defaultdict(list) do for missing keys?",
+          "options": [
+            "Raises KeyError",
+            "Returns None",
+            "Creates an empty list",
+            "Returns 0"
+          ],
+          "answer": 2,
+          "explanation": ""
+        },
+        {
+          "index": 4,
+          "question": "When is OrderedDict still useful over regular dict?",
+          "options": [
+            "Always \u2014 it's faster",
+            "When order matters for equality comparison",
+            "For large dictionaries",
+            "Never \u2014 regular dict replaced it completely"
+          ],
+          "answer": 1,
+          "explanation": ""
+        }
+      ],
+      "menu_title": "Lesson 6: Hash Maps",
+      "practice_full": [
+        {
+          "index": 0,
+          "prompt": "Create a dict 'char_count' that counts how many times each character appears in 'mississippi'.",
+          "hint": "Loop through the string, use dict.get(char, 0) + 1 or defaultdict(int)",
+          "starter_code": "# Create the requested variables here",
+          "solution": "char_count = {}\nfor c in 'mississippi':\n    char_count[c] = char_count.get(c, 0) + 1",
+          "validator_source": "lambda ns, code: ns.get('char_count', {}).get('s', 0) == 4 and ns.get('char_count', {}).get('i', 0) == 4 and (ns.get('char_count', {}).get('p', 0) == 2)"
+        },
+        {
+          "index": 1,
+          "prompt": "Create a dict 'inverted' that swaps keys and values of {'a': 1, 'b': 2, 'c': 3}.",
+          "hint": "Use a dict comprehension: {v: k for k, v in ...}",
+          "starter_code": "# Create the requested variables here",
+          "solution": "inverted = {v: k for k, v in {'a': 1, 'b': 2, 'c': 3}.items()}",
+          "validator_source": "lambda ns, code: ns.get('inverted') == {1: 'a', 2: 'b', 3: 'c'}"
+        },
+        {
+          "index": 2,
+          "prompt": "Using Counter from collections, find the 'most_common_word' in: 'to be or not to be that is the question to be'.",
+          "hint": "Counter(words).most_common(1)[0][0]",
+          "starter_code": "# Solve the challenge here",
+          "solution": "from collections import Counter\nwords = 'to be or not to be that is the question to be'.split()\nmost_common_word = Counter(words).most_common(1)[0][0]",
+          "validator_source": "lambda ns, code: ns.get('most_common_word') in ('to', 'be')"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "slug": "comprehensions-generators",
+      "title": "Comprehensions & Generators",
+      "summary": "Comprehensions are Python's elegant, concise syntax for creating collections. They replace multi-line for loops with a single readable line. Python has list, dict, set, and generator comprehensions.",
+      "checkpoint_titles": [
+        "List Comprehensions",
+        "Comprehensions with Conditions",
+        "Dict Comprehensions",
+        "Set Comprehensions",
+        "Nested Comprehensions"
+      ],
+      "learn_cards": [
+        {
+          "kind": "concept",
+          "title": "Comprehensions",
+          "body": "Comprehensions are Python's elegant, concise syntax for creating collections. They replace multi-line for loops with a single readable line. Python has list, dict, set, and generator comprehensions."
+        },
+        {
+          "kind": "checkpoint",
+          "title": "List Comprehensions"
+        },
+        {
+          "kind": "code",
+          "code": "# Without comprehension\nsquares = []\nfor x in range(6):\n    squares.append(x ** 2)\nprint(squares)\n\n# With comprehension \u2014 same result, one line\nsquares = [x ** 2 for x in range(6)]\nprint(squares)",
+          "output": "[0, 1, 4, 9, 16, 25]\n[0, 1, 4, 9, 16, 25]"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Comprehensions with Conditions"
+        },
+        {
+          "kind": "code",
+          "code": "# Only even squares\neven_squares = [x**2 for x in range(10) if x % 2 == 0]\nprint(even_squares)\n\n# if-else inside the expression (not the filter)\nlabels = [\"even\" if x % 2 == 0 else \"odd\" for x in range(5)]\nprint(labels)",
+          "output": "[0, 4, 16, 36, 64]\n['even', 'odd', 'even', 'odd', 'even']"
+        },
+        {
+          "kind": "concept",
+          "title": "if position matters!",
+          "body": "[expr for x in seq if cond] \u2014 filter (skip items)\n  [expr_if_true if cond else expr_if_false for x in seq] \u2014 transform all items"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Dict Comprehensions"
+        },
+        {
+          "kind": "code",
+          "code": "words = [\"hello\", \"world\", \"python\"]\nword_lens = {w: len(w) for w in words}\nprint(word_lens)\n\n# Swap keys and values\noriginal = {\"a\": 1, \"b\": 2, \"c\": 3}\nswapped = {v: k for k, v in original.items()}\nprint(swapped)",
+          "output": "{'hello': 5, 'world': 5, 'python': 6}\n{1: 'a', 2: 'b', 3: 'c'}"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Set Comprehensions"
+        },
+        {
+          "kind": "code",
+          "code": "# Get unique first letters\nnames = [\"Alice\", \"Bob\", \"Charlie\", \"Anna\", \"Brian\"]\nfirst_letters = {name[0] for name in names}\nprint(first_letters)  # Duplicates removed automatically",
+          "output": "{'A', 'B', 'C'}"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Nested Comprehensions"
+        },
+        {
+          "kind": "code",
+          "code": "# Flatten a 2D list\nmatrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\nflat = [num for row in matrix for num in row]\nprint(flat)\n\n# Create a multiplication table\ntable = {(i, j): i * j for i in range(1, 4) for j in range(1, 4)}\nfor (i, j), product in table.items():\n    print(f\"  {i} x {j} = {product}\")",
+          "output": "[1, 2, 3, 4, 5, 6, 7, 8, 9]\n  1 x 1 = 1\n  1 x 2 = 2\n  ... (etc)"
+        }
+      ],
+      "practice": [
+        {
+          "index": 0,
+          "prompt": "Create 'evens' \u2014 a list of even numbers from 1 to 20 using a list comprehension.",
+          "hint": "[x for x in range(...) if x % 2 == 0]",
+          "starter_code": "# Create the requested variables here"
+        },
+        {
+          "index": 1,
+          "prompt": "Create 'flat' \u2014 flatten [[1,2],[3,4],[5,6]] into [1,2,3,4,5,6] using a comprehension.",
+          "hint": "Use a nested comprehension: [item for sublist in ... for item in sublist]",
+          "starter_code": "# Create the requested variables here"
+        },
+        {
+          "index": 2,
+          "prompt": "Create 'squared_dict' \u2014 {1: 1, 2: 4, 3: 9, 4: 16, 5: 25} using a dict comprehension.",
+          "hint": "{x: x**2 for x in range(...)}",
+          "starter_code": "# Create the requested variables here"
+        },
+        {
+          "index": 3,
+          "prompt": "Create a generator function 'fibonacci' that yields Fibonacci numbers indefinitely.\nIt should work like: gen = fibonacci(); next(gen) -> 0, next(gen) -> 1, next(gen) -> 1, next(gen) -> 2...",
+          "hint": "Use a, b = 0, 1 and while True: yield a; a, b = b, a + b",
+          "starter_code": "def fibonacci():\n    "
+        }
+      ],
+      "quiz": [
+        {
+          "index": 0,
+          "question": "What is the difference between [x for x in range(5)] and (x for x in range(5))?",
+          "options": [
+            "No difference",
+            "[] creates a list, () creates a generator",
+            "() is invalid syntax",
+            "[] is slower"
+          ],
+          "answer": 1,
+          "explanation": ""
+        },
+        {
+          "index": 1,
+          "question": "What does the 'yield' keyword do?",
+          "options": [
+            "Returns a value and exits",
+            "Returns a value and pauses",
+            "Raises an error",
+            "Prints a value"
+          ],
+          "answer": 1,
+          "explanation": "yield returns a value but remembers where it left off, resuming from there on next()."
+        },
+        {
+          "index": 2,
+          "question": "What is [x for x in range(10) if x > 5]?",
+          "options": [
+            "[5, 6, 7, 8, 9]",
+            "[6, 7, 8, 9]",
+            "[0, 1, 2, 3, 4, 5]",
+            "[True, True, True, True]"
+          ],
+          "answer": 1,
+          "explanation": ""
+        },
+        {
+          "index": 3,
+          "question": "Why are generators memory-efficient?",
+          "options": [
+            "They compress data",
+            "They compute values on-demand, not all at once",
+            "They use C extensions",
+            "They delete values after use"
+          ],
+          "answer": 1,
+          "explanation": ""
+        },
+        {
+          "index": 4,
+          "question": "What does {x for x in [1,1,2,2,3]} produce?",
+          "options": [
+            "[1, 1, 2, 2, 3]",
+            "{1, 2, 3}",
+            "{1: 1, 2: 2, 3: 3}",
+            "Error"
+          ],
+          "answer": 1,
+          "explanation": "{} with single expression = set comprehension. Duplicates are removed."
+        }
+      ],
+      "menu_title": "Lesson 7: Comprehensions & Generators",
+      "practice_full": [
+        {
+          "index": 0,
+          "prompt": "Create 'evens' \u2014 a list of even numbers from 1 to 20 using a list comprehension.",
+          "hint": "[x for x in range(...) if x % 2 == 0]",
+          "starter_code": "# Create the requested variables here",
+          "solution": "evens = [x for x in range(1, 21) if x % 2 == 0]",
+          "validator_source": "lambda ns, code: ns.get('evens') == [2, 4, 6, 8, 10, 12, 14, 16, 18, 20] and 'for' in code and ('[' in code)"
+        },
+        {
+          "index": 1,
+          "prompt": "Create 'flat' \u2014 flatten [[1,2],[3,4],[5,6]] into [1,2,3,4,5,6] using a comprehension.",
+          "hint": "Use a nested comprehension: [item for sublist in ... for item in sublist]",
+          "starter_code": "# Create the requested variables here",
+          "solution": "flat = [x for sub in [[1,2],[3,4],[5,6]] for x in sub]",
+          "validator_source": "lambda ns, code: ns.get('flat') == [1, 2, 3, 4, 5, 6]"
+        },
+        {
+          "index": 2,
+          "prompt": "Create 'squared_dict' \u2014 {1: 1, 2: 4, 3: 9, 4: 16, 5: 25} using a dict comprehension.",
+          "hint": "{x: x**2 for x in range(...)}",
+          "starter_code": "# Create the requested variables here",
+          "solution": "squared_dict = {x: x**2 for x in range(1, 6)}",
+          "validator_source": "lambda ns, code: ns.get('squared_dict') == {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}"
+        },
+        {
+          "index": 3,
+          "prompt": "Create a generator function 'fibonacci' that yields Fibonacci numbers indefinitely.\nIt should work like: gen = fibonacci(); next(gen) -> 0, next(gen) -> 1, next(gen) -> 1, next(gen) -> 2...",
+          "hint": "Use a, b = 0, 1 and while True: yield a; a, b = b, a + b",
+          "starter_code": "def fibonacci():\n    ",
+          "solution": "def fibonacci():\n    a, b = 0, 1\n    while True:\n        yield a\n        a, b = b, a + b",
+          "validator_source": "lambda ns, code: callable(ns.get('fibonacci')) and 'yield' in code and ((lambda g: [next(g) for _ in range(6)])(ns['fibonacci']()) == [0, 1, 1, 2, 3, 5])"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "slug": "error-handling-try-except",
+      "title": "Error Handling (try/except)",
+      "summary": "Programs crash when they hit unexpected situations \u2014 dividing by zero, missing files, bad user input. Error handling lets you catch these problems gracefully instead of crashing.",
+      "checkpoint_titles": [
+        "try / except \u2014 Catching Errors",
+        "Common Exception Types",
+        "Multiple except Blocks",
+        "Full Pattern: try / except / else / finally",
+        "Raising Exceptions"
+      ],
+      "learn_cards": [
+        {
+          "kind": "concept",
+          "title": "Why handle errors?",
+          "body": "Programs crash when they hit unexpected situations \u2014 dividing by zero, missing files, bad user input. Error handling lets you catch these problems gracefully instead of crashing."
+        },
+        {
+          "kind": "checkpoint",
+          "title": "try / except \u2014 Catching Errors"
+        },
+        {
+          "kind": "code",
+          "code": "try:\n    result = 10 / 0\nexcept ZeroDivisionError:\n    print(\"Cannot divide by zero!\")\n    result = 0\n\nprint(f\"result = {result}\")",
+          "output": "Cannot divide by zero!\nresult = 0"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Common Exception Types"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Multiple except Blocks"
+        },
+        {
+          "kind": "code",
+          "code": "def safe_divide(a, b):\n    try:\n        return a / b\n    except ZeroDivisionError:\n        print(\"Division by zero!\")\n        return None\n    except TypeError:\n        print(\"Invalid types!\")\n        return None\n\nprint(safe_divide(10, 0))\nprint(safe_divide(\"10\", 2))",
+          "output": "Division by zero!\nNone\n5.0"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Full Pattern: try / except / else / finally"
+        },
+        {
+          "kind": "code",
+          "code": "def read_number(text):\n    try:\n        num = int(text)\n    except ValueError:\n        print(f\"  '{text}' is not a number\")\n    else:\n        # Runs ONLY if try succeeded (no exception)\n        print(f\"  Successfully parsed: {num}\")\n    finally:\n        # ALWAYS runs, whether error or not\n        print(f\"  Done processing '{text}'\")\n\nread_number(\"42\")\nprint()\nread_number(\"abc\")",
+          "output": "  Successfully parsed: 42\n  Done processing '42'\n\n  'abc' is not a number\n  Done processing 'abc'"
+        },
+        {
+          "kind": "concept",
+          "title": "else vs finally",
+          "body": "else: runs only if no exception occurred. finally: ALWAYS runs \u2014 good for cleanup (closing files, connections)."
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Raising Exceptions"
+        },
+        {
+          "kind": "code",
+          "code": "def set_age(age):\n    if age < 0:\n        raise ValueError(f\"Age cannot be negative: {age}\")\n    if age > 150:\n        raise ValueError(f\"Age seems unrealistic: {age}\")\n    return age\n\ntry:\n    set_age(-5)\nexcept ValueError as e:\n    print(f\"Error: {e}\")",
+          "output": "Error: Age cannot be negative: -5"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Custom Exceptions"
+        }
+      ],
+      "practice": [
+        {
+          "index": 0,
+          "prompt": "Write a function 'safe_int' that converts a string to int.\nReturn the int if valid, or None if it fails.",
+          "hint": "Use try/except ValueError",
+          "starter_code": "def safe_int(s):\n    "
+        },
+        {
+          "index": 1,
+          "prompt": "Create a custom exception 'NegativeNumberError' that inherits from ValueError.\nIt should store the number and have a useful message.",
+          "hint": "class NegativeNumberError(ValueError): ...",
+          "starter_code": "# Solve the challenge here"
+        },
+        {
+          "index": 2,
+          "prompt": "Write a function 'safe_get' that takes a dict and a key.\nReturn the value if key exists, otherwise return 'Key not found' (without using .get()).",
+          "hint": "Use try/except KeyError",
+          "starter_code": "def safe_get(d, key):\n    "
+        }
+      ],
+      "quiz": [
+        {
+          "index": 0,
+          "question": "When does the 'finally' block run?",
+          "options": [
+            "Only when an exception occurs",
+            "Only when no exception occurs",
+            "Always",
+            "Never automatically"
+          ],
+          "answer": 2,
+          "explanation": ""
+        },
+        {
+          "index": 1,
+          "question": "What does 'raise' do?",
+          "options": [
+            "Catches an exception",
+            "Creates a new exception and throws it",
+            "Logs an error",
+            "Ignores an error"
+          ],
+          "answer": 1,
+          "explanation": ""
+        },
+        {
+          "index": 2,
+          "question": "What exception does int('abc') raise?",
+          "options": [
+            "TypeError",
+            "ValueError",
+            "KeyError",
+            "RuntimeError"
+          ],
+          "answer": 1,
+          "explanation": ""
+        },
+        {
+          "index": 3,
+          "question": "When does the 'else' block in try/except/else run?",
+          "options": [
+            "Always",
+            "When an exception occurs",
+            "When NO exception occurs",
+            "Before the try block"
+          ],
+          "answer": 2,
+          "explanation": ""
+        },
+        {
+          "index": 4,
+          "question": "What is the base class for most custom exceptions?",
+          "options": [
+            "Error",
+            "Exception",
+            "BaseException",
+            "RuntimeError"
+          ],
+          "answer": 1,
+          "explanation": "Custom exceptions should inherit from Exception (not BaseException, which includes SystemExit)."
+        }
+      ],
+      "menu_title": "Lesson 8: Error Handling",
+      "practice_full": [
+        {
+          "index": 0,
+          "prompt": "Write a function 'safe_int' that converts a string to int.\nReturn the int if valid, or None if it fails.",
+          "hint": "Use try/except ValueError",
+          "starter_code": "def safe_int(s):\n    ",
+          "solution": "def safe_int(s):\n    try:\n        return int(s)\n    except ValueError:\n        return None",
+          "validator_source": "lambda ns, code: callable(ns.get('safe_int')) and ns['safe_int']('42') == 42 and (ns['safe_int']('abc') is None)"
+        },
+        {
+          "index": 1,
+          "prompt": "Create a custom exception 'NegativeNumberError' that inherits from ValueError.\nIt should store the number and have a useful message.",
+          "hint": "class NegativeNumberError(ValueError): ...",
+          "starter_code": "# Solve the challenge here",
+          "solution": "class NegativeNumberError(ValueError):\n    def __init__(self, number):\n        self.number = number\n        super().__init__(f'{number} is negative')",
+          "validator_source": "lambda ns, code: 'NegativeNumberError' in ns and issubclass(ns['NegativeNumberError'], ValueError)"
+        },
+        {
+          "index": 2,
+          "prompt": "Write a function 'safe_get' that takes a dict and a key.\nReturn the value if key exists, otherwise return 'Key not found' (without using .get()).",
+          "hint": "Use try/except KeyError",
+          "starter_code": "def safe_get(d, key):\n    ",
+          "solution": "def safe_get(d, key):\n    try:\n        return d[key]\n    except KeyError:\n        return 'Key not found'",
+          "validator_source": "lambda ns, code: callable(ns.get('safe_get')) and ns['safe_get']({'a': 1}, 'a') == 1 and (ns['safe_get']({'a': 1}, 'b') == 'Key not found') and ('except' in code)"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "slug": "file-i-o-files-json-csv",
+      "title": "File I/O (files, JSON, CSV)",
+      "summary": "Python can read from and write to files on disk. The 'open()' function is the gateway. Always close files when done \u2014 or better, use 'with' to handle it automatically.",
+      "checkpoint_titles": [
+        "Opening Files \u2014 Modes",
+        "The 'with' Statement (Context Manager)",
+        "Different Ways to Read Files",
+        "Working with JSON",
+        "Working with CSV"
+      ],
+      "learn_cards": [
+        {
+          "kind": "concept",
+          "title": "File I/O",
+          "body": "Python can read from and write to files on disk. The 'open()' function is the gateway. Always close files when done \u2014 or better, use 'with' to handle it automatically."
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Opening Files \u2014 Modes"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "The 'with' Statement (Context Manager)"
+        },
+        {
+          "kind": "concept",
+          "title": "Why 'with'?",
+          "body": "The 'with' statement automatically closes the file when the block ends, even if an error occurs. This prevents resource leaks. Always use 'with' instead of manual open()/close()."
+        },
+        {
+          "kind": "code",
+          "code": "# Writing to a file\nwith open(\"example.txt\", \"w\") as f:\n    f.write(\"Hello, File!\\n\")\n    f.write(\"Line 2\\n\")\n# File is automatically closed here\n\n# Reading the file\nwith open(\"example.txt\", \"r\") as f:\n    content = f.read()\n    print(content)",
+          "output": "Hello, File!\nLine 2"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Different Ways to Read Files"
+        },
+        {
+          "kind": "code",
+          "code": "# read() \u2014 entire file as one string\nwith open(\"example.txt\") as f:\n    all_text = f.read()\n\n# readline() \u2014 one line at a time\nwith open(\"example.txt\") as f:\n    first_line = f.readline()  # \"Hello, File!\\n\"\n\n# readlines() \u2014 list of all lines\nwith open(\"example.txt\") as f:\n    lines = f.readlines()  # [\"Hello, File!\\n\", \"Line 2\\n\"]\n\n# Best: iterate directly (memory-efficient)\nwith open(\"example.txt\") as f:\n    for line in f:\n        print(line.strip())  # strip() removes \\n",
+          "output": "Hello, File!\nLine 2"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Working with JSON"
+        },
+        {
+          "kind": "concept",
+          "title": "JSON",
+          "body": "JSON (JavaScript Object Notation) is the standard format for data exchange. Python's json module converts between Python dicts/lists and JSON strings."
+        },
+        {
+          "kind": "code",
+          "code": "import json\n\n# Python dict -> JSON string\ndata = {\"name\": \"Aniketh\", \"skills\": [\"Python\", \"Java\"], \"age\": 25}\njson_str = json.dumps(data, indent=2)\nprint(json_str)\n\n# JSON string -> Python dict\nparsed = json.loads(json_str)\nprint(f\"Name: {parsed['name']}\")\n\n# Write JSON to file\nwith open(\"data.json\", \"w\") as f:\n    json.dump(data, f, indent=2)\n\n# Read JSON from file\nwith open(\"data.json\") as f:\n    loaded = json.load(f)\n    print(f\"Loaded: {loaded}\")",
+          "output": "{\n  \"name\": \"Aniketh\",\n  \"skills\": [\"Python\", \"Java\"],\n  \"age\": 25\n}\nName: Aniketh\nLoaded: {'name': 'Aniketh', ...}"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Working with CSV"
+        },
+        {
+          "kind": "code",
+          "code": "import csv\n\n# Write CSV\nwith open(\"people.csv\", \"w\", newline=\"\") as f:\n    writer = csv.writer(f)\n    writer.writerow([\"name\", \"age\", \"role\"])\n    writer.writerow([\"Aniketh\", 25, \"Engineer\"])\n    writer.writerow([\"Alice\", 30, \"Manager\"])\n\n# Read CSV\nwith open(\"people.csv\") as f:\n    reader = csv.DictReader(f)\n    for row in reader:\n        print(f\"  {row['name']} is {row['age']}\")",
+          "output": "  Aniketh is 25\n  Alice is 30"
+        }
+      ],
+      "practice": [
+        {
+          "index": 0,
+          "prompt": "Write a function 'count_lines' that takes a filename and returns the number of lines.\nUse a with statement.",
+          "hint": "Open the file, readlines(), return len()",
+          "starter_code": "def count_lines(filename):\n    "
+        },
+        {
+          "index": 1,
+          "prompt": "Write a function 'to_json' that takes a dict and returns a pretty-printed JSON string (indent=2).",
+          "hint": "import json; json.dumps(data, indent=2)",
+          "starter_code": "# Solve the challenge here"
+        },
+        {
+          "index": 2,
+          "prompt": "Write a function 'file_extension' that takes a filename string and returns the extension.\nUse pathlib.Path. Example: file_extension('report.pdf') -> '.pdf'",
+          "hint": "from pathlib import Path; Path(filename).suffix",
+          "starter_code": "# Solve the challenge here"
+        }
+      ],
+      "quiz": [
+        {
+          "index": 0,
+          "question": "What does 'w' mode do if the file already exists?",
+          "options": [
+            "Appends to it",
+            "Raises an error",
+            "Overwrites it completely",
+            "Does nothing"
+          ],
+          "answer": 2,
+          "explanation": "'w' truncates (empties) the file and writes from scratch. Use 'a' to append."
+        },
+        {
+          "index": 1,
+          "question": "What is the main benefit of 'with open(...) as f'?",
+          "options": [
+            "Faster reading",
+            "Auto-closes the file",
+            "Encrypts the data",
+            "Enables binary mode"
+          ],
+          "answer": 1,
+          "explanation": ""
+        },
+        {
+          "index": 2,
+          "question": "What does json.dumps() do?",
+          "options": [
+            "Reads a JSON file",
+            "Converts JSON string to dict",
+            "Converts dict to JSON string",
+            "Deletes JSON data"
+          ],
+          "answer": 2,
+          "explanation": "dumps = dump to string. loads = load from string. dump/load = file operations."
+        },
+        {
+          "index": 3,
+          "question": "What's the difference between json.dump() and json.dumps()?",
+          "options": [
+            "No difference",
+            "dump writes to file, dumps returns string",
+            "dumps is faster",
+            "dump works with lists only"
+          ],
+          "answer": 1,
+          "explanation": ""
+        },
+        {
+          "index": 4,
+          "question": "Which is the most memory-efficient way to read a large file?",
+          "options": [
+            "f.read()",
+            "f.readlines()",
+            "for line in f:",
+            "f.read().split('\\n')"
+          ],
+          "answer": 2,
+          "explanation": "Iterating over the file object reads one line at a time \u2014 doesn't load entire file into memory."
+        }
+      ],
+      "menu_title": "Lesson 9: File I/O",
+      "practice_full": [
+        {
+          "index": 0,
+          "prompt": "Write a function 'count_lines' that takes a filename and returns the number of lines.\nUse a with statement.",
+          "hint": "Open the file, readlines(), return len()",
+          "starter_code": "def count_lines(filename):\n    ",
+          "solution": "def count_lines(filename):\n    with open(filename) as f:\n        return len(f.readlines())",
+          "validator_source": "lambda ns, code: callable(ns.get('count_lines')) and 'with' in code"
+        },
+        {
+          "index": 1,
+          "prompt": "Write a function 'to_json' that takes a dict and returns a pretty-printed JSON string (indent=2).",
+          "hint": "import json; json.dumps(data, indent=2)",
+          "starter_code": "# Solve the challenge here",
+          "solution": "import json\ndef to_json(data):\n    return json.dumps(data, indent=2)",
+          "validator_source": "lambda ns, code: callable(ns.get('to_json')) and '\"name\"' in ns['to_json']({'name': 'test'})"
+        },
+        {
+          "index": 2,
+          "prompt": "Write a function 'file_extension' that takes a filename string and returns the extension.\nUse pathlib.Path. Example: file_extension('report.pdf') -> '.pdf'",
+          "hint": "from pathlib import Path; Path(filename).suffix",
+          "starter_code": "# Solve the challenge here",
+          "solution": "from pathlib import Path\ndef file_extension(filename):\n    return Path(filename).suffix",
+          "validator_source": "lambda ns, code: callable(ns.get('file_extension')) and ns['file_extension']('report.pdf') == '.pdf' and (ns['file_extension']('data.csv') == '.csv')"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "slug": "decorators-closures",
+      "title": "Decorators & Closures",
+      "summary": "In Python, functions are objects. You can assign them to variables, pass them as arguments, and return them from other functions. This is the foundation of decorators.",
+      "checkpoint_titles": [
+        "Functions Are Objects",
+        "Closures \u2014 Functions That Remember",
+        "Decorators \u2014 Wrapping Functions",
+        "functools.wraps \u2014 Preserving Function Identity",
+        "Decorators with Arguments"
+      ],
+      "learn_cards": [
+        {
+          "kind": "checkpoint",
+          "title": "Functions Are Objects"
+        },
+        {
+          "kind": "concept",
+          "title": "First-class functions",
+          "body": "In Python, functions are objects. You can assign them to variables, pass them as arguments, and return them from other functions. This is the foundation of decorators."
+        },
+        {
+          "kind": "code",
+          "code": "def greet(name):\n    return f\"Hello, {name}!\"\n\n# Assign function to a variable\nsay_hi = greet\nprint(say_hi(\"Aniketh\"))  # Same function, different name\n\n# Pass function as argument\ndef apply(func, value):\n    return func(value)\n\nprint(apply(greet, \"World\"))",
+          "output": "Hello, Aniketh!\nHello, World!"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Closures \u2014 Functions That Remember"
+        },
+        {
+          "kind": "concept",
+          "title": "Closures",
+          "body": "A closure is a function that remembers variables from its enclosing scope, even after that scope has finished executing. The inner function 'closes over' the outer variables."
+        },
+        {
+          "kind": "code",
+          "code": "def make_multiplier(factor):\n    def multiply(x):\n        return x * factor  # Remembers 'factor' from outer scope\n    return multiply\n\ndouble = make_multiplier(2)\ntriple = make_multiplier(3)\n\nprint(double(5))   # 10\nprint(triple(5))   # 15\nprint(double(10))  # 20",
+          "output": "10\n15\n20"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "Decorators \u2014 Wrapping Functions"
+        },
+        {
+          "kind": "concept",
+          "title": "What is a decorator?",
+          "body": "A decorator is a function that takes a function, adds some behavior, and returns a new function. The @decorator syntax is syntactic sugar for: func = decorator(func)."
+        },
+        {
+          "kind": "code",
+          "code": "import time\n\ndef timer(func):\n    def wrapper(*args, **kwargs):\n        start = time.time()\n        result = func(*args, **kwargs)\n        elapsed = time.time() - start\n        print(f\"  {func.__name__} took {elapsed:.4f}s\")\n        return result\n    return wrapper\n\n@timer  # Same as: slow_add = timer(slow_add)\ndef slow_add(a, b):\n    time.sleep(0.1)\n    return a + b\n\nresult = slow_add(3, 4)\nprint(f\"  Result: {result}\")",
+          "output": "  slow_add took 0.10xxs\n  Result: 7"
+        },
+        {
+          "kind": "checkpoint",
+          "title": "functools.wraps \u2014 Preserving Function Identity"
+        },
+        {
+          "kind": "concept",
+          "title": "Why functools.wraps?",
+          "body": "Without @wraps, the decorated function loses its original name and docstring. @wraps copies the original function's metadata to the wrapper."
+        },
+        {
+          "kind": "code",
+          "code": "from functools import wraps\n\ndef my_decorator(func):\n    @wraps(func)  # Preserves func's name and docstring\n    def wrapper(*args, **kwargs):\n        print(f\"  Calling {func.__name__}\")\n        return func(*args, **kwargs)\n    return wrapper\n\n@my_decorator\ndef hello():\n    \"\"\"Says hello.\"\"\"\n    return \"Hello!\"\n\nprint(hello())          # Works normally\nprint(hello.__name__)   # \"hello\" (not \"wrapper\")\nprint(hello.__doc__)    # \"Says hello.\"",
+          "output": "  Calling hello\nHello!\nhello\nSays hello."
+        }
+      ],
+      "practice": [
+        {
+          "index": 0,
+          "prompt": "Write a closure 'make_adder' that takes n and returns a function that adds n to its argument.\nmake_adder(10)(5) should return 15.",
+          "hint": "def make_adder(n): def add(x): return x + n; return add",
+          "starter_code": "def make_adder(n):\n    "
+        },
+        {
+          "index": 1,
+          "prompt": "Write a decorator 'shout' that makes any function's string return value UPPERCASE.\n@shout over a function returning 'hello' should make it return 'HELLO'.",
+          "hint": "def shout(func): def wrapper(...): return func(...).upper(); return wrapper",
+          "starter_code": "def shout(func):\n    "
+        },
+        {
+          "index": 2,
+          "prompt": "Write a decorator 'count_calls' that tracks how many times a function is called.\nThe decorated function should have a .calls attribute.",
+          "hint": "Use wrapper.calls = 0 and increment it in the wrapper",
+          "starter_code": "def count_calls(func):\n    "
+        }
+      ],
+      "quiz": [
+        {
+          "index": 0,
+          "question": "What is a closure?",
+          "options": [
+            "A function that closes the program",
+            "A function that remembers its enclosing scope's variables",
+            "A class method",
+            "A function that can't be called"
+          ],
+          "answer": 1,
+          "explanation": ""
+        },
+        {
+          "index": 1,
+          "question": "What does @decorator above a function do?",
+          "options": [
+            "Deletes the function",
+            "Same as: func = decorator(func)",
+            "Makes the function private",
+            "Runs the function immediately"
+          ],
+          "answer": 1,
+          "explanation": ""
+        },
+        {
+          "index": 2,
+          "question": "Why use @functools.wraps(func)?",
+          "options": [
+            "Makes the function faster",
+            "Preserves the original function's name and docstring",
+            "Prevents the function from being called twice",
+            "Adds type checking"
+          ],
+          "answer": 1,
+          "explanation": ""
+        },
+        {
+          "index": 3,
+          "question": "What does @lru_cache do?",
+          "options": [
+            "Limits function arguments",
+            "Caches function results to avoid recomputation",
+            "Makes the function thread-safe",
+            "Logs function calls"
+          ],
+          "answer": 1,
+          "explanation": ""
+        },
+        {
+          "index": 4,
+          "question": "How many nested functions does a decorator WITH arguments need?",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": 2,
+          "explanation": "Three: outer(args) -> decorator(func) -> wrapper(*args, **kwargs)"
+        }
+      ],
+      "menu_title": "Lesson 10: Decorators & Closures",
+      "practice_full": [
+        {
+          "index": 0,
+          "prompt": "Write a closure 'make_adder' that takes n and returns a function that adds n to its argument.\nmake_adder(10)(5) should return 15.",
+          "hint": "def make_adder(n): def add(x): return x + n; return add",
+          "starter_code": "def make_adder(n):\n    ",
+          "solution": "def make_adder(n):\n    def add(x):\n        return x + n\n    return add",
+          "validator_source": "lambda ns, code: callable(ns.get('make_adder')) and ns['make_adder'](10)(5) == 15 and (ns['make_adder'](0)(42) == 42)"
+        },
+        {
+          "index": 1,
+          "prompt": "Write a decorator 'shout' that makes any function's string return value UPPERCASE.\n@shout over a function returning 'hello' should make it return 'HELLO'.",
+          "hint": "def shout(func): def wrapper(...): return func(...).upper(); return wrapper",
+          "starter_code": "def shout(func):\n    ",
+          "solution": "def shout(func):\n    def wrapper(*args, **kwargs):\n        return func(*args, **kwargs).upper()\n    return wrapper",
+          "validator_source": "lambda ns, code: callable(ns.get('shout')) and ns['shout'](lambda: 'hello')() == 'HELLO'"
+        },
+        {
+          "index": 2,
+          "prompt": "Write a decorator 'count_calls' that tracks how many times a function is called.\nThe decorated function should have a .calls attribute.",
+          "hint": "Use wrapper.calls = 0 and increment it in the wrapper",
+          "starter_code": "def count_calls(func):\n    ",
+          "solution": "def count_calls(func):\n    def wrapper(*args, **kwargs):\n        wrapper.calls += 1\n        return func(*args, **kwargs)\n    wrapper.calls = 0\n    return wrapper",
+          "validator_source": "lambda ns, code: callable(ns.get('count_calls')) and (lambda: ((f := ns['count_calls'](lambda: None)), f(), f(), f(), f.calls == 3))()[-1]"
+        }
+      ]
+    }
+  ]
+}

@@ -7,18 +7,454 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		018CE7F455A57570D196DC4E /* consistency-5-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 303A4641B0E604812CD7ADF3 /* consistency-5-diagram.svg */; };
+		029BCC609F366FE625D93CB3 /* caching-5-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = D681F2ACBD1D19031E6DBBDD /* caching-5-diagram.svg */; };
+		02D3C78F169A3336A84A2B5D /* communication-6-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = A79BDD31963718A31FB3DAB2 /* communication-6-diagram.svg */; };
+		03DD6F94DE22F1E88BC1E8AD /* spring-boot-7-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 3145DE96D862132A32A43126 /* spring-boot-7-diagram.svg */; };
+		041C28A621D02FED0EB3729A /* microservices-4-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 895472BE421243FEF4843C80 /* microservices-4-diagram.svg */; };
+		0591495BF37A10FF41425080 /* communication-4-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B23104BA0E0EDE41019D1AF /* communication-4-vault.png */; };
+		059EE296876654219936BDC5 /* elasticsearch-9-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 557BDC6A5FC571AB60977437 /* elasticsearch-9-diagram.svg */; };
+		0BFC74DB69EDB0AF1F4CFC9B /* behavioral-4-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 25611AAC04F023208C0E89F2 /* behavioral-4-diagram.svg */; };
+		0C6DE0611AA22C148837926A /* behavioral-9-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = AA88EF9C8CD59E948D75E62F /* behavioral-9-diagram.svg */; };
+		0CCFC3FECA0BD93A2259386E /* redis-10-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = C0F6AAE6CCC23ED4A8E49B4E /* redis-10-diagram.svg */; };
+		0D2E73B5F24C49F520EBFAED /* infrastructure-2-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 79614468389BA38927069BE4 /* infrastructure-2-diagram.svg */; };
+		0FB6D2B642FFCAD61F8B8F98 /* java-2-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = C11F8EE2FDB3915EAAE6427F /* java-2-diagram.svg */; };
+		104632713D22069F15B45295 /* spring-boot-5-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = CE7272D03723C435C082D654 /* spring-boot-5-vault.png */; };
+		11951B8B9F4A9AF1D2F10C2A /* system-design-6-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = A52524A9CF8169B5D9FEE865 /* system-design-6-diagram.svg */; };
+		1365A94E5308608FD09110C0 /* spring-boot-9-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 870C38D8F82E1845F9C18CD6 /* spring-boot-9-diagram.svg */; };
+		13DBB96EAB4C11BAB9CBD1F9 /* behavioral.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D520D7F26F893C68C12A4AD /* behavioral.png */; };
+		1465FA93EDFF0D075EACBD4F /* offline-python-worker.js in Resources */ = {isa = PBXBuildFile; fileRef = E340D608E4E117FE9FA0E0CB /* offline-python-worker.js */; };
+		14EBB5E4788CDF6D5342598E /* x-twitter-4-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = D86F089CD34AD83CC91E0191 /* x-twitter-4-diagram.svg */; };
+		16208BC3859F155D4268D733 /* elasticsearch-1-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 7075A02EACFDBDA2520C4BAB /* elasticsearch-1-diagram.svg */; };
+		166EF0D3345C6421EAE32733 /* microservices-2-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 49C113004DFA925F4543DA59 /* microservices-2-diagram.svg */; };
+		19007BDBBBA124D966EF0EC1 /* microservices-8-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 0C9F984FD534245EE09432D1 /* microservices-8-diagram.svg */; };
+		19FB3DD4DCF1AAC4197EC0F1 /* spring-boot-2-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AA07CA86E7E41A4C477ABEA /* spring-boot-2-vault.png */; };
+		1ABC5F35F87C75592EB76F07 /* java-4-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = EBC40444ABF4CC12F9AAC95B /* java-4-vault.png */; };
+		202FCACB241BEEFEA7E8686A /* offline_python_lessons.json in Resources */ = {isa = PBXBuildFile; fileRef = 270E83A2639B611528F569B4 /* offline_python_lessons.json */; };
+		207C43905DA05390D61558CE /* communication-8-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = EF8756B641D4C8ADA107CCE4 /* communication-8-diagram.svg */; };
+		21F64858CEAF7DC4AEE0405E /* pyodide.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 89C50BD3D51E39C3A402FA32 /* pyodide.d.ts */; };
+		224AC5FDCD45A09F040C3C75 /* communication-9-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 01BC688D9FC6515A2673F9FB /* communication-9-diagram.svg */; };
+		237D14DEC6A6E8E5A41CC15D /* kafka-6-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 0867F49F4E13DF77811E2F12 /* kafka-6-diagram.svg */; };
+		2414F946BBAE9049B7ADE7AD /* kafka-1-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 4E96A5CDCC22834E1125ACF3 /* kafka-1-diagram.svg */; };
+		244B9D2332A90679E5F8D0BF /* microservices-2-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D4162A5A92C9B54BEC5ACE5 /* microservices-2-vault.png */; };
+		248CE6E214043C4897842553 /* infrastructure-3-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 138C9774657A384375D434F3 /* infrastructure-3-diagram.svg */; };
+		24E73F4A511056D0B26F8ACA /* ai-and-vectors-23-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 0D0E0DD15AC6D790526807E1 /* ai-and-vectors-23-diagram.svg */; };
+		25339868263A394275BC0D43 /* consistency-8-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 0E292E8FEBC37FB2B9FE6980 /* consistency-8-diagram.svg */; };
+		2588FD96E2CB8ECAA54FC9EB /* spring-boot-11-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 4EC7055D8476C396268E0D4F /* spring-boot-11-diagram.svg */; };
+		263FDE5D460D054A8B554419 /* pyodide.mjs in Resources */ = {isa = PBXBuildFile; fileRef = A102149C506405FB2A638A95 /* pyodide.mjs */; };
+		2869CD4C05E79642AF3DA7A3 /* redis-2-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = BE28246D7E0955DA67E9D092 /* redis-2-vault.png */; };
+		2A25644961055EC26D1AE69A /* communication.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E428A91EDAC076F5723653 /* communication.png */; };
+		2B896BD462CB0BD75B5FD082 /* x-twitter-1-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 657B4DCD94549B5AFBCFF0E1 /* x-twitter-1-diagram.svg */; };
+		2C904FB0A262ECCB065F24BA /* ai-and-vectors-2-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 8A625CBA2FE87343731369D2 /* ai-and-vectors-2-diagram.svg */; };
+		2CEA9B1B5B53D5DD7AD6DFFF /* spring-boot-7-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = C26624CAB4F2FF9F32BCEBA6 /* spring-boot-7-vault.png */; };
+		2D67FC1136F98820CB24DDD2 /* question_bank.json in Resources */ = {isa = PBXBuildFile; fileRef = F8D1B9E8AE1C1C06D43060CA /* question_bank.json */; };
+		2FB2387E66C822B4035AF258 /* ai-and-vectors-24-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = A9DCBF4CEF959B80F83F3B9E /* ai-and-vectors-24-diagram.svg */; };
+		2FBD8E86FD78284C3137754B /* x-twitter-9-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 31220063F2394E03CF1EE1A8 /* x-twitter-9-diagram.svg */; };
+		3077526F768252A2500EE455 /* java-5-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = B28C94370D07B3FAB4CE5FD2 /* java-5-diagram.svg */; };
+		34C46C5563086D81350F5444 /* spring-boot-12-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = E87B851356967129F2A5FF20 /* spring-boot-12-diagram.svg */; };
+		356736717868CF244A2D53B9 /* behavioral-5-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = E78D7DA0EA00BA2875F6B3F3 /* behavioral-5-diagram.svg */; };
+		373C95EC66B6937E41618099 /* communication-4-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 49ED270B3E004671DFEB1DA9 /* communication-4-diagram.svg */; };
+		381F10F19EF51DC0DD42D48F /* communication-3-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = 63625BB8D26B90EAA1C76D5A /* communication-3-vault.png */; };
+		3849B20AFD5534DD26478C4B /* microservices-1-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 2A3BDCCF3E1638297F79B152 /* microservices-1-diagram.svg */; };
+		3A24456D56981A7E51A34309 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 54C103921413B23D3EEF194E /* index.html */; };
+		3D19F3BBCBC630D9C678EFE2 /* consistency-2-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 32D7E8071174A056AD5689A6 /* consistency-2-diagram.svg */; };
+		403527355A0C40B48C5CC77E /* communication-1-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 4A631207804790531C7E5F2A /* communication-1-diagram.svg */; };
+		41B993D22C00979783F61DF5 /* communication-6-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = E419E72D41BEC2474546A501 /* communication-6-vault.png */; };
+		42B32D48CB189C35EDAC10CF /* elasticsearch-7-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = C805A42C5D00DAE46920E9F7 /* elasticsearch-7-diagram.svg */; };
+		43AAAF722E21B12333CADBDE /* communication-2-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = BBF1ED144A2462F168126D1E /* communication-2-vault.png */; };
+		4493232812C6AA309DCF223B /* caching-3-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 2AFE9ADA14B585F60D7FE6AE /* caching-3-diagram.svg */; };
+		45A5E28D10D55C2C066335ED /* behavioral-7-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 11A0A633FB4F518F1B428F25 /* behavioral-7-diagram.svg */; };
+		4BA49A8903A6CE62B99566B5 /* behavioral-2-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9E0C768551B682A36D228623 /* behavioral-2-diagram.svg */; };
+		4D657BB5095868B52BB10C43 /* pyodide.asm.wasm in Resources */ = {isa = PBXBuildFile; fileRef = 0643A3E4099890ADCDBFACC9 /* pyodide.asm.wasm */; };
+		4DC2BDE18D9085DC2E0A228A /* pyodide-lock.json in Resources */ = {isa = PBXBuildFile; fileRef = 745EEE63FAEBD3A1393EAE15 /* pyodide-lock.json */; };
+		4EE98635163BA70DE155AF0A /* consistency.png in Resources */ = {isa = PBXBuildFile; fileRef = 490B80C910950B242D2264C4 /* consistency.png */; };
+		4F6DC4052FF0F63FB6A7F256 /* redis-5-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = CA04BDF1E4453714BA599715 /* redis-5-diagram.svg */; };
+		5185844E1646F7A4F57465F3 /* microservices-9-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = A27855F5C97EF67BF52757FE /* microservices-9-diagram.svg */; };
+		525B318CE5A3AC41679F04A1 /* system-design-7-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = A35E5F66B427D449376F2B74 /* system-design-7-diagram.svg */; };
+		530D23A55BB52EBD7002D462 /* caching-7-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 53C71FDED0BEF59E23334815 /* caching-7-diagram.svg */; };
+		532CBD8EEC44E322CB97CB40 /* sharding-3-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9998BBADF1E75240ABBF145D /* sharding-3-diagram.svg */; };
+		548201BD481085F522AA6C71 /* java-1-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9E33C439B22FA6AE3307FF41 /* java-1-diagram.svg */; };
+		55D9779CE997251E85FFB688 /* microservices-6-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 380E796767AEE8605B17D771 /* microservices-6-diagram.svg */; };
+		564C17268F9A5094DAF23CC1 /* kafka-2-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9E444E840CC41ACDD60C5166 /* kafka-2-diagram.svg */; };
+		574C273562C67068DAE260CC /* consistency-3-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 17424BCC50BF8E9F807B9130 /* consistency-3-diagram.svg */; };
+		58BF614C448C823045723A61 /* microservices-10-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = E44AB2C8B44972AEE410FE27 /* microservices-10-diagram.svg */; };
+		5903708B020A2E02823897AF /* communication-10-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 631A4A6C15A50CCA405C8114 /* communication-10-diagram.svg */; };
+		5B0440295F01FE7CD9548DBF /* java-3-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 441629FDAB9CB9522126F430 /* java-3-diagram.svg */; };
+		5C3A4ABA7779CCA8391EA2E4 /* microservices-7-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1A3EEB4F943F6DF866E76EFC /* microservices-7-diagram.svg */; };
+		5CEDED07B80D3AC0D274DB12 /* x-twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 0050DE4487C9C042FDDFE89F /* x-twitter.png */; };
+		5D76C0C24499839FFD7DC985 /* kafka-5-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 36A6418B0C806DC4837AFBB4 /* kafka-5-diagram.svg */; };
+		5E4781CD8A5A2799A390ABA9 /* infrastructure-6-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = F0C1F113D88B9DE6032D57ED /* infrastructure-6-diagram.svg */; };
+		600997E80D61539BAB597DC9 /* sharding-2-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = B8B2F44C2D1B7CBC499802C6 /* sharding-2-diagram.svg */; };
+		62297D35459AA05EE2BAECB1 /* x-twitter-5-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = C7BFF56617040177B484F1AB /* x-twitter-5-diagram.svg */; };
+		6336CB17B64750149C684B54 /* java-5-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = CCE24FCE7E9DCEFB01994925 /* java-5-vault.png */; };
+		6381585F23194E9827790006 /* communication-5-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 0EB5F162FB152C7160DC89C4 /* communication-5-diagram.svg */; };
+		64C9FE3C4411CF182B14A919 /* python_stdlib.zip in Resources */ = {isa = PBXBuildFile; fileRef = 32F44FCAE1726FA3856584DC /* python_stdlib.zip */; };
+		64F14BBB3F71B2A86E717057 /* kafka-4-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 187139FD6D7626FF37844287 /* kafka-4-diagram.svg */; };
+		65FE6786422B66673E7F6522 /* sharding-5-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 002D268784FE9463A3951436 /* sharding-5-diagram.svg */; };
+		661245C0B436F2C5BA77B0BE /* ai-and-vectors-22-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = EDF5C0EC1C8A2460E4B1EF90 /* ai-and-vectors-22-diagram.svg */; };
+		66339E39572D114B149C833C /* redis-6-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = D63F357EF58C6A95858442A4 /* redis-6-diagram.svg */; };
+		664DD8570C37DC42749880B7 /* ai-and-vectors-19-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = C7BC5434759D33088A4E7273 /* ai-and-vectors-19-diagram.svg */; };
+		66CF9DFFF6A161EB58E27EB7 /* ai-and-vectors-1-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 22FB39E0A862DAFC72FB7F6F /* ai-and-vectors-1-diagram.svg */; };
+		675D3041D70A35140DB01FD8 /* behavioral-8-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 8A1F674060A2E4FADA568EDE /* behavioral-8-diagram.svg */; };
+		67A6FA574FE8E9CD03A4C2CC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DBD95F790D426C1A4B1BDE92 /* README.md */; };
+		67AFD0C379A7DFB7A49F8C49 /* pyodide.asm.js in Resources */ = {isa = PBXBuildFile; fileRef = 293A0EB6E37D7E414BB44411 /* pyodide.asm.js */; };
+		69E5CC24B03F3BD4E01A1B08 /* redis-8-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 6D71AF33F70067D20E0B3C7C /* redis-8-diagram.svg */; };
+		6AFB36493E1FF293C538BC72 /* caching-4-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FB210019C1B5FD034548D90 /* caching-4-vault.png */; };
+		6DF4EC1582047700A701DC2C /* consistency-4-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 3A71D542A9C166E8A7D620A9 /* consistency-4-diagram.svg */; };
+		6EBAF92AB98C9C412EFB7834 /* behavioral-1-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 70AAB4ABE4E245B8A13E28A2 /* behavioral-1-diagram.svg */; };
+		6FE0C6354C5FAD728AC0B729 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = 7DFDD32D8D706D09DA9CC1FB /* styles.css */; };
+		704E4F24E4A610230804096B /* infrastructure-5-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = B0EFD463B4C639DC4117B106 /* infrastructure-5-diagram.svg */; };
+		73EBB5B7D1E0720BF8BDB3EA /* sharding-1-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = D5CAD5609B5EFE6BE6D08F69 /* sharding-1-diagram.svg */; };
+		741495F2A841F6B1CA2306BC /* system-design-3-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = B0CF1338F1554AA6DAF069E9 /* system-design-3-diagram.svg */; };
+		74F6E920C142CD9935C634F7 /* behavioral-9-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = A6910852E169176475352BB9 /* behavioral-9-vault.png */; };
+		760C2A824E95181C8CA5633C /* package.json in Resources */ = {isa = PBXBuildFile; fileRef = D677C8A3536460E330AC6FC0 /* package.json */; };
+		76727BA23C533CEDAE07F90A /* redis-9-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5B0398703EB478AD8B7B4371 /* redis-9-diagram.svg */; };
+		77ECF89E4D1A24067FFAA9F6 /* caching-6-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 900FF1A3E5A676EE7608C4C2 /* caching-6-diagram.svg */; };
+		79F0DE0180685985BD34A1AA /* behavioral-1-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = C950D117A97CAB16469FDE50 /* behavioral-1-vault.png */; };
+		7A15D9F9F5D74BEEBB07D02A /* console.html in Resources */ = {isa = PBXBuildFile; fileRef = ACB72BEF620A0586DA2E2F2F /* console.html */; };
+		7ADCDD8979E701B02ABF417B /* pyodide.mjs.map in Resources */ = {isa = PBXBuildFile; fileRef = 320AC6F1B1F1696DF57E2111 /* pyodide.mjs.map */; };
+		7B6566C4050149FE5C96ACD4 /* offline-runtime.js in Resources */ = {isa = PBXBuildFile; fileRef = C6047BCB886B9C6463E0B70E /* offline-runtime.js */; };
+		7D79AD0554C1FDE883EF162E /* spring-boot-6-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = FE02E62B624D9EEBCAC21C98 /* spring-boot-6-diagram.svg */; };
+		7E6325154C08B4F95ED832BC /* spring-boot.png in Resources */ = {isa = PBXBuildFile; fileRef = 737E1DDDFCB771296BE6B6D1 /* spring-boot.png */; };
+		7E89682FB6709C7029A8CACC /* redis.png in Resources */ = {isa = PBXBuildFile; fileRef = 43D0707C0A2C07528E0AE939 /* redis.png */; };
+		7FC996194629814D69242D63 /* spring-boot-4-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A9BF97EDD58DA886F4CA462 /* spring-boot-4-vault.png */; };
+		83072CC249B9463B4A72F08C /* behavioral-10-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = A9B73696F64CD8194791DED5 /* behavioral-10-vault.png */; };
+		835F8809FE9E76D72367A787 /* caching-4-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = E40ED692FDD3D94769E812FF /* caching-4-diagram.svg */; };
+		85266F866D9C7F5E1CBF08FE /* console-v2.html in Resources */ = {isa = PBXBuildFile; fileRef = 83C66039BDF72C8EF187F3F0 /* console-v2.html */; };
+		86A77967F09B0813BAFAD373 /* spring-boot-2-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 0216DACF9AE99EDD952825EB /* spring-boot-2-diagram.svg */; };
+		879AD2E4705FD352A47B5156 /* ai-and-vectors-6-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = C8B33EC694E4320E8F4927B1 /* ai-and-vectors-6-diagram.svg */; };
+		88433E20966995ABD6C5A432 /* x-twitter-7-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = E4CB9434E82E088032EDB407 /* x-twitter-7-diagram.svg */; };
 		88E095C319EDA7ACBFB47B24 /* CompanionSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CA79B0178CB95A06D94FD /* CompanionSettings.swift */; };
+		8951ACCE1F65FF404AF2F696 /* consistency-6-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = EC933DED68B4079CDFFEF17E /* consistency-6-diagram.svg */; };
+		89D5258F5BA2FCF9FC92150E /* behavioral-4-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = B0CE9FEF3F7E456A0A3ADE7E /* behavioral-4-vault.png */; };
+		8A0CD55C0C4DD4A1C209CC56 /* ai-and-vectors-18-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 47D4D299FA4E4CC524BE2DF8 /* ai-and-vectors-18-diagram.svg */; };
+		8A0CF1CE0F7F0D67B3260592 /* x-twitter-2-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = DA618C7B7DFB4012937E4247 /* x-twitter-2-diagram.svg */; };
+		8A100C99DA0D092E7950339E /* behavioral-2-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = 28009F2D30EDCF3C39F02EE7 /* behavioral-2-vault.png */; };
+		8A335BB2332F3AE121AB92D1 /* behavioral-6-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 617E9E77AB9E82CAA2211A6D /* behavioral-6-diagram.svg */; };
+		8B9EA20F3894F0CF9EA0225F /* redis-4-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = E4677D714D1A2851A9EAB1F4 /* redis-4-diagram.svg */; };
+		8BCC32D4CE8C6B319B751C1A /* microservices-11-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = AC8F5D65C8359B5370FDA994 /* microservices-11-diagram.svg */; };
+		8C5E855452AC40109128BCA2 /* ffi.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = DD2CC03AE8FDC659B9B59D40 /* ffi.d.ts */; };
+		8D63AB50ED5752A6F9F06AF6 /* ai-and-vectors-3-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 69D83F555D0D82C06569A493 /* ai-and-vectors-3-diagram.svg */; };
+		8DEC6A964AAD6D0888F5F455 /* sharding-6-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = B8CBBF4B526D3995230FB776 /* sharding-6-diagram.svg */; };
+		8EAADC4EE6D2D482E5D1D765 /* elasticsearch-2-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = BAFEDED3FF37614750DD88CC /* elasticsearch-2-diagram.svg */; };
+		8EE32692149CDFC126D4F83B /* redis-2-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 36270202395CEA40A6DBDD7D /* redis-2-diagram.svg */; };
+		8FA305475F11720DD003797A /* behavioral-6-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = 20FE552C347D4487B4D35550 /* behavioral-6-vault.png */; };
+		8FF3FAA0CAA0183BC55FB9CE /* caching.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D73D5ADC48A44B07702C70B /* caching.png */; };
+		9065A3AFF74BB843BAFAD86B /* elasticsearch-4-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 44E89C9CDFE730BE78394485 /* elasticsearch-4-diagram.svg */; };
+		91B2DDC2AE85D46E91488755 /* java-1-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B8E35B7F92E81AC11250359 /* java-1-vault.png */; };
+		93CE505B03C34F932401F506 /* elasticsearch.png in Resources */ = {isa = PBXBuildFile; fileRef = 53A3E13CA8AA967310A84AD3 /* elasticsearch.png */; };
+		96D5F4A1A9AB82972F08C0F5 /* sharding.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C6B14E6BD4F5B3565062DF9 /* sharding.png */; };
+		99AE4A5CBAE9D3010CF66482 /* system-design-5-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 556FDA8761DE1F163977C1BA /* system-design-5-diagram.svg */; };
+		99C86059A4409FE4EF9D8B70 /* ai-and-vectors-7-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 51DD0D367E795DE8BADDAE19 /* ai-and-vectors-7-diagram.svg */; };
+		9ACB1541D5BE9C88AD521C58 /* spring-boot-4-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = C6EAB83CF11A024E65366DD8 /* spring-boot-4-diagram.svg */; };
+		9B2323ED430BB90665474B6E /* java-4-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = C7AAF093B884F85362926121 /* java-4-diagram.svg */; };
+		9B4014D583C9BD3DD6926A50 /* communication-1-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD39DD222390545624E014B /* communication-1-vault.png */; };
+		9F89B0A7E43BF3162903CC3A /* ai-and-vectors-8-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 0E6CE3EE139B68514140EC70 /* ai-and-vectors-8-diagram.svg */; };
+		A05C9201317B71F303335291 /* x-twitter-6-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 262307E0336AD1E9E19AAA5E /* x-twitter-6-diagram.svg */; };
+		A180594296735C3F2CA1D314 /* caching-9-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 3BBCF4A5C1C03F5F58D7D2CA /* caching-9-diagram.svg */; };
+		A3BBD0EDCE8B24B47105CB38 /* elasticsearch-3-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = BFBC7BE6E22E0A4A8C79A5B3 /* elasticsearch-3-diagram.svg */; };
+		A549CDD82F7C0CE26A296DA7 /* redis-3-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = A85C8DE969C17B1D2A0C418A /* redis-3-diagram.svg */; };
+		A9AFE32CC314C6F3FB9F547E /* microservices.png in Resources */ = {isa = PBXBuildFile; fileRef = 812F7F2845050E2A774C71D0 /* microservices.png */; };
+		AA447AF28820755DD6C22DC5 /* OfflineBundleSchemeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D236FF53DA6701AE7D2576 /* OfflineBundleSchemeHandler.swift */; };
+		AA960956C0F28F93BE4790C2 /* consistency-7-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 189113580B32525D69114042 /* consistency-7-diagram.svg */; };
+		AB9C31CB63299669ACD47771 /* ai-and-vectors-21-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = ED21830CA1BD6FFD9385387E /* ai-and-vectors-21-diagram.svg */; };
+		AD5C01B2362B04CF10F8D37E /* x-twitter-8-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = F43231240BC09428E9F9AA10 /* x-twitter-8-diagram.svg */; };
+		AE33BEA1E61A0A6652CADBE2 /* ai-and-vectors-11-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = A51350922EAB7DEDE2535CD5 /* ai-and-vectors-11-diagram.svg */; };
+		AFA1572E55C68023C39E1425 /* ai-and-vectors-12-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 8015377E8EB246252AA3C6DE /* ai-and-vectors-12-diagram.svg */; };
+		B21A056B82AA7059BBBAE0C5 /* ai-and-vectors-14-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 73CEBA53DEC840D22416E4A6 /* ai-and-vectors-14-diagram.svg */; };
+		B25CBDAC52D364870FCBFF6D /* behavioral-8-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = D7BE2D34BCED015A9961DE5D /* behavioral-8-vault.png */; };
+		B51329742EFB5DCD2F12E173 /* elasticsearch-5-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9B12728887B1B05C68308CFA /* elasticsearch-5-diagram.svg */; };
+		B6C7C563E99C8930AC50C05F /* infrastructure.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA03AF1ADFA8A7D41518B3 /* infrastructure.png */; };
+		B7DA6B10135B3D1B143C982A /* x-twitter-3-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = BBE721DC16A156E4FAF47E02 /* x-twitter-3-diagram.svg */; };
+		B830251FE44D74E580840D7B /* system-design-4-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1F1A30C9602429E550FAC636 /* system-design-4-diagram.svg */; };
+		B922CC820E97D87992D8B2EE /* vue.global.prod.js in Resources */ = {isa = PBXBuildFile; fileRef = 2C5EDE9729972C9361BEA1FE /* vue.global.prod.js */; };
+		BAB24A6AB54BF7A97070AC62 /* communication-2-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 07999E95BC36FB1C2C644E28 /* communication-2-diagram.svg */; };
+		BAC4FDD3ED69C80F6892DC3F /* communication-9-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F9C75A47BDF0EAC13E5E813 /* communication-9-vault.png */; };
+		BB4DE37CF7CC9F34A43365C1 /* ai-and-vectors-13-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 6613EC9DB020E12B3EF9CB64 /* ai-and-vectors-13-diagram.svg */; };
+		BB6A315A7B991DEBEC9E0E84 /* behavioral-7-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = 048150299B16A3B9B651C73E /* behavioral-7-vault.png */; };
+		BE2CDC1E6F4215C0E63C81E4 /* microservices-5-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 6E47E3ED1F36F4A8F2C4B881 /* microservices-5-diagram.svg */; };
+		C1E06D4CBFB6CFD06A22F112 /* spring-boot-8-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1F243B605EB98C78E841BF33 /* spring-boot-8-diagram.svg */; };
+		C23BFA3A8B976E2A35F61862 /* ai-and-vectors-5-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = D43F4F11D3CAF0439F94EF3D /* ai-and-vectors-5-diagram.svg */; };
+		C27B444974640BF40F7A6CD5 /* java.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB8172085EF5D348EB9815 /* java.png */; };
+		C2D193C4FB749360A9BCDB75 /* app.js in Resources */ = {isa = PBXBuildFile; fileRef = D2185EF67224D1FED5837868 /* app.js */; };
 		C30503A7C75951B00DD4426A /* CompanionWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA49454AF5A7989AED1F415 /* CompanionWebView.swift */; };
+		C46C4A304841463DEA700ED0 /* pyodide.js in Resources */ = {isa = PBXBuildFile; fileRef = 8A02641E4CFDA18ACFB11094 /* pyodide.js */; };
+		C49B949A48E5C3DEFB645B44 /* ai-and-vectors-4-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB052762A2A4062387AC5A /* ai-and-vectors-4-diagram.svg */; };
+		C64E9F359BDE54E904E1A396 /* caching-9-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = 4545C746C90C44BBB397455E /* caching-9-vault.png */; };
+		C6CB6F3134F55FB323EBD241 /* kafka-3-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 15CCF0A4C09D2FAB8990C4DC /* kafka-3-diagram.svg */; };
+		C90D6CF36041A1AEA9138E87 /* elasticsearch-8-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 990A312717127FB86C258257 /* elasticsearch-8-diagram.svg */; };
+		CA7E4CE8017B324E4AA57D74 /* consistency-cap.png in Resources */ = {isa = PBXBuildFile; fileRef = 64F223A35BA43CB0AA1CF9B1 /* consistency-cap.png */; };
+		CF1C454513D6FF897BB18ACC /* sharding-4-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 8FCF8B209489B06691F73757 /* sharding-4-diagram.svg */; };
+		CF9B5FF646C6A8178EAFF090 /* ai-and-vectors-9-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 2F31DCA9D77592000B056EA5 /* ai-and-vectors-9-diagram.svg */; };
+		D050B14BE2520E68655F7817 /* ai-and-vectors-15-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = D5A0D8BE61710B4FBA98F5E4 /* ai-and-vectors-15-diagram.svg */; };
+		D14AD09DD7A6DDA3685F08A0 /* redis-11-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = 89E09B81C7DC0DA81BA8D034 /* redis-11-vault.png */; };
 		D265BF36F7517385397F8E5D /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097E56C71665CC6E27FCC811 /* RootTabView.swift */; };
+		D36351219D82B554CF4722FA /* infrastructure-4-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 897EF7023F5B8EFEC3BB22E5 /* infrastructure-4-diagram.svg */; };
+		D3E168ADACD41221072DE287 /* redis-10-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = 324A98B6F05E3F3D0245BF9E /* redis-10-vault.png */; };
+		D521D828B8F78C7D93DA1458 /* microservices-3-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 729A5861C5464F2D56A5B61A /* microservices-3-diagram.svg */; };
+		D5614C857C3E0863E1C74883 /* communication-3-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 7452C18839E671AA10BEE19D /* communication-3-diagram.svg */; };
+		D5D0048715B68FE015C3030F /* redis-1-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = E7BA0134FF766F102168DCFD /* redis-1-diagram.svg */; };
+		D6653534A48F7B5B8EA75E6A /* behavioral-5-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = D5C2FCB89AB9F1A724C3282D /* behavioral-5-vault.png */; };
+		DB2EC40B29328A43A0D99E0B /* consistency-1-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = D575F127F280120968EBAF9B /* consistency-1-diagram.svg */; };
+		DD92BAA9D2F7433EE0773866 /* ai-vectors.png in Resources */ = {isa = PBXBuildFile; fileRef = 22E9C1E2F598648AC8055F27 /* ai-vectors.png */; };
+		DE3F04E128F52AAF7D978326 /* kafka.png in Resources */ = {isa = PBXBuildFile; fileRef = F4F59CBD156143785160B65E /* kafka.png */; };
+		DE896C36D4B487F4ACF468BC /* caching-1-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9AD8DCDF0D0981E4C03AEDC6 /* caching-1-diagram.svg */; };
+		DEA45327E0C68E8FF9434B6E /* spring-boot-1-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = B4A82501C9ECBF777456B168 /* spring-boot-1-diagram.svg */; };
+		E068014D6183E9637B40E3AC /* system-design-2-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = A5E79A5053D6D0F1007F8736 /* system-design-2-diagram.svg */; };
+		E329278F7DCEFCFABDE9B75B /* ai-and-vectors-17-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 3D3702E2263D7A4341B3B990 /* ai-and-vectors-17-diagram.svg */; };
+		E3BEA6333B513E1CC9984B19 /* elasticsearch-6-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = F2F7B68FFE7E0D609EF3C526 /* elasticsearch-6-diagram.svg */; };
+		E49E2E0AAF41D2EEEF686912 /* ai-and-vectors-20-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 7E445F95F46386AF1AB9735C /* ai-and-vectors-20-diagram.svg */; };
+		E55E179B655C143CC8E85FE6 /* pyodide.js.map in Resources */ = {isa = PBXBuildFile; fileRef = 68B72AF69E626CFE57A82547 /* pyodide.js.map */; };
+		E59356252B8A989357100CB1 /* redis-1-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = C392BD89DF2FD950D76CB8DB /* redis-1-vault.png */; };
+		E6467B82AF7081B2C56EF8E6 /* communication-5-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = 70F37D2F904DC298EF04D3C8 /* communication-5-vault.png */; };
+		E6809E10C8D60B3EECB3E35E /* behavioral-3-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = AEE2F5045AA13C7224378658 /* behavioral-3-diagram.svg */; };
+		E7D0511FDEFFE0E6AAF82CCB /* ai-and-vectors-10-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = B149563040A30D887FE8D79F /* ai-and-vectors-10-diagram.svg */; };
+		E8BB808B58E002E93FC25DAA /* spring-boot-5-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = F010DCFC2D02655E4E722E46 /* spring-boot-5-diagram.svg */; };
+		E954077B6EAA440F81A7D55F /* behavioral-3-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D53725192264F07CCED0DCC /* behavioral-3-vault.png */; };
+		EB4283095B8C5F6252C5983B /* spring-boot-10-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = EA7F04C51641D1CECC264E4F /* spring-boot-10-diagram.svg */; };
+		EBA07D90E4AC2C865F313926 /* redis-7-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = ED2867B2A743D07D4E0FBEBC /* redis-7-vault.png */; };
+		F029D3B06EDBEECE74184FD5 /* redis-7-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 023A48F5C56A773C741E6E90 /* redis-7-diagram.svg */; };
+		F574F8EC192C6DBB5083A3C9 /* infrastructure-1-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 0D69817F4C7FF9D662D9C157 /* infrastructure-1-diagram.svg */; };
+		F5811617B7F377AE7F4FBF90 /* java-2-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = 1229A3C92E4691EAEA85FF41 /* java-2-vault.png */; };
+		F611D4CDA853E4AD83A37643 /* system-design-8-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = AB0222F9FFAF7B7FAD1E6DBD /* system-design-8-diagram.svg */; };
+		F79F0CEE6E654B15E6C0D78E /* caching-8-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 90852D3AF7A0EED804A6E6E7 /* caching-8-diagram.svg */; };
+		FADB7F7721CF365F2A5098DF /* ai-and-vectors-16-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = E2C7119AF795883FD836AC0C /* ai-and-vectors-16-diagram.svg */; };
+		FB3F42B641326A112FD98BB7 /* spring-boot-10-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA2B5543BFCD3BD2C350D42 /* spring-boot-10-vault.png */; };
+		FB7F935F3197F0240C2B1F1F /* behavioral-10-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 3D444139E787ED9D5359CCAC /* behavioral-10-diagram.svg */; };
 		FBDBF3D382FE91B9940F7BDA /* PythonQuestCompanionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F141F537F8EE24C70DCEA8F4 /* PythonQuestCompanionApp.swift */; };
+		FD01D83E1F004495FCA8A5EA /* spring-boot-9-vault.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A1C91D3BA5CBBE9A4EBCCD /* spring-boot-9-vault.png */; };
+		FDBFD91910D8311D7819B110 /* system-design-1-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = BA5D97211F7CB329615D1A77 /* system-design-1-diagram.svg */; };
+		FDF3BF46725D9CF229A982E4 /* communication-7-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = 4193741C3E26BF7DD13A8561 /* communication-7-diagram.svg */; };
+		FE2EBCA296175347DD3E146B /* caching-2-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = B7612291DF25D2F1ED4F6D73 /* caching-2-diagram.svg */; };
+		FE798099F38442821DA7B095 /* system-design.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C578019D6C4B037C7DEEC0C /* system-design.png */; };
+		FF716081C1D60450792395FC /* spring-boot-3-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = FF4D3E740511D57340C35750 /* spring-boot-3-diagram.svg */; };
+		FFA8B8DF21CB7B2B3350D28D /* redis-11-diagram.svg in Resources */ = {isa = PBXBuildFile; fileRef = A9460D815C75EFC99A84DE18 /* redis-11-diagram.svg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		002D268784FE9463A3951436 /* sharding-5-diagram.svg */ = {isa = PBXFileReference; path = "sharding-5-diagram.svg"; sourceTree = "<group>"; };
+		0050DE4487C9C042FDDFE89F /* x-twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-twitter.png"; sourceTree = "<group>"; };
+		01BC688D9FC6515A2673F9FB /* communication-9-diagram.svg */ = {isa = PBXFileReference; path = "communication-9-diagram.svg"; sourceTree = "<group>"; };
+		0216DACF9AE99EDD952825EB /* spring-boot-2-diagram.svg */ = {isa = PBXFileReference; path = "spring-boot-2-diagram.svg"; sourceTree = "<group>"; };
+		023A48F5C56A773C741E6E90 /* redis-7-diagram.svg */ = {isa = PBXFileReference; path = "redis-7-diagram.svg"; sourceTree = "<group>"; };
+		048150299B16A3B9B651C73E /* behavioral-7-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "behavioral-7-vault.png"; sourceTree = "<group>"; };
+		0643A3E4099890ADCDBFACC9 /* pyodide.asm.wasm */ = {isa = PBXFileReference; path = pyodide.asm.wasm; sourceTree = "<group>"; };
+		07999E95BC36FB1C2C644E28 /* communication-2-diagram.svg */ = {isa = PBXFileReference; path = "communication-2-diagram.svg"; sourceTree = "<group>"; };
+		0867F49F4E13DF77811E2F12 /* kafka-6-diagram.svg */ = {isa = PBXFileReference; path = "kafka-6-diagram.svg"; sourceTree = "<group>"; };
 		097E56C71665CC6E27FCC811 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
+		0C9F984FD534245EE09432D1 /* microservices-8-diagram.svg */ = {isa = PBXFileReference; path = "microservices-8-diagram.svg"; sourceTree = "<group>"; };
+		0D0E0DD15AC6D790526807E1 /* ai-and-vectors-23-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-23-diagram.svg"; sourceTree = "<group>"; };
+		0D69817F4C7FF9D662D9C157 /* infrastructure-1-diagram.svg */ = {isa = PBXFileReference; path = "infrastructure-1-diagram.svg"; sourceTree = "<group>"; };
+		0E292E8FEBC37FB2B9FE6980 /* consistency-8-diagram.svg */ = {isa = PBXFileReference; path = "consistency-8-diagram.svg"; sourceTree = "<group>"; };
+		0E6CE3EE139B68514140EC70 /* ai-and-vectors-8-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-8-diagram.svg"; sourceTree = "<group>"; };
+		0EB5F162FB152C7160DC89C4 /* communication-5-diagram.svg */ = {isa = PBXFileReference; path = "communication-5-diagram.svg"; sourceTree = "<group>"; };
+		11A0A633FB4F518F1B428F25 /* behavioral-7-diagram.svg */ = {isa = PBXFileReference; path = "behavioral-7-diagram.svg"; sourceTree = "<group>"; };
+		1229A3C92E4691EAEA85FF41 /* java-2-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "java-2-vault.png"; sourceTree = "<group>"; };
+		138C9774657A384375D434F3 /* infrastructure-3-diagram.svg */ = {isa = PBXFileReference; path = "infrastructure-3-diagram.svg"; sourceTree = "<group>"; };
+		15CCF0A4C09D2FAB8990C4DC /* kafka-3-diagram.svg */ = {isa = PBXFileReference; path = "kafka-3-diagram.svg"; sourceTree = "<group>"; };
+		17424BCC50BF8E9F807B9130 /* consistency-3-diagram.svg */ = {isa = PBXFileReference; path = "consistency-3-diagram.svg"; sourceTree = "<group>"; };
+		187139FD6D7626FF37844287 /* kafka-4-diagram.svg */ = {isa = PBXFileReference; path = "kafka-4-diagram.svg"; sourceTree = "<group>"; };
+		189113580B32525D69114042 /* consistency-7-diagram.svg */ = {isa = PBXFileReference; path = "consistency-7-diagram.svg"; sourceTree = "<group>"; };
+		1A3EEB4F943F6DF866E76EFC /* microservices-7-diagram.svg */ = {isa = PBXFileReference; path = "microservices-7-diagram.svg"; sourceTree = "<group>"; };
+		1F1A30C9602429E550FAC636 /* system-design-4-diagram.svg */ = {isa = PBXFileReference; path = "system-design-4-diagram.svg"; sourceTree = "<group>"; };
+		1F243B605EB98C78E841BF33 /* spring-boot-8-diagram.svg */ = {isa = PBXFileReference; path = "spring-boot-8-diagram.svg"; sourceTree = "<group>"; };
+		20FE552C347D4487B4D35550 /* behavioral-6-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "behavioral-6-vault.png"; sourceTree = "<group>"; };
+		22E9C1E2F598648AC8055F27 /* ai-vectors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ai-vectors.png"; sourceTree = "<group>"; };
+		22FB39E0A862DAFC72FB7F6F /* ai-and-vectors-1-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-1-diagram.svg"; sourceTree = "<group>"; };
+		25611AAC04F023208C0E89F2 /* behavioral-4-diagram.svg */ = {isa = PBXFileReference; path = "behavioral-4-diagram.svg"; sourceTree = "<group>"; };
+		262307E0336AD1E9E19AAA5E /* x-twitter-6-diagram.svg */ = {isa = PBXFileReference; path = "x-twitter-6-diagram.svg"; sourceTree = "<group>"; };
+		270E83A2639B611528F569B4 /* offline_python_lessons.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = offline_python_lessons.json; sourceTree = "<group>"; };
+		28009F2D30EDCF3C39F02EE7 /* behavioral-2-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "behavioral-2-vault.png"; sourceTree = "<group>"; };
+		293A0EB6E37D7E414BB44411 /* pyodide.asm.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = pyodide.asm.js; sourceTree = "<group>"; };
+		2A3BDCCF3E1638297F79B152 /* microservices-1-diagram.svg */ = {isa = PBXFileReference; path = "microservices-1-diagram.svg"; sourceTree = "<group>"; };
+		2AFE9ADA14B585F60D7FE6AE /* caching-3-diagram.svg */ = {isa = PBXFileReference; path = "caching-3-diagram.svg"; sourceTree = "<group>"; };
+		2C5EDE9729972C9361BEA1FE /* vue.global.prod.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = vue.global.prod.js; sourceTree = "<group>"; };
+		2F31DCA9D77592000B056EA5 /* ai-and-vectors-9-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-9-diagram.svg"; sourceTree = "<group>"; };
+		303A4641B0E604812CD7ADF3 /* consistency-5-diagram.svg */ = {isa = PBXFileReference; path = "consistency-5-diagram.svg"; sourceTree = "<group>"; };
+		31220063F2394E03CF1EE1A8 /* x-twitter-9-diagram.svg */ = {isa = PBXFileReference; path = "x-twitter-9-diagram.svg"; sourceTree = "<group>"; };
+		3145DE96D862132A32A43126 /* spring-boot-7-diagram.svg */ = {isa = PBXFileReference; path = "spring-boot-7-diagram.svg"; sourceTree = "<group>"; };
+		320AC6F1B1F1696DF57E2111 /* pyodide.mjs.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = pyodide.mjs.map; sourceTree = "<group>"; };
+		324A98B6F05E3F3D0245BF9E /* redis-10-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redis-10-vault.png"; sourceTree = "<group>"; };
+		32D7E8071174A056AD5689A6 /* consistency-2-diagram.svg */ = {isa = PBXFileReference; path = "consistency-2-diagram.svg"; sourceTree = "<group>"; };
+		32F44FCAE1726FA3856584DC /* python_stdlib.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = python_stdlib.zip; sourceTree = "<group>"; };
+		36270202395CEA40A6DBDD7D /* redis-2-diagram.svg */ = {isa = PBXFileReference; path = "redis-2-diagram.svg"; sourceTree = "<group>"; };
+		36A6418B0C806DC4837AFBB4 /* kafka-5-diagram.svg */ = {isa = PBXFileReference; path = "kafka-5-diagram.svg"; sourceTree = "<group>"; };
+		37E428A91EDAC076F5723653 /* communication.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = communication.png; sourceTree = "<group>"; };
+		380E796767AEE8605B17D771 /* microservices-6-diagram.svg */ = {isa = PBXFileReference; path = "microservices-6-diagram.svg"; sourceTree = "<group>"; };
+		3A71D542A9C166E8A7D620A9 /* consistency-4-diagram.svg */ = {isa = PBXFileReference; path = "consistency-4-diagram.svg"; sourceTree = "<group>"; };
+		3BBCF4A5C1C03F5F58D7D2CA /* caching-9-diagram.svg */ = {isa = PBXFileReference; path = "caching-9-diagram.svg"; sourceTree = "<group>"; };
+		3C578019D6C4B037C7DEEC0C /* system-design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "system-design.png"; sourceTree = "<group>"; };
+		3D3702E2263D7A4341B3B990 /* ai-and-vectors-17-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-17-diagram.svg"; sourceTree = "<group>"; };
+		3D444139E787ED9D5359CCAC /* behavioral-10-diagram.svg */ = {isa = PBXFileReference; path = "behavioral-10-diagram.svg"; sourceTree = "<group>"; };
+		4193741C3E26BF7DD13A8561 /* communication-7-diagram.svg */ = {isa = PBXFileReference; path = "communication-7-diagram.svg"; sourceTree = "<group>"; };
+		43D0707C0A2C07528E0AE939 /* redis.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redis.png; sourceTree = "<group>"; };
+		441629FDAB9CB9522126F430 /* java-3-diagram.svg */ = {isa = PBXFileReference; path = "java-3-diagram.svg"; sourceTree = "<group>"; };
+		44E89C9CDFE730BE78394485 /* elasticsearch-4-diagram.svg */ = {isa = PBXFileReference; path = "elasticsearch-4-diagram.svg"; sourceTree = "<group>"; };
+		4545C746C90C44BBB397455E /* caching-9-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "caching-9-vault.png"; sourceTree = "<group>"; };
+		47D4D299FA4E4CC524BE2DF8 /* ai-and-vectors-18-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-18-diagram.svg"; sourceTree = "<group>"; };
+		490B80C910950B242D2264C4 /* consistency.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = consistency.png; sourceTree = "<group>"; };
+		49C113004DFA925F4543DA59 /* microservices-2-diagram.svg */ = {isa = PBXFileReference; path = "microservices-2-diagram.svg"; sourceTree = "<group>"; };
+		49ED270B3E004671DFEB1DA9 /* communication-4-diagram.svg */ = {isa = PBXFileReference; path = "communication-4-diagram.svg"; sourceTree = "<group>"; };
+		4A631207804790531C7E5F2A /* communication-1-diagram.svg */ = {isa = PBXFileReference; path = "communication-1-diagram.svg"; sourceTree = "<group>"; };
+		4E96A5CDCC22834E1125ACF3 /* kafka-1-diagram.svg */ = {isa = PBXFileReference; path = "kafka-1-diagram.svg"; sourceTree = "<group>"; };
+		4EC7055D8476C396268E0D4F /* spring-boot-11-diagram.svg */ = {isa = PBXFileReference; path = "spring-boot-11-diagram.svg"; sourceTree = "<group>"; };
+		51DD0D367E795DE8BADDAE19 /* ai-and-vectors-7-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-7-diagram.svg"; sourceTree = "<group>"; };
+		53A3E13CA8AA967310A84AD3 /* elasticsearch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = elasticsearch.png; sourceTree = "<group>"; };
+		53C71FDED0BEF59E23334815 /* caching-7-diagram.svg */ = {isa = PBXFileReference; path = "caching-7-diagram.svg"; sourceTree = "<group>"; };
+		54C103921413B23D3EEF194E /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		556FDA8761DE1F163977C1BA /* system-design-5-diagram.svg */ = {isa = PBXFileReference; path = "system-design-5-diagram.svg"; sourceTree = "<group>"; };
+		557BDC6A5FC571AB60977437 /* elasticsearch-9-diagram.svg */ = {isa = PBXFileReference; path = "elasticsearch-9-diagram.svg"; sourceTree = "<group>"; };
+		5AA07CA86E7E41A4C477ABEA /* spring-boot-2-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spring-boot-2-vault.png"; sourceTree = "<group>"; };
+		5B0398703EB478AD8B7B4371 /* redis-9-diagram.svg */ = {isa = PBXFileReference; path = "redis-9-diagram.svg"; sourceTree = "<group>"; };
+		5D520D7F26F893C68C12A4AD /* behavioral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = behavioral.png; sourceTree = "<group>"; };
+		5D53725192264F07CCED0DCC /* behavioral-3-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "behavioral-3-vault.png"; sourceTree = "<group>"; };
+		617E9E77AB9E82CAA2211A6D /* behavioral-6-diagram.svg */ = {isa = PBXFileReference; path = "behavioral-6-diagram.svg"; sourceTree = "<group>"; };
 		61C4FA6D8A9D4A4744989D38 /* PythonQuestCompanion.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = PythonQuestCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		631A4A6C15A50CCA405C8114 /* communication-10-diagram.svg */ = {isa = PBXFileReference; path = "communication-10-diagram.svg"; sourceTree = "<group>"; };
+		63625BB8D26B90EAA1C76D5A /* communication-3-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "communication-3-vault.png"; sourceTree = "<group>"; };
+		64F223A35BA43CB0AA1CF9B1 /* consistency-cap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "consistency-cap.png"; sourceTree = "<group>"; };
+		657B4DCD94549B5AFBCFF0E1 /* x-twitter-1-diagram.svg */ = {isa = PBXFileReference; path = "x-twitter-1-diagram.svg"; sourceTree = "<group>"; };
+		6613EC9DB020E12B3EF9CB64 /* ai-and-vectors-13-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-13-diagram.svg"; sourceTree = "<group>"; };
+		68B72AF69E626CFE57A82547 /* pyodide.js.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = pyodide.js.map; sourceTree = "<group>"; };
+		69D83F555D0D82C06569A493 /* ai-and-vectors-3-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-3-diagram.svg"; sourceTree = "<group>"; };
+		6D4162A5A92C9B54BEC5ACE5 /* microservices-2-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "microservices-2-vault.png"; sourceTree = "<group>"; };
+		6D71AF33F70067D20E0B3C7C /* redis-8-diagram.svg */ = {isa = PBXFileReference; path = "redis-8-diagram.svg"; sourceTree = "<group>"; };
+		6E47E3ED1F36F4A8F2C4B881 /* microservices-5-diagram.svg */ = {isa = PBXFileReference; path = "microservices-5-diagram.svg"; sourceTree = "<group>"; };
+		7075A02EACFDBDA2520C4BAB /* elasticsearch-1-diagram.svg */ = {isa = PBXFileReference; path = "elasticsearch-1-diagram.svg"; sourceTree = "<group>"; };
+		70AAB4ABE4E245B8A13E28A2 /* behavioral-1-diagram.svg */ = {isa = PBXFileReference; path = "behavioral-1-diagram.svg"; sourceTree = "<group>"; };
+		70F37D2F904DC298EF04D3C8 /* communication-5-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "communication-5-vault.png"; sourceTree = "<group>"; };
+		729A5861C5464F2D56A5B61A /* microservices-3-diagram.svg */ = {isa = PBXFileReference; path = "microservices-3-diagram.svg"; sourceTree = "<group>"; };
+		737E1DDDFCB771296BE6B6D1 /* spring-boot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spring-boot.png"; sourceTree = "<group>"; };
+		73CEBA53DEC840D22416E4A6 /* ai-and-vectors-14-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-14-diagram.svg"; sourceTree = "<group>"; };
+		7452C18839E671AA10BEE19D /* communication-3-diagram.svg */ = {isa = PBXFileReference; path = "communication-3-diagram.svg"; sourceTree = "<group>"; };
+		745EEE63FAEBD3A1393EAE15 /* pyodide-lock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "pyodide-lock.json"; sourceTree = "<group>"; };
 		765CA79B0178CB95A06D94FD /* CompanionSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanionSettings.swift; sourceTree = "<group>"; };
+		79614468389BA38927069BE4 /* infrastructure-2-diagram.svg */ = {isa = PBXFileReference; path = "infrastructure-2-diagram.svg"; sourceTree = "<group>"; };
+		7B8E35B7F92E81AC11250359 /* java-1-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "java-1-vault.png"; sourceTree = "<group>"; };
+		7BDB052762A2A4062387AC5A /* ai-and-vectors-4-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-4-diagram.svg"; sourceTree = "<group>"; };
+		7DFDD32D8D706D09DA9CC1FB /* styles.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
+		7E445F95F46386AF1AB9735C /* ai-and-vectors-20-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-20-diagram.svg"; sourceTree = "<group>"; };
+		7F9C75A47BDF0EAC13E5E813 /* communication-9-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "communication-9-vault.png"; sourceTree = "<group>"; };
+		8015377E8EB246252AA3C6DE /* ai-and-vectors-12-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-12-diagram.svg"; sourceTree = "<group>"; };
+		812F7F2845050E2A774C71D0 /* microservices.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = microservices.png; sourceTree = "<group>"; };
+		83C66039BDF72C8EF187F3F0 /* console-v2.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "console-v2.html"; sourceTree = "<group>"; };
+		870C38D8F82E1845F9C18CD6 /* spring-boot-9-diagram.svg */ = {isa = PBXFileReference; path = "spring-boot-9-diagram.svg"; sourceTree = "<group>"; };
+		895472BE421243FEF4843C80 /* microservices-4-diagram.svg */ = {isa = PBXFileReference; path = "microservices-4-diagram.svg"; sourceTree = "<group>"; };
+		897EF7023F5B8EFEC3BB22E5 /* infrastructure-4-diagram.svg */ = {isa = PBXFileReference; path = "infrastructure-4-diagram.svg"; sourceTree = "<group>"; };
+		89C50BD3D51E39C3A402FA32 /* pyodide.d.ts */ = {isa = PBXFileReference; path = pyodide.d.ts; sourceTree = "<group>"; };
+		89E09B81C7DC0DA81BA8D034 /* redis-11-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redis-11-vault.png"; sourceTree = "<group>"; };
+		8A02641E4CFDA18ACFB11094 /* pyodide.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = pyodide.js; sourceTree = "<group>"; };
+		8A1F674060A2E4FADA568EDE /* behavioral-8-diagram.svg */ = {isa = PBXFileReference; path = "behavioral-8-diagram.svg"; sourceTree = "<group>"; };
+		8A625CBA2FE87343731369D2 /* ai-and-vectors-2-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-2-diagram.svg"; sourceTree = "<group>"; };
+		8C6B14E6BD4F5B3565062DF9 /* sharding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sharding.png; sourceTree = "<group>"; };
+		8D73D5ADC48A44B07702C70B /* caching.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = caching.png; sourceTree = "<group>"; };
+		8FCF8B209489B06691F73757 /* sharding-4-diagram.svg */ = {isa = PBXFileReference; path = "sharding-4-diagram.svg"; sourceTree = "<group>"; };
+		900FF1A3E5A676EE7608C4C2 /* caching-6-diagram.svg */ = {isa = PBXFileReference; path = "caching-6-diagram.svg"; sourceTree = "<group>"; };
+		90852D3AF7A0EED804A6E6E7 /* caching-8-diagram.svg */ = {isa = PBXFileReference; path = "caching-8-diagram.svg"; sourceTree = "<group>"; };
+		990A312717127FB86C258257 /* elasticsearch-8-diagram.svg */ = {isa = PBXFileReference; path = "elasticsearch-8-diagram.svg"; sourceTree = "<group>"; };
+		9998BBADF1E75240ABBF145D /* sharding-3-diagram.svg */ = {isa = PBXFileReference; path = "sharding-3-diagram.svg"; sourceTree = "<group>"; };
+		9A9BF97EDD58DA886F4CA462 /* spring-boot-4-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spring-boot-4-vault.png"; sourceTree = "<group>"; };
+		9AD8DCDF0D0981E4C03AEDC6 /* caching-1-diagram.svg */ = {isa = PBXFileReference; path = "caching-1-diagram.svg"; sourceTree = "<group>"; };
+		9B12728887B1B05C68308CFA /* elasticsearch-5-diagram.svg */ = {isa = PBXFileReference; path = "elasticsearch-5-diagram.svg"; sourceTree = "<group>"; };
+		9B23104BA0E0EDE41019D1AF /* communication-4-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "communication-4-vault.png"; sourceTree = "<group>"; };
+		9E0C768551B682A36D228623 /* behavioral-2-diagram.svg */ = {isa = PBXFileReference; path = "behavioral-2-diagram.svg"; sourceTree = "<group>"; };
+		9E33C439B22FA6AE3307FF41 /* java-1-diagram.svg */ = {isa = PBXFileReference; path = "java-1-diagram.svg"; sourceTree = "<group>"; };
+		9E444E840CC41ACDD60C5166 /* kafka-2-diagram.svg */ = {isa = PBXFileReference; path = "kafka-2-diagram.svg"; sourceTree = "<group>"; };
+		9FA2B5543BFCD3BD2C350D42 /* spring-boot-10-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spring-boot-10-vault.png"; sourceTree = "<group>"; };
+		9FB210019C1B5FD034548D90 /* caching-4-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "caching-4-vault.png"; sourceTree = "<group>"; };
+		A102149C506405FB2A638A95 /* pyodide.mjs */ = {isa = PBXFileReference; path = pyodide.mjs; sourceTree = "<group>"; };
+		A27855F5C97EF67BF52757FE /* microservices-9-diagram.svg */ = {isa = PBXFileReference; path = "microservices-9-diagram.svg"; sourceTree = "<group>"; };
+		A35E5F66B427D449376F2B74 /* system-design-7-diagram.svg */ = {isa = PBXFileReference; path = "system-design-7-diagram.svg"; sourceTree = "<group>"; };
+		A51350922EAB7DEDE2535CD5 /* ai-and-vectors-11-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-11-diagram.svg"; sourceTree = "<group>"; };
+		A52524A9CF8169B5D9FEE865 /* system-design-6-diagram.svg */ = {isa = PBXFileReference; path = "system-design-6-diagram.svg"; sourceTree = "<group>"; };
+		A5E79A5053D6D0F1007F8736 /* system-design-2-diagram.svg */ = {isa = PBXFileReference; path = "system-design-2-diagram.svg"; sourceTree = "<group>"; };
+		A6910852E169176475352BB9 /* behavioral-9-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "behavioral-9-vault.png"; sourceTree = "<group>"; };
+		A79BDD31963718A31FB3DAB2 /* communication-6-diagram.svg */ = {isa = PBXFileReference; path = "communication-6-diagram.svg"; sourceTree = "<group>"; };
+		A85C8DE969C17B1D2A0C418A /* redis-3-diagram.svg */ = {isa = PBXFileReference; path = "redis-3-diagram.svg"; sourceTree = "<group>"; };
+		A9460D815C75EFC99A84DE18 /* redis-11-diagram.svg */ = {isa = PBXFileReference; path = "redis-11-diagram.svg"; sourceTree = "<group>"; };
+		A9B73696F64CD8194791DED5 /* behavioral-10-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "behavioral-10-vault.png"; sourceTree = "<group>"; };
+		A9DCBF4CEF959B80F83F3B9E /* ai-and-vectors-24-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-24-diagram.svg"; sourceTree = "<group>"; };
+		AA88EF9C8CD59E948D75E62F /* behavioral-9-diagram.svg */ = {isa = PBXFileReference; path = "behavioral-9-diagram.svg"; sourceTree = "<group>"; };
+		AB0222F9FFAF7B7FAD1E6DBD /* system-design-8-diagram.svg */ = {isa = PBXFileReference; path = "system-design-8-diagram.svg"; sourceTree = "<group>"; };
+		AC8F5D65C8359B5370FDA994 /* microservices-11-diagram.svg */ = {isa = PBXFileReference; path = "microservices-11-diagram.svg"; sourceTree = "<group>"; };
+		ACB72BEF620A0586DA2E2F2F /* console.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = console.html; sourceTree = "<group>"; };
+		AEE2F5045AA13C7224378658 /* behavioral-3-diagram.svg */ = {isa = PBXFileReference; path = "behavioral-3-diagram.svg"; sourceTree = "<group>"; };
+		AFD39DD222390545624E014B /* communication-1-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "communication-1-vault.png"; sourceTree = "<group>"; };
+		B0CE9FEF3F7E456A0A3ADE7E /* behavioral-4-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "behavioral-4-vault.png"; sourceTree = "<group>"; };
+		B0CF1338F1554AA6DAF069E9 /* system-design-3-diagram.svg */ = {isa = PBXFileReference; path = "system-design-3-diagram.svg"; sourceTree = "<group>"; };
+		B0EFD463B4C639DC4117B106 /* infrastructure-5-diagram.svg */ = {isa = PBXFileReference; path = "infrastructure-5-diagram.svg"; sourceTree = "<group>"; };
+		B149563040A30D887FE8D79F /* ai-and-vectors-10-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-10-diagram.svg"; sourceTree = "<group>"; };
+		B28C94370D07B3FAB4CE5FD2 /* java-5-diagram.svg */ = {isa = PBXFileReference; path = "java-5-diagram.svg"; sourceTree = "<group>"; };
+		B4A82501C9ECBF777456B168 /* spring-boot-1-diagram.svg */ = {isa = PBXFileReference; path = "spring-boot-1-diagram.svg"; sourceTree = "<group>"; };
+		B7612291DF25D2F1ED4F6D73 /* caching-2-diagram.svg */ = {isa = PBXFileReference; path = "caching-2-diagram.svg"; sourceTree = "<group>"; };
+		B8B2F44C2D1B7CBC499802C6 /* sharding-2-diagram.svg */ = {isa = PBXFileReference; path = "sharding-2-diagram.svg"; sourceTree = "<group>"; };
+		B8CBBF4B526D3995230FB776 /* sharding-6-diagram.svg */ = {isa = PBXFileReference; path = "sharding-6-diagram.svg"; sourceTree = "<group>"; };
+		BA5D97211F7CB329615D1A77 /* system-design-1-diagram.svg */ = {isa = PBXFileReference; path = "system-design-1-diagram.svg"; sourceTree = "<group>"; };
+		BAFEDED3FF37614750DD88CC /* elasticsearch-2-diagram.svg */ = {isa = PBXFileReference; path = "elasticsearch-2-diagram.svg"; sourceTree = "<group>"; };
+		BBE721DC16A156E4FAF47E02 /* x-twitter-3-diagram.svg */ = {isa = PBXFileReference; path = "x-twitter-3-diagram.svg"; sourceTree = "<group>"; };
+		BBF1ED144A2462F168126D1E /* communication-2-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "communication-2-vault.png"; sourceTree = "<group>"; };
 		BCA49454AF5A7989AED1F415 /* CompanionWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanionWebView.swift; sourceTree = "<group>"; };
+		BE28246D7E0955DA67E9D092 /* redis-2-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redis-2-vault.png"; sourceTree = "<group>"; };
+		BEBB8172085EF5D348EB9815 /* java.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = java.png; sourceTree = "<group>"; };
+		BFBC7BE6E22E0A4A8C79A5B3 /* elasticsearch-3-diagram.svg */ = {isa = PBXFileReference; path = "elasticsearch-3-diagram.svg"; sourceTree = "<group>"; };
+		C0D236FF53DA6701AE7D2576 /* OfflineBundleSchemeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineBundleSchemeHandler.swift; sourceTree = "<group>"; };
+		C0F6AAE6CCC23ED4A8E49B4E /* redis-10-diagram.svg */ = {isa = PBXFileReference; path = "redis-10-diagram.svg"; sourceTree = "<group>"; };
+		C11F8EE2FDB3915EAAE6427F /* java-2-diagram.svg */ = {isa = PBXFileReference; path = "java-2-diagram.svg"; sourceTree = "<group>"; };
+		C26624CAB4F2FF9F32BCEBA6 /* spring-boot-7-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spring-boot-7-vault.png"; sourceTree = "<group>"; };
+		C392BD89DF2FD950D76CB8DB /* redis-1-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redis-1-vault.png"; sourceTree = "<group>"; };
+		C6047BCB886B9C6463E0B70E /* offline-runtime.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "offline-runtime.js"; sourceTree = "<group>"; };
+		C6EAB83CF11A024E65366DD8 /* spring-boot-4-diagram.svg */ = {isa = PBXFileReference; path = "spring-boot-4-diagram.svg"; sourceTree = "<group>"; };
+		C7AAF093B884F85362926121 /* java-4-diagram.svg */ = {isa = PBXFileReference; path = "java-4-diagram.svg"; sourceTree = "<group>"; };
+		C7BC5434759D33088A4E7273 /* ai-and-vectors-19-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-19-diagram.svg"; sourceTree = "<group>"; };
+		C7BFF56617040177B484F1AB /* x-twitter-5-diagram.svg */ = {isa = PBXFileReference; path = "x-twitter-5-diagram.svg"; sourceTree = "<group>"; };
+		C805A42C5D00DAE46920E9F7 /* elasticsearch-7-diagram.svg */ = {isa = PBXFileReference; path = "elasticsearch-7-diagram.svg"; sourceTree = "<group>"; };
+		C8B33EC694E4320E8F4927B1 /* ai-and-vectors-6-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-6-diagram.svg"; sourceTree = "<group>"; };
+		C950D117A97CAB16469FDE50 /* behavioral-1-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "behavioral-1-vault.png"; sourceTree = "<group>"; };
+		CA04BDF1E4453714BA599715 /* redis-5-diagram.svg */ = {isa = PBXFileReference; path = "redis-5-diagram.svg"; sourceTree = "<group>"; };
+		CCE24FCE7E9DCEFB01994925 /* java-5-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "java-5-vault.png"; sourceTree = "<group>"; };
+		CDFA03AF1ADFA8A7D41518B3 /* infrastructure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infrastructure.png; sourceTree = "<group>"; };
+		CE7272D03723C435C082D654 /* spring-boot-5-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spring-boot-5-vault.png"; sourceTree = "<group>"; };
+		D2185EF67224D1FED5837868 /* app.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = app.js; sourceTree = "<group>"; };
+		D43F4F11D3CAF0439F94EF3D /* ai-and-vectors-5-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-5-diagram.svg"; sourceTree = "<group>"; };
+		D575F127F280120968EBAF9B /* consistency-1-diagram.svg */ = {isa = PBXFileReference; path = "consistency-1-diagram.svg"; sourceTree = "<group>"; };
+		D5A0D8BE61710B4FBA98F5E4 /* ai-and-vectors-15-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-15-diagram.svg"; sourceTree = "<group>"; };
+		D5C2FCB89AB9F1A724C3282D /* behavioral-5-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "behavioral-5-vault.png"; sourceTree = "<group>"; };
+		D5CAD5609B5EFE6BE6D08F69 /* sharding-1-diagram.svg */ = {isa = PBXFileReference; path = "sharding-1-diagram.svg"; sourceTree = "<group>"; };
+		D63F357EF58C6A95858442A4 /* redis-6-diagram.svg */ = {isa = PBXFileReference; path = "redis-6-diagram.svg"; sourceTree = "<group>"; };
+		D677C8A3536460E330AC6FC0 /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		D681F2ACBD1D19031E6DBBDD /* caching-5-diagram.svg */ = {isa = PBXFileReference; path = "caching-5-diagram.svg"; sourceTree = "<group>"; };
+		D7BE2D34BCED015A9961DE5D /* behavioral-8-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "behavioral-8-vault.png"; sourceTree = "<group>"; };
+		D86F089CD34AD83CC91E0191 /* x-twitter-4-diagram.svg */ = {isa = PBXFileReference; path = "x-twitter-4-diagram.svg"; sourceTree = "<group>"; };
+		DA618C7B7DFB4012937E4247 /* x-twitter-2-diagram.svg */ = {isa = PBXFileReference; path = "x-twitter-2-diagram.svg"; sourceTree = "<group>"; };
+		DBD95F790D426C1A4B1BDE92 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DD2CC03AE8FDC659B9B59D40 /* ffi.d.ts */ = {isa = PBXFileReference; path = ffi.d.ts; sourceTree = "<group>"; };
+		E2C7119AF795883FD836AC0C /* ai-and-vectors-16-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-16-diagram.svg"; sourceTree = "<group>"; };
+		E340D608E4E117FE9FA0E0CB /* offline-python-worker.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "offline-python-worker.js"; sourceTree = "<group>"; };
+		E40ED692FDD3D94769E812FF /* caching-4-diagram.svg */ = {isa = PBXFileReference; path = "caching-4-diagram.svg"; sourceTree = "<group>"; };
+		E419E72D41BEC2474546A501 /* communication-6-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "communication-6-vault.png"; sourceTree = "<group>"; };
+		E44AB2C8B44972AEE410FE27 /* microservices-10-diagram.svg */ = {isa = PBXFileReference; path = "microservices-10-diagram.svg"; sourceTree = "<group>"; };
+		E4677D714D1A2851A9EAB1F4 /* redis-4-diagram.svg */ = {isa = PBXFileReference; path = "redis-4-diagram.svg"; sourceTree = "<group>"; };
+		E4CB9434E82E088032EDB407 /* x-twitter-7-diagram.svg */ = {isa = PBXFileReference; path = "x-twitter-7-diagram.svg"; sourceTree = "<group>"; };
+		E78D7DA0EA00BA2875F6B3F3 /* behavioral-5-diagram.svg */ = {isa = PBXFileReference; path = "behavioral-5-diagram.svg"; sourceTree = "<group>"; };
+		E7BA0134FF766F102168DCFD /* redis-1-diagram.svg */ = {isa = PBXFileReference; path = "redis-1-diagram.svg"; sourceTree = "<group>"; };
+		E87B851356967129F2A5FF20 /* spring-boot-12-diagram.svg */ = {isa = PBXFileReference; path = "spring-boot-12-diagram.svg"; sourceTree = "<group>"; };
+		E8A1C91D3BA5CBBE9A4EBCCD /* spring-boot-9-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spring-boot-9-vault.png"; sourceTree = "<group>"; };
+		EA7F04C51641D1CECC264E4F /* spring-boot-10-diagram.svg */ = {isa = PBXFileReference; path = "spring-boot-10-diagram.svg"; sourceTree = "<group>"; };
+		EBC40444ABF4CC12F9AAC95B /* java-4-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "java-4-vault.png"; sourceTree = "<group>"; };
+		EC933DED68B4079CDFFEF17E /* consistency-6-diagram.svg */ = {isa = PBXFileReference; path = "consistency-6-diagram.svg"; sourceTree = "<group>"; };
+		ED21830CA1BD6FFD9385387E /* ai-and-vectors-21-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-21-diagram.svg"; sourceTree = "<group>"; };
+		ED2867B2A743D07D4E0FBEBC /* redis-7-vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redis-7-vault.png"; sourceTree = "<group>"; };
+		EDF5C0EC1C8A2460E4B1EF90 /* ai-and-vectors-22-diagram.svg */ = {isa = PBXFileReference; path = "ai-and-vectors-22-diagram.svg"; sourceTree = "<group>"; };
+		EF8756B641D4C8ADA107CCE4 /* communication-8-diagram.svg */ = {isa = PBXFileReference; path = "communication-8-diagram.svg"; sourceTree = "<group>"; };
+		F010DCFC2D02655E4E722E46 /* spring-boot-5-diagram.svg */ = {isa = PBXFileReference; path = "spring-boot-5-diagram.svg"; sourceTree = "<group>"; };
+		F0C1F113D88B9DE6032D57ED /* infrastructure-6-diagram.svg */ = {isa = PBXFileReference; path = "infrastructure-6-diagram.svg"; sourceTree = "<group>"; };
 		F141F537F8EE24C70DCEA8F4 /* PythonQuestCompanionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PythonQuestCompanionApp.swift; sourceTree = "<group>"; };
+		F2F7B68FFE7E0D609EF3C526 /* elasticsearch-6-diagram.svg */ = {isa = PBXFileReference; path = "elasticsearch-6-diagram.svg"; sourceTree = "<group>"; };
+		F43231240BC09428E9F9AA10 /* x-twitter-8-diagram.svg */ = {isa = PBXFileReference; path = "x-twitter-8-diagram.svg"; sourceTree = "<group>"; };
+		F4F59CBD156143785160B65E /* kafka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kafka.png; sourceTree = "<group>"; };
+		F8D1B9E8AE1C1C06D43060CA /* question_bank.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = question_bank.json; sourceTree = "<group>"; };
+		FE02E62B624D9EEBCAC21C98 /* spring-boot-6-diagram.svg */ = {isa = PBXFileReference; path = "spring-boot-6-diagram.svg"; sourceTree = "<group>"; };
+		FF4D3E740511D57340C35750 /* spring-boot-3-diagram.svg */ = {isa = PBXFileReference; path = "spring-boot-3-diagram.svg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -35,18 +471,285 @@
 			children = (
 				765CA79B0178CB95A06D94FD /* CompanionSettings.swift */,
 				BCA49454AF5A7989AED1F415 /* CompanionWebView.swift */,
+				C0D236FF53DA6701AE7D2576 /* OfflineBundleSchemeHandler.swift */,
 				F141F537F8EE24C70DCEA8F4 /* PythonQuestCompanionApp.swift */,
 				097E56C71665CC6E27FCC811 /* RootTabView.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
 		};
+		2A81050FA15C069336970CC1 /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				2C5EDE9729972C9361BEA1FE /* vue.global.prod.js */,
+				7584C1D19ACB4A70B27997B5 /* pyodide */,
+			);
+			path = vendor;
+			sourceTree = "<group>";
+		};
+		59A0200EF84491F632259DDE /* questions */ = {
+			isa = PBXGroup;
+			children = (
+				22FB39E0A862DAFC72FB7F6F /* ai-and-vectors-1-diagram.svg */,
+				8A625CBA2FE87343731369D2 /* ai-and-vectors-2-diagram.svg */,
+				69D83F555D0D82C06569A493 /* ai-and-vectors-3-diagram.svg */,
+				7BDB052762A2A4062387AC5A /* ai-and-vectors-4-diagram.svg */,
+				D43F4F11D3CAF0439F94EF3D /* ai-and-vectors-5-diagram.svg */,
+				C8B33EC694E4320E8F4927B1 /* ai-and-vectors-6-diagram.svg */,
+				51DD0D367E795DE8BADDAE19 /* ai-and-vectors-7-diagram.svg */,
+				0E6CE3EE139B68514140EC70 /* ai-and-vectors-8-diagram.svg */,
+				2F31DCA9D77592000B056EA5 /* ai-and-vectors-9-diagram.svg */,
+				B149563040A30D887FE8D79F /* ai-and-vectors-10-diagram.svg */,
+				A51350922EAB7DEDE2535CD5 /* ai-and-vectors-11-diagram.svg */,
+				8015377E8EB246252AA3C6DE /* ai-and-vectors-12-diagram.svg */,
+				6613EC9DB020E12B3EF9CB64 /* ai-and-vectors-13-diagram.svg */,
+				73CEBA53DEC840D22416E4A6 /* ai-and-vectors-14-diagram.svg */,
+				D5A0D8BE61710B4FBA98F5E4 /* ai-and-vectors-15-diagram.svg */,
+				E2C7119AF795883FD836AC0C /* ai-and-vectors-16-diagram.svg */,
+				3D3702E2263D7A4341B3B990 /* ai-and-vectors-17-diagram.svg */,
+				47D4D299FA4E4CC524BE2DF8 /* ai-and-vectors-18-diagram.svg */,
+				C7BC5434759D33088A4E7273 /* ai-and-vectors-19-diagram.svg */,
+				7E445F95F46386AF1AB9735C /* ai-and-vectors-20-diagram.svg */,
+				ED21830CA1BD6FFD9385387E /* ai-and-vectors-21-diagram.svg */,
+				EDF5C0EC1C8A2460E4B1EF90 /* ai-and-vectors-22-diagram.svg */,
+				0D0E0DD15AC6D790526807E1 /* ai-and-vectors-23-diagram.svg */,
+				A9DCBF4CEF959B80F83F3B9E /* ai-and-vectors-24-diagram.svg */,
+				70AAB4ABE4E245B8A13E28A2 /* behavioral-1-diagram.svg */,
+				C950D117A97CAB16469FDE50 /* behavioral-1-vault.png */,
+				9E0C768551B682A36D228623 /* behavioral-2-diagram.svg */,
+				28009F2D30EDCF3C39F02EE7 /* behavioral-2-vault.png */,
+				AEE2F5045AA13C7224378658 /* behavioral-3-diagram.svg */,
+				5D53725192264F07CCED0DCC /* behavioral-3-vault.png */,
+				25611AAC04F023208C0E89F2 /* behavioral-4-diagram.svg */,
+				B0CE9FEF3F7E456A0A3ADE7E /* behavioral-4-vault.png */,
+				E78D7DA0EA00BA2875F6B3F3 /* behavioral-5-diagram.svg */,
+				D5C2FCB89AB9F1A724C3282D /* behavioral-5-vault.png */,
+				617E9E77AB9E82CAA2211A6D /* behavioral-6-diagram.svg */,
+				20FE552C347D4487B4D35550 /* behavioral-6-vault.png */,
+				11A0A633FB4F518F1B428F25 /* behavioral-7-diagram.svg */,
+				048150299B16A3B9B651C73E /* behavioral-7-vault.png */,
+				8A1F674060A2E4FADA568EDE /* behavioral-8-diagram.svg */,
+				D7BE2D34BCED015A9961DE5D /* behavioral-8-vault.png */,
+				AA88EF9C8CD59E948D75E62F /* behavioral-9-diagram.svg */,
+				A6910852E169176475352BB9 /* behavioral-9-vault.png */,
+				3D444139E787ED9D5359CCAC /* behavioral-10-diagram.svg */,
+				A9B73696F64CD8194791DED5 /* behavioral-10-vault.png */,
+				9AD8DCDF0D0981E4C03AEDC6 /* caching-1-diagram.svg */,
+				B7612291DF25D2F1ED4F6D73 /* caching-2-diagram.svg */,
+				2AFE9ADA14B585F60D7FE6AE /* caching-3-diagram.svg */,
+				E40ED692FDD3D94769E812FF /* caching-4-diagram.svg */,
+				9FB210019C1B5FD034548D90 /* caching-4-vault.png */,
+				D681F2ACBD1D19031E6DBBDD /* caching-5-diagram.svg */,
+				900FF1A3E5A676EE7608C4C2 /* caching-6-diagram.svg */,
+				53C71FDED0BEF59E23334815 /* caching-7-diagram.svg */,
+				90852D3AF7A0EED804A6E6E7 /* caching-8-diagram.svg */,
+				3BBCF4A5C1C03F5F58D7D2CA /* caching-9-diagram.svg */,
+				4545C746C90C44BBB397455E /* caching-9-vault.png */,
+				4A631207804790531C7E5F2A /* communication-1-diagram.svg */,
+				AFD39DD222390545624E014B /* communication-1-vault.png */,
+				07999E95BC36FB1C2C644E28 /* communication-2-diagram.svg */,
+				BBF1ED144A2462F168126D1E /* communication-2-vault.png */,
+				7452C18839E671AA10BEE19D /* communication-3-diagram.svg */,
+				63625BB8D26B90EAA1C76D5A /* communication-3-vault.png */,
+				49ED270B3E004671DFEB1DA9 /* communication-4-diagram.svg */,
+				9B23104BA0E0EDE41019D1AF /* communication-4-vault.png */,
+				0EB5F162FB152C7160DC89C4 /* communication-5-diagram.svg */,
+				70F37D2F904DC298EF04D3C8 /* communication-5-vault.png */,
+				A79BDD31963718A31FB3DAB2 /* communication-6-diagram.svg */,
+				E419E72D41BEC2474546A501 /* communication-6-vault.png */,
+				4193741C3E26BF7DD13A8561 /* communication-7-diagram.svg */,
+				EF8756B641D4C8ADA107CCE4 /* communication-8-diagram.svg */,
+				01BC688D9FC6515A2673F9FB /* communication-9-diagram.svg */,
+				7F9C75A47BDF0EAC13E5E813 /* communication-9-vault.png */,
+				631A4A6C15A50CCA405C8114 /* communication-10-diagram.svg */,
+				D575F127F280120968EBAF9B /* consistency-1-diagram.svg */,
+				32D7E8071174A056AD5689A6 /* consistency-2-diagram.svg */,
+				17424BCC50BF8E9F807B9130 /* consistency-3-diagram.svg */,
+				3A71D542A9C166E8A7D620A9 /* consistency-4-diagram.svg */,
+				303A4641B0E604812CD7ADF3 /* consistency-5-diagram.svg */,
+				EC933DED68B4079CDFFEF17E /* consistency-6-diagram.svg */,
+				189113580B32525D69114042 /* consistency-7-diagram.svg */,
+				0E292E8FEBC37FB2B9FE6980 /* consistency-8-diagram.svg */,
+				7075A02EACFDBDA2520C4BAB /* elasticsearch-1-diagram.svg */,
+				BAFEDED3FF37614750DD88CC /* elasticsearch-2-diagram.svg */,
+				BFBC7BE6E22E0A4A8C79A5B3 /* elasticsearch-3-diagram.svg */,
+				44E89C9CDFE730BE78394485 /* elasticsearch-4-diagram.svg */,
+				9B12728887B1B05C68308CFA /* elasticsearch-5-diagram.svg */,
+				F2F7B68FFE7E0D609EF3C526 /* elasticsearch-6-diagram.svg */,
+				C805A42C5D00DAE46920E9F7 /* elasticsearch-7-diagram.svg */,
+				990A312717127FB86C258257 /* elasticsearch-8-diagram.svg */,
+				557BDC6A5FC571AB60977437 /* elasticsearch-9-diagram.svg */,
+				0D69817F4C7FF9D662D9C157 /* infrastructure-1-diagram.svg */,
+				79614468389BA38927069BE4 /* infrastructure-2-diagram.svg */,
+				138C9774657A384375D434F3 /* infrastructure-3-diagram.svg */,
+				897EF7023F5B8EFEC3BB22E5 /* infrastructure-4-diagram.svg */,
+				B0EFD463B4C639DC4117B106 /* infrastructure-5-diagram.svg */,
+				F0C1F113D88B9DE6032D57ED /* infrastructure-6-diagram.svg */,
+				9E33C439B22FA6AE3307FF41 /* java-1-diagram.svg */,
+				7B8E35B7F92E81AC11250359 /* java-1-vault.png */,
+				C11F8EE2FDB3915EAAE6427F /* java-2-diagram.svg */,
+				1229A3C92E4691EAEA85FF41 /* java-2-vault.png */,
+				441629FDAB9CB9522126F430 /* java-3-diagram.svg */,
+				C7AAF093B884F85362926121 /* java-4-diagram.svg */,
+				EBC40444ABF4CC12F9AAC95B /* java-4-vault.png */,
+				B28C94370D07B3FAB4CE5FD2 /* java-5-diagram.svg */,
+				CCE24FCE7E9DCEFB01994925 /* java-5-vault.png */,
+				4E96A5CDCC22834E1125ACF3 /* kafka-1-diagram.svg */,
+				9E444E840CC41ACDD60C5166 /* kafka-2-diagram.svg */,
+				15CCF0A4C09D2FAB8990C4DC /* kafka-3-diagram.svg */,
+				187139FD6D7626FF37844287 /* kafka-4-diagram.svg */,
+				36A6418B0C806DC4837AFBB4 /* kafka-5-diagram.svg */,
+				0867F49F4E13DF77811E2F12 /* kafka-6-diagram.svg */,
+				2A3BDCCF3E1638297F79B152 /* microservices-1-diagram.svg */,
+				49C113004DFA925F4543DA59 /* microservices-2-diagram.svg */,
+				6D4162A5A92C9B54BEC5ACE5 /* microservices-2-vault.png */,
+				729A5861C5464F2D56A5B61A /* microservices-3-diagram.svg */,
+				895472BE421243FEF4843C80 /* microservices-4-diagram.svg */,
+				6E47E3ED1F36F4A8F2C4B881 /* microservices-5-diagram.svg */,
+				380E796767AEE8605B17D771 /* microservices-6-diagram.svg */,
+				1A3EEB4F943F6DF866E76EFC /* microservices-7-diagram.svg */,
+				0C9F984FD534245EE09432D1 /* microservices-8-diagram.svg */,
+				A27855F5C97EF67BF52757FE /* microservices-9-diagram.svg */,
+				E44AB2C8B44972AEE410FE27 /* microservices-10-diagram.svg */,
+				AC8F5D65C8359B5370FDA994 /* microservices-11-diagram.svg */,
+				E7BA0134FF766F102168DCFD /* redis-1-diagram.svg */,
+				C392BD89DF2FD950D76CB8DB /* redis-1-vault.png */,
+				36270202395CEA40A6DBDD7D /* redis-2-diagram.svg */,
+				BE28246D7E0955DA67E9D092 /* redis-2-vault.png */,
+				A85C8DE969C17B1D2A0C418A /* redis-3-diagram.svg */,
+				E4677D714D1A2851A9EAB1F4 /* redis-4-diagram.svg */,
+				CA04BDF1E4453714BA599715 /* redis-5-diagram.svg */,
+				D63F357EF58C6A95858442A4 /* redis-6-diagram.svg */,
+				023A48F5C56A773C741E6E90 /* redis-7-diagram.svg */,
+				ED2867B2A743D07D4E0FBEBC /* redis-7-vault.png */,
+				6D71AF33F70067D20E0B3C7C /* redis-8-diagram.svg */,
+				5B0398703EB478AD8B7B4371 /* redis-9-diagram.svg */,
+				C0F6AAE6CCC23ED4A8E49B4E /* redis-10-diagram.svg */,
+				324A98B6F05E3F3D0245BF9E /* redis-10-vault.png */,
+				A9460D815C75EFC99A84DE18 /* redis-11-diagram.svg */,
+				89E09B81C7DC0DA81BA8D034 /* redis-11-vault.png */,
+				D5CAD5609B5EFE6BE6D08F69 /* sharding-1-diagram.svg */,
+				B8B2F44C2D1B7CBC499802C6 /* sharding-2-diagram.svg */,
+				9998BBADF1E75240ABBF145D /* sharding-3-diagram.svg */,
+				8FCF8B209489B06691F73757 /* sharding-4-diagram.svg */,
+				002D268784FE9463A3951436 /* sharding-5-diagram.svg */,
+				B8CBBF4B526D3995230FB776 /* sharding-6-diagram.svg */,
+				B4A82501C9ECBF777456B168 /* spring-boot-1-diagram.svg */,
+				0216DACF9AE99EDD952825EB /* spring-boot-2-diagram.svg */,
+				5AA07CA86E7E41A4C477ABEA /* spring-boot-2-vault.png */,
+				FF4D3E740511D57340C35750 /* spring-boot-3-diagram.svg */,
+				C6EAB83CF11A024E65366DD8 /* spring-boot-4-diagram.svg */,
+				9A9BF97EDD58DA886F4CA462 /* spring-boot-4-vault.png */,
+				F010DCFC2D02655E4E722E46 /* spring-boot-5-diagram.svg */,
+				CE7272D03723C435C082D654 /* spring-boot-5-vault.png */,
+				FE02E62B624D9EEBCAC21C98 /* spring-boot-6-diagram.svg */,
+				3145DE96D862132A32A43126 /* spring-boot-7-diagram.svg */,
+				C26624CAB4F2FF9F32BCEBA6 /* spring-boot-7-vault.png */,
+				1F243B605EB98C78E841BF33 /* spring-boot-8-diagram.svg */,
+				870C38D8F82E1845F9C18CD6 /* spring-boot-9-diagram.svg */,
+				E8A1C91D3BA5CBBE9A4EBCCD /* spring-boot-9-vault.png */,
+				EA7F04C51641D1CECC264E4F /* spring-boot-10-diagram.svg */,
+				9FA2B5543BFCD3BD2C350D42 /* spring-boot-10-vault.png */,
+				4EC7055D8476C396268E0D4F /* spring-boot-11-diagram.svg */,
+				E87B851356967129F2A5FF20 /* spring-boot-12-diagram.svg */,
+				BA5D97211F7CB329615D1A77 /* system-design-1-diagram.svg */,
+				A5E79A5053D6D0F1007F8736 /* system-design-2-diagram.svg */,
+				B0CF1338F1554AA6DAF069E9 /* system-design-3-diagram.svg */,
+				1F1A30C9602429E550FAC636 /* system-design-4-diagram.svg */,
+				556FDA8761DE1F163977C1BA /* system-design-5-diagram.svg */,
+				A52524A9CF8169B5D9FEE865 /* system-design-6-diagram.svg */,
+				A35E5F66B427D449376F2B74 /* system-design-7-diagram.svg */,
+				AB0222F9FFAF7B7FAD1E6DBD /* system-design-8-diagram.svg */,
+				657B4DCD94549B5AFBCFF0E1 /* x-twitter-1-diagram.svg */,
+				DA618C7B7DFB4012937E4247 /* x-twitter-2-diagram.svg */,
+				BBE721DC16A156E4FAF47E02 /* x-twitter-3-diagram.svg */,
+				D86F089CD34AD83CC91E0191 /* x-twitter-4-diagram.svg */,
+				C7BFF56617040177B484F1AB /* x-twitter-5-diagram.svg */,
+				262307E0336AD1E9E19AAA5E /* x-twitter-6-diagram.svg */,
+				E4CB9434E82E088032EDB407 /* x-twitter-7-diagram.svg */,
+				F43231240BC09428E9F9AA10 /* x-twitter-8-diagram.svg */,
+				31220063F2394E03CF1EE1A8 /* x-twitter-9-diagram.svg */,
+			);
+			path = questions;
+			sourceTree = "<group>";
+		};
+		7584C1D19ACB4A70B27997B5 /* pyodide */ = {
+			isa = PBXGroup;
+			children = (
+				83C66039BDF72C8EF187F3F0 /* console-v2.html */,
+				ACB72BEF620A0586DA2E2F2F /* console.html */,
+				DD2CC03AE8FDC659B9B59D40 /* ffi.d.ts */,
+				D677C8A3536460E330AC6FC0 /* package.json */,
+				745EEE63FAEBD3A1393EAE15 /* pyodide-lock.json */,
+				293A0EB6E37D7E414BB44411 /* pyodide.asm.js */,
+				0643A3E4099890ADCDBFACC9 /* pyodide.asm.wasm */,
+				89C50BD3D51E39C3A402FA32 /* pyodide.d.ts */,
+				8A02641E4CFDA18ACFB11094 /* pyodide.js */,
+				68B72AF69E626CFE57A82547 /* pyodide.js.map */,
+				A102149C506405FB2A638A95 /* pyodide.mjs */,
+				320AC6F1B1F1696DF57E2111 /* pyodide.mjs.map */,
+				32F44FCAE1726FA3856584DC /* python_stdlib.zip */,
+				DBD95F790D426C1A4B1BDE92 /* README.md */,
+			);
+			path = pyodide;
+			sourceTree = "<group>";
+		};
 		78358E77D13EA0682D8BA2CC = {
 			isa = PBXGroup;
 			children = (
 				271E527478B90F8EAFD446B6 /* Sources */,
+				93423D6E43EBD15C38A208D2 /* WebApp */,
 				194992A90C31C59A4969F1E8 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		8B9EB65162681DEB53A8E8F7 /* illustrations */ = {
+			isa = PBXGroup;
+			children = (
+				22E9C1E2F598648AC8055F27 /* ai-vectors.png */,
+				5D520D7F26F893C68C12A4AD /* behavioral.png */,
+				8D73D5ADC48A44B07702C70B /* caching.png */,
+				37E428A91EDAC076F5723653 /* communication.png */,
+				64F223A35BA43CB0AA1CF9B1 /* consistency-cap.png */,
+				490B80C910950B242D2264C4 /* consistency.png */,
+				53A3E13CA8AA967310A84AD3 /* elasticsearch.png */,
+				CDFA03AF1ADFA8A7D41518B3 /* infrastructure.png */,
+				BEBB8172085EF5D348EB9815 /* java.png */,
+				F4F59CBD156143785160B65E /* kafka.png */,
+				812F7F2845050E2A774C71D0 /* microservices.png */,
+				43D0707C0A2C07528E0AE939 /* redis.png */,
+				8C6B14E6BD4F5B3565062DF9 /* sharding.png */,
+				737E1DDDFCB771296BE6B6D1 /* spring-boot.png */,
+				3C578019D6C4B037C7DEEC0C /* system-design.png */,
+				0050DE4487C9C042FDDFE89F /* x-twitter.png */,
+				59A0200EF84491F632259DDE /* questions */,
+			);
+			path = illustrations;
+			sourceTree = "<group>";
+		};
+		93423D6E43EBD15C38A208D2 /* WebApp */ = {
+			isa = PBXGroup;
+			children = (
+				D2185EF67224D1FED5837868 /* app.js */,
+				54C103921413B23D3EEF194E /* index.html */,
+				E340D608E4E117FE9FA0E0CB /* offline-python-worker.js */,
+				C6047BCB886B9C6463E0B70E /* offline-runtime.js */,
+				7DFDD32D8D706D09DA9CC1FB /* styles.css */,
+				BADB175C76F57F288D9746FE /* data */,
+				8B9EB65162681DEB53A8E8F7 /* illustrations */,
+				2A81050FA15C069336970CC1 /* vendor */,
+			);
+			name = WebApp;
+			path = Resources/WebApp;
+			sourceTree = "<group>";
+		};
+		BADB175C76F57F288D9746FE /* data */ = {
+			isa = PBXGroup;
+			children = (
+				270E83A2639B611528F569B4 /* offline_python_lessons.json */,
+				F8D1B9E8AE1C1C06D43060CA /* question_bank.json */,
+			);
+			path = data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -57,6 +760,7 @@
 			buildConfigurationList = 7F28F411E980125CF213FCF7 /* Build configuration list for PBXNativeTarget "PythonQuestCompanion" */;
 			buildPhases = (
 				80D4E41CD73F298EAD1553E2 /* Sources */,
+				3B0B573D2EDB4C6B2787E124 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -99,6 +803,233 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		3B0B573D2EDB4C6B2787E124 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67A6FA574FE8E9CD03A4C2CC /* README.md in Resources */,
+				66CF9DFFF6A161EB58E27EB7 /* ai-and-vectors-1-diagram.svg in Resources */,
+				E7D0511FDEFFE0E6AAF82CCB /* ai-and-vectors-10-diagram.svg in Resources */,
+				AE33BEA1E61A0A6652CADBE2 /* ai-and-vectors-11-diagram.svg in Resources */,
+				AFA1572E55C68023C39E1425 /* ai-and-vectors-12-diagram.svg in Resources */,
+				BB4DE37CF7CC9F34A43365C1 /* ai-and-vectors-13-diagram.svg in Resources */,
+				B21A056B82AA7059BBBAE0C5 /* ai-and-vectors-14-diagram.svg in Resources */,
+				D050B14BE2520E68655F7817 /* ai-and-vectors-15-diagram.svg in Resources */,
+				FADB7F7721CF365F2A5098DF /* ai-and-vectors-16-diagram.svg in Resources */,
+				E329278F7DCEFCFABDE9B75B /* ai-and-vectors-17-diagram.svg in Resources */,
+				8A0CD55C0C4DD4A1C209CC56 /* ai-and-vectors-18-diagram.svg in Resources */,
+				664DD8570C37DC42749880B7 /* ai-and-vectors-19-diagram.svg in Resources */,
+				2C904FB0A262ECCB065F24BA /* ai-and-vectors-2-diagram.svg in Resources */,
+				E49E2E0AAF41D2EEEF686912 /* ai-and-vectors-20-diagram.svg in Resources */,
+				AB9C31CB63299669ACD47771 /* ai-and-vectors-21-diagram.svg in Resources */,
+				661245C0B436F2C5BA77B0BE /* ai-and-vectors-22-diagram.svg in Resources */,
+				24E73F4A511056D0B26F8ACA /* ai-and-vectors-23-diagram.svg in Resources */,
+				2FB2387E66C822B4035AF258 /* ai-and-vectors-24-diagram.svg in Resources */,
+				8D63AB50ED5752A6F9F06AF6 /* ai-and-vectors-3-diagram.svg in Resources */,
+				C49B949A48E5C3DEFB645B44 /* ai-and-vectors-4-diagram.svg in Resources */,
+				C23BFA3A8B976E2A35F61862 /* ai-and-vectors-5-diagram.svg in Resources */,
+				879AD2E4705FD352A47B5156 /* ai-and-vectors-6-diagram.svg in Resources */,
+				99C86059A4409FE4EF9D8B70 /* ai-and-vectors-7-diagram.svg in Resources */,
+				9F89B0A7E43BF3162903CC3A /* ai-and-vectors-8-diagram.svg in Resources */,
+				CF9B5FF646C6A8178EAFF090 /* ai-and-vectors-9-diagram.svg in Resources */,
+				DD92BAA9D2F7433EE0773866 /* ai-vectors.png in Resources */,
+				C2D193C4FB749360A9BCDB75 /* app.js in Resources */,
+				6EBAF92AB98C9C412EFB7834 /* behavioral-1-diagram.svg in Resources */,
+				79F0DE0180685985BD34A1AA /* behavioral-1-vault.png in Resources */,
+				FB7F935F3197F0240C2B1F1F /* behavioral-10-diagram.svg in Resources */,
+				83072CC249B9463B4A72F08C /* behavioral-10-vault.png in Resources */,
+				4BA49A8903A6CE62B99566B5 /* behavioral-2-diagram.svg in Resources */,
+				8A100C99DA0D092E7950339E /* behavioral-2-vault.png in Resources */,
+				E6809E10C8D60B3EECB3E35E /* behavioral-3-diagram.svg in Resources */,
+				E954077B6EAA440F81A7D55F /* behavioral-3-vault.png in Resources */,
+				0BFC74DB69EDB0AF1F4CFC9B /* behavioral-4-diagram.svg in Resources */,
+				89D5258F5BA2FCF9FC92150E /* behavioral-4-vault.png in Resources */,
+				356736717868CF244A2D53B9 /* behavioral-5-diagram.svg in Resources */,
+				D6653534A48F7B5B8EA75E6A /* behavioral-5-vault.png in Resources */,
+				8A335BB2332F3AE121AB92D1 /* behavioral-6-diagram.svg in Resources */,
+				8FA305475F11720DD003797A /* behavioral-6-vault.png in Resources */,
+				45A5E28D10D55C2C066335ED /* behavioral-7-diagram.svg in Resources */,
+				BB6A315A7B991DEBEC9E0E84 /* behavioral-7-vault.png in Resources */,
+				675D3041D70A35140DB01FD8 /* behavioral-8-diagram.svg in Resources */,
+				B25CBDAC52D364870FCBFF6D /* behavioral-8-vault.png in Resources */,
+				0C6DE0611AA22C148837926A /* behavioral-9-diagram.svg in Resources */,
+				74F6E920C142CD9935C634F7 /* behavioral-9-vault.png in Resources */,
+				13DBB96EAB4C11BAB9CBD1F9 /* behavioral.png in Resources */,
+				DE896C36D4B487F4ACF468BC /* caching-1-diagram.svg in Resources */,
+				FE2EBCA296175347DD3E146B /* caching-2-diagram.svg in Resources */,
+				4493232812C6AA309DCF223B /* caching-3-diagram.svg in Resources */,
+				835F8809FE9E76D72367A787 /* caching-4-diagram.svg in Resources */,
+				6AFB36493E1FF293C538BC72 /* caching-4-vault.png in Resources */,
+				029BCC609F366FE625D93CB3 /* caching-5-diagram.svg in Resources */,
+				77ECF89E4D1A24067FFAA9F6 /* caching-6-diagram.svg in Resources */,
+				530D23A55BB52EBD7002D462 /* caching-7-diagram.svg in Resources */,
+				F79F0CEE6E654B15E6C0D78E /* caching-8-diagram.svg in Resources */,
+				A180594296735C3F2CA1D314 /* caching-9-diagram.svg in Resources */,
+				C64E9F359BDE54E904E1A396 /* caching-9-vault.png in Resources */,
+				8FF3FAA0CAA0183BC55FB9CE /* caching.png in Resources */,
+				403527355A0C40B48C5CC77E /* communication-1-diagram.svg in Resources */,
+				9B4014D583C9BD3DD6926A50 /* communication-1-vault.png in Resources */,
+				5903708B020A2E02823897AF /* communication-10-diagram.svg in Resources */,
+				BAB24A6AB54BF7A97070AC62 /* communication-2-diagram.svg in Resources */,
+				43AAAF722E21B12333CADBDE /* communication-2-vault.png in Resources */,
+				D5614C857C3E0863E1C74883 /* communication-3-diagram.svg in Resources */,
+				381F10F19EF51DC0DD42D48F /* communication-3-vault.png in Resources */,
+				373C95EC66B6937E41618099 /* communication-4-diagram.svg in Resources */,
+				0591495BF37A10FF41425080 /* communication-4-vault.png in Resources */,
+				6381585F23194E9827790006 /* communication-5-diagram.svg in Resources */,
+				E6467B82AF7081B2C56EF8E6 /* communication-5-vault.png in Resources */,
+				02D3C78F169A3336A84A2B5D /* communication-6-diagram.svg in Resources */,
+				41B993D22C00979783F61DF5 /* communication-6-vault.png in Resources */,
+				FDF3BF46725D9CF229A982E4 /* communication-7-diagram.svg in Resources */,
+				207C43905DA05390D61558CE /* communication-8-diagram.svg in Resources */,
+				224AC5FDCD45A09F040C3C75 /* communication-9-diagram.svg in Resources */,
+				BAC4FDD3ED69C80F6892DC3F /* communication-9-vault.png in Resources */,
+				2A25644961055EC26D1AE69A /* communication.png in Resources */,
+				DB2EC40B29328A43A0D99E0B /* consistency-1-diagram.svg in Resources */,
+				3D19F3BBCBC630D9C678EFE2 /* consistency-2-diagram.svg in Resources */,
+				574C273562C67068DAE260CC /* consistency-3-diagram.svg in Resources */,
+				6DF4EC1582047700A701DC2C /* consistency-4-diagram.svg in Resources */,
+				018CE7F455A57570D196DC4E /* consistency-5-diagram.svg in Resources */,
+				8951ACCE1F65FF404AF2F696 /* consistency-6-diagram.svg in Resources */,
+				AA960956C0F28F93BE4790C2 /* consistency-7-diagram.svg in Resources */,
+				25339868263A394275BC0D43 /* consistency-8-diagram.svg in Resources */,
+				CA7E4CE8017B324E4AA57D74 /* consistency-cap.png in Resources */,
+				4EE98635163BA70DE155AF0A /* consistency.png in Resources */,
+				85266F866D9C7F5E1CBF08FE /* console-v2.html in Resources */,
+				7A15D9F9F5D74BEEBB07D02A /* console.html in Resources */,
+				16208BC3859F155D4268D733 /* elasticsearch-1-diagram.svg in Resources */,
+				8EAADC4EE6D2D482E5D1D765 /* elasticsearch-2-diagram.svg in Resources */,
+				A3BBD0EDCE8B24B47105CB38 /* elasticsearch-3-diagram.svg in Resources */,
+				9065A3AFF74BB843BAFAD86B /* elasticsearch-4-diagram.svg in Resources */,
+				B51329742EFB5DCD2F12E173 /* elasticsearch-5-diagram.svg in Resources */,
+				E3BEA6333B513E1CC9984B19 /* elasticsearch-6-diagram.svg in Resources */,
+				42B32D48CB189C35EDAC10CF /* elasticsearch-7-diagram.svg in Resources */,
+				C90D6CF36041A1AEA9138E87 /* elasticsearch-8-diagram.svg in Resources */,
+				059EE296876654219936BDC5 /* elasticsearch-9-diagram.svg in Resources */,
+				93CE505B03C34F932401F506 /* elasticsearch.png in Resources */,
+				8C5E855452AC40109128BCA2 /* ffi.d.ts in Resources */,
+				3A24456D56981A7E51A34309 /* index.html in Resources */,
+				F574F8EC192C6DBB5083A3C9 /* infrastructure-1-diagram.svg in Resources */,
+				0D2E73B5F24C49F520EBFAED /* infrastructure-2-diagram.svg in Resources */,
+				248CE6E214043C4897842553 /* infrastructure-3-diagram.svg in Resources */,
+				D36351219D82B554CF4722FA /* infrastructure-4-diagram.svg in Resources */,
+				704E4F24E4A610230804096B /* infrastructure-5-diagram.svg in Resources */,
+				5E4781CD8A5A2799A390ABA9 /* infrastructure-6-diagram.svg in Resources */,
+				B6C7C563E99C8930AC50C05F /* infrastructure.png in Resources */,
+				548201BD481085F522AA6C71 /* java-1-diagram.svg in Resources */,
+				91B2DDC2AE85D46E91488755 /* java-1-vault.png in Resources */,
+				0FB6D2B642FFCAD61F8B8F98 /* java-2-diagram.svg in Resources */,
+				F5811617B7F377AE7F4FBF90 /* java-2-vault.png in Resources */,
+				5B0440295F01FE7CD9548DBF /* java-3-diagram.svg in Resources */,
+				9B2323ED430BB90665474B6E /* java-4-diagram.svg in Resources */,
+				1ABC5F35F87C75592EB76F07 /* java-4-vault.png in Resources */,
+				3077526F768252A2500EE455 /* java-5-diagram.svg in Resources */,
+				6336CB17B64750149C684B54 /* java-5-vault.png in Resources */,
+				C27B444974640BF40F7A6CD5 /* java.png in Resources */,
+				2414F946BBAE9049B7ADE7AD /* kafka-1-diagram.svg in Resources */,
+				564C17268F9A5094DAF23CC1 /* kafka-2-diagram.svg in Resources */,
+				C6CB6F3134F55FB323EBD241 /* kafka-3-diagram.svg in Resources */,
+				64F14BBB3F71B2A86E717057 /* kafka-4-diagram.svg in Resources */,
+				5D76C0C24499839FFD7DC985 /* kafka-5-diagram.svg in Resources */,
+				237D14DEC6A6E8E5A41CC15D /* kafka-6-diagram.svg in Resources */,
+				DE3F04E128F52AAF7D978326 /* kafka.png in Resources */,
+				3849B20AFD5534DD26478C4B /* microservices-1-diagram.svg in Resources */,
+				58BF614C448C823045723A61 /* microservices-10-diagram.svg in Resources */,
+				8BCC32D4CE8C6B319B751C1A /* microservices-11-diagram.svg in Resources */,
+				166EF0D3345C6421EAE32733 /* microservices-2-diagram.svg in Resources */,
+				244B9D2332A90679E5F8D0BF /* microservices-2-vault.png in Resources */,
+				D521D828B8F78C7D93DA1458 /* microservices-3-diagram.svg in Resources */,
+				041C28A621D02FED0EB3729A /* microservices-4-diagram.svg in Resources */,
+				BE2CDC1E6F4215C0E63C81E4 /* microservices-5-diagram.svg in Resources */,
+				55D9779CE997251E85FFB688 /* microservices-6-diagram.svg in Resources */,
+				5C3A4ABA7779CCA8391EA2E4 /* microservices-7-diagram.svg in Resources */,
+				19007BDBBBA124D966EF0EC1 /* microservices-8-diagram.svg in Resources */,
+				5185844E1646F7A4F57465F3 /* microservices-9-diagram.svg in Resources */,
+				A9AFE32CC314C6F3FB9F547E /* microservices.png in Resources */,
+				1465FA93EDFF0D075EACBD4F /* offline-python-worker.js in Resources */,
+				7B6566C4050149FE5C96ACD4 /* offline-runtime.js in Resources */,
+				202FCACB241BEEFEA7E8686A /* offline_python_lessons.json in Resources */,
+				760C2A824E95181C8CA5633C /* package.json in Resources */,
+				4DC2BDE18D9085DC2E0A228A /* pyodide-lock.json in Resources */,
+				67AFD0C379A7DFB7A49F8C49 /* pyodide.asm.js in Resources */,
+				4D657BB5095868B52BB10C43 /* pyodide.asm.wasm in Resources */,
+				21F64858CEAF7DC4AEE0405E /* pyodide.d.ts in Resources */,
+				C46C4A304841463DEA700ED0 /* pyodide.js in Resources */,
+				E55E179B655C143CC8E85FE6 /* pyodide.js.map in Resources */,
+				263FDE5D460D054A8B554419 /* pyodide.mjs in Resources */,
+				7ADCDD8979E701B02ABF417B /* pyodide.mjs.map in Resources */,
+				64C9FE3C4411CF182B14A919 /* python_stdlib.zip in Resources */,
+				2D67FC1136F98820CB24DDD2 /* question_bank.json in Resources */,
+				D5D0048715B68FE015C3030F /* redis-1-diagram.svg in Resources */,
+				E59356252B8A989357100CB1 /* redis-1-vault.png in Resources */,
+				0CCFC3FECA0BD93A2259386E /* redis-10-diagram.svg in Resources */,
+				D3E168ADACD41221072DE287 /* redis-10-vault.png in Resources */,
+				FFA8B8DF21CB7B2B3350D28D /* redis-11-diagram.svg in Resources */,
+				D14AD09DD7A6DDA3685F08A0 /* redis-11-vault.png in Resources */,
+				8EE32692149CDFC126D4F83B /* redis-2-diagram.svg in Resources */,
+				2869CD4C05E79642AF3DA7A3 /* redis-2-vault.png in Resources */,
+				A549CDD82F7C0CE26A296DA7 /* redis-3-diagram.svg in Resources */,
+				8B9EA20F3894F0CF9EA0225F /* redis-4-diagram.svg in Resources */,
+				4F6DC4052FF0F63FB6A7F256 /* redis-5-diagram.svg in Resources */,
+				66339E39572D114B149C833C /* redis-6-diagram.svg in Resources */,
+				F029D3B06EDBEECE74184FD5 /* redis-7-diagram.svg in Resources */,
+				EBA07D90E4AC2C865F313926 /* redis-7-vault.png in Resources */,
+				69E5CC24B03F3BD4E01A1B08 /* redis-8-diagram.svg in Resources */,
+				76727BA23C533CEDAE07F90A /* redis-9-diagram.svg in Resources */,
+				7E89682FB6709C7029A8CACC /* redis.png in Resources */,
+				73EBB5B7D1E0720BF8BDB3EA /* sharding-1-diagram.svg in Resources */,
+				600997E80D61539BAB597DC9 /* sharding-2-diagram.svg in Resources */,
+				532CBD8EEC44E322CB97CB40 /* sharding-3-diagram.svg in Resources */,
+				CF1C454513D6FF897BB18ACC /* sharding-4-diagram.svg in Resources */,
+				65FE6786422B66673E7F6522 /* sharding-5-diagram.svg in Resources */,
+				8DEC6A964AAD6D0888F5F455 /* sharding-6-diagram.svg in Resources */,
+				96D5F4A1A9AB82972F08C0F5 /* sharding.png in Resources */,
+				DEA45327E0C68E8FF9434B6E /* spring-boot-1-diagram.svg in Resources */,
+				EB4283095B8C5F6252C5983B /* spring-boot-10-diagram.svg in Resources */,
+				FB3F42B641326A112FD98BB7 /* spring-boot-10-vault.png in Resources */,
+				2588FD96E2CB8ECAA54FC9EB /* spring-boot-11-diagram.svg in Resources */,
+				34C46C5563086D81350F5444 /* spring-boot-12-diagram.svg in Resources */,
+				86A77967F09B0813BAFAD373 /* spring-boot-2-diagram.svg in Resources */,
+				19FB3DD4DCF1AAC4197EC0F1 /* spring-boot-2-vault.png in Resources */,
+				FF716081C1D60450792395FC /* spring-boot-3-diagram.svg in Resources */,
+				9ACB1541D5BE9C88AD521C58 /* spring-boot-4-diagram.svg in Resources */,
+				7FC996194629814D69242D63 /* spring-boot-4-vault.png in Resources */,
+				E8BB808B58E002E93FC25DAA /* spring-boot-5-diagram.svg in Resources */,
+				104632713D22069F15B45295 /* spring-boot-5-vault.png in Resources */,
+				7D79AD0554C1FDE883EF162E /* spring-boot-6-diagram.svg in Resources */,
+				03DD6F94DE22F1E88BC1E8AD /* spring-boot-7-diagram.svg in Resources */,
+				2CEA9B1B5B53D5DD7AD6DFFF /* spring-boot-7-vault.png in Resources */,
+				C1E06D4CBFB6CFD06A22F112 /* spring-boot-8-diagram.svg in Resources */,
+				1365A94E5308608FD09110C0 /* spring-boot-9-diagram.svg in Resources */,
+				FD01D83E1F004495FCA8A5EA /* spring-boot-9-vault.png in Resources */,
+				7E6325154C08B4F95ED832BC /* spring-boot.png in Resources */,
+				6FE0C6354C5FAD728AC0B729 /* styles.css in Resources */,
+				FDBFD91910D8311D7819B110 /* system-design-1-diagram.svg in Resources */,
+				E068014D6183E9637B40E3AC /* system-design-2-diagram.svg in Resources */,
+				741495F2A841F6B1CA2306BC /* system-design-3-diagram.svg in Resources */,
+				B830251FE44D74E580840D7B /* system-design-4-diagram.svg in Resources */,
+				99AE4A5CBAE9D3010CF66482 /* system-design-5-diagram.svg in Resources */,
+				11951B8B9F4A9AF1D2F10C2A /* system-design-6-diagram.svg in Resources */,
+				525B318CE5A3AC41679F04A1 /* system-design-7-diagram.svg in Resources */,
+				F611D4CDA853E4AD83A37643 /* system-design-8-diagram.svg in Resources */,
+				FE798099F38442821DA7B095 /* system-design.png in Resources */,
+				B922CC820E97D87992D8B2EE /* vue.global.prod.js in Resources */,
+				2B896BD462CB0BD75B5FD082 /* x-twitter-1-diagram.svg in Resources */,
+				8A0CF1CE0F7F0D67B3260592 /* x-twitter-2-diagram.svg in Resources */,
+				B7DA6B10135B3D1B143C982A /* x-twitter-3-diagram.svg in Resources */,
+				14EBB5E4788CDF6D5342598E /* x-twitter-4-diagram.svg in Resources */,
+				62297D35459AA05EE2BAECB1 /* x-twitter-5-diagram.svg in Resources */,
+				A05C9201317B71F303335291 /* x-twitter-6-diagram.svg in Resources */,
+				88433E20966995ABD6C5A432 /* x-twitter-7-diagram.svg in Resources */,
+				AD5C01B2362B04CF10F8D37E /* x-twitter-8-diagram.svg in Resources */,
+				2FBD8E86FD78284C3137754B /* x-twitter-9-diagram.svg in Resources */,
+				5CEDED07B80D3AC0D274DB12 /* x-twitter.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		80D4E41CD73F298EAD1553E2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -106,6 +1037,7 @@
 			files = (
 				88E095C319EDA7ACBFB47B24 /* CompanionSettings.swift in Sources */,
 				C30503A7C75951B00DD4426A /* CompanionWebView.swift in Sources */,
+				AA447AF28820755DD6C22DC5 /* OfflineBundleSchemeHandler.swift in Sources */,
 				FBDBF3D382FE91B9940F7BDA /* PythonQuestCompanionApp.swift in Sources */,
 				D265BF36F7517385397F8E5D /* RootTabView.swift in Sources */,
 			);

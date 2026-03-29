@@ -48,6 +48,7 @@ enum CompanionWorkspace: String, CaseIterable, Identifiable {
 @Observable
 final class CompanionSettings {
     private static let baseURLKey = "companion.base_url"
+    private static let onDeviceBaseURL = "app://local/index.html"
     private static let fallbackHostedBaseURL = "https://interview-prep.onrender.com"
 
     var baseURLString: String {
@@ -60,7 +61,7 @@ final class CompanionSettings {
         let stored = UserDefaults.standard.string(forKey: Self.baseURLKey)
         self.baseURLString = stored?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false
             ? stored!
-            : Self.defaultHostedBaseURL
+            : Self.onDeviceBaseURL
     }
 
     static var defaultHostedBaseURL: String {
@@ -87,6 +88,14 @@ final class CompanionSettings {
 
     var hostedBaseURLString: String {
         Self.defaultHostedBaseURL
+    }
+
+    var onDeviceBaseURLString: String {
+        Self.onDeviceBaseURL
+    }
+
+    var usesOnDeviceApp: Bool {
+        baseURL?.scheme?.lowercased() == "app"
     }
 
     var usesLocalhost: Bool {
@@ -116,6 +125,10 @@ final class CompanionSettings {
 
     func useLocalhost() {
         baseURLString = "http://localhost:8000"
+    }
+
+    func useOnDeviceMode() {
+        baseURLString = Self.onDeviceBaseURL
     }
 
     func useHostedSite() {
