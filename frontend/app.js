@@ -829,6 +829,159 @@ function createConceptSimulation(canvas, options = {}) {
   };
 }
 
+const PYTHON_QUEST_STORAGE_KEY = "python-quest-progress-v1";
+const PYTHON_QUEST_REALMS = [
+  {
+    title: "Syntax Springs",
+    code: "ST-01",
+    accent: "#0f766e",
+    soft: "#dff7f3",
+    glow: "#92ddd2",
+    blurb: "Shape variables, types, and f-strings before you push deeper into the map.",
+  },
+  {
+    title: "Loop Lagoon",
+    code: "CF-02",
+    accent: "#2563eb",
+    soft: "#e4efff",
+    glow: "#9fc4ff",
+    blurb: "Steer through branches, ranges, and loop control without drifting off course.",
+  },
+  {
+    title: "Function Forge",
+    code: "FN-03",
+    accent: "#7c3aed",
+    soft: "#efe6ff",
+    glow: "#ceb2ff",
+    blurb: "Craft reusable spells with parameters, returns, and concise lambda tricks.",
+  },
+  {
+    title: "Structure Summit",
+    code: "DS-04",
+    accent: "#b45309",
+    soft: "#fff0df",
+    glow: "#ffd19b",
+    blurb: "Traverse lists, tuples, sets, and dictionaries like a prepared explorer.",
+  },
+  {
+    title: "Object Observatory",
+    code: "OO-05",
+    accent: "#dc2626",
+    soft: "#ffe4e4",
+    glow: "#ffb0b0",
+    blurb: "Learn how classes, methods, and inheritance line up into bigger systems.",
+  },
+  {
+    title: "Hash Harbor",
+    code: "HM-06",
+    accent: "#0f766e",
+    soft: "#dcfce7",
+    glow: "#9fe7b5",
+    blurb: "Dock with dictionaries, hashing, and collision rules that keep lookups fast.",
+  },
+  {
+    title: "Generator Grove",
+    code: "CG-07",
+    accent: "#4f46e5",
+    soft: "#e7e8ff",
+    glow: "#b6b8ff",
+    blurb: "Unlock compact comprehensions and lazy streams without losing clarity.",
+  },
+  {
+    title: "Exception Expanse",
+    code: "EH-08",
+    accent: "#be123c",
+    soft: "#ffe4ec",
+    glow: "#ffb1c3",
+    blurb: "Contain failures with precise exception handling and clean recovery paths.",
+  },
+  {
+    title: "File Fjord",
+    code: "FI-09",
+    accent: "#0369a1",
+    soft: "#e0f2fe",
+    glow: "#9cd8f7",
+    blurb: "Navigate files, JSON, CSV, and pathlib with safe open-close patterns.",
+  },
+  {
+    title: "Decorator Dome",
+    code: "DC-10",
+    accent: "#9333ea",
+    soft: "#f3e8ff",
+    glow: "#ddb3ff",
+    blurb: "Finish the journey with closures, wrappers, and higher-order Python magic.",
+  },
+];
+const VALID_WORKSPACES = ["interview", "quest", "python"];
+const INITIAL_ROUTE_STATE = readRouteState();
+
+function normalizeWorkspace(value) {
+  return VALID_WORKSPACES.includes(value) ? value : "interview";
+}
+
+function readRouteState() {
+  if (typeof window === "undefined") {
+    return { workspace: "interview", lessonSlug: "" };
+  }
+
+  const url = new URL(window.location.href);
+  return {
+    workspace: normalizeWorkspace(url.searchParams.get("workspace")),
+    lessonSlug: (url.searchParams.get("lesson") || "").trim().toLowerCase(),
+  };
+}
+
+function createEmptyQuestProgress() {
+  return {
+    completedLessons: {},
+    quizWins: {},
+    codeWins: {},
+    recentLesson: "",
+  };
+}
+
+function loadQuestProgress() {
+  if (typeof window === "undefined") {
+    return createEmptyQuestProgress();
+  }
+
+  try {
+    const raw = window.localStorage.getItem(PYTHON_QUEST_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : createEmptyQuestProgress();
+  } catch (_error) {
+    return createEmptyQuestProgress();
+  }
+}
+
+function normalizeQuestProgress(progress, lessons) {
+  const base = createEmptyQuestProgress();
+  const lessonSlugs = new Set((lessons || []).map((lesson) => lesson.slug));
+  const coerceFlags = (source) =>
+    Object.entries(source && typeof source === "object" ? source : {}).reduce((acc, [slug, value]) => {
+      if (lessonSlugs.has(slug) && Boolean(value)) {
+        acc[slug] = true;
+      }
+      return acc;
+    }, {});
+
+  return {
+    completedLessons: coerceFlags(progress?.completedLessons),
+    quizWins: coerceFlags(progress?.quizWins),
+    codeWins: coerceFlags(progress?.codeWins),
+    recentLesson: lessonSlugs.has(progress?.recentLesson) ? progress.recentLesson : "",
+  };
+}
+
+function questRealmForIndex(index) {
+  return PYTHON_QUEST_REALMS[index % PYTHON_QUEST_REALMS.length];
+}
+
+function questVisibleLearnCards(cards) {
+  return (cards || [])
+    .filter((card) => card && ["concept", "checkpoint", "code"].includes(card.kind))
+    .slice(0, 6);
+}
+
 createApp({
   data() {
     return {
@@ -837,7 +990,7 @@ createApp({
       payload: null,
       searchText: "",
       activeSection: "all",
-      activeWorkspace: "interview",
+      activeWorkspace: INITIAL_ROUTE_STATE.workspace,
       openQuestionIds: {},
       pythonStatusChecked: false,
       pythonAvailable: false,
@@ -850,9 +1003,65 @@ createApp({
       pythonError: "",
       pythonPollTimer: null,
       pythonPollInFlight: false,
+      pythonQuestRequestedLessonSlug: INITIAL_ROUTE_STATE.lessonSlug,
+      pythonQuestLoading: false,
+      pythonQuestError: "",
+      pythonQuestLessonsData: [],
+      pythonQuestValidationEnabled: false,
+      pythonQuestValidationReason: "",
+      pythonQuestSelectedLessonSlug: "",
+      pythonQuestQuizSelections: {},
+      pythonQuestQuizResults: {},
+      pythonQuestCodeDrafts: {},
+      pythonQuestCodeResults: {},
+      pythonQuestSubmittingSlug: "",
+      pythonQuestProgress: createEmptyQuestProgress(),
     };
   },
   computed: {
+    heroContent() {
+      if (this.activeWorkspace === "quest") {
+        return {
+          kicker: "Python Quest Academy",
+          title: "Learn Python Through Boss Quizzes, Code Gates, and Unlockable Realms",
+          copy:
+            "Each realm is generated from the real lesson modules in this repo, so the game stays aligned with the curriculum you already maintain.",
+          metrics: [
+            { label: "Realms", value: this.pythonQuestLessons.length || 10 },
+            { label: "Unlocked", value: this.questUnlockedLessonCount },
+            { label: "XP Earned", value: this.questXp },
+          ],
+        };
+      }
+
+      if (this.activeWorkspace === "python") {
+        return {
+          kicker: "Python Interactive Lab",
+          title: "Run the Existing Lesson CLI Inside the Browser",
+          copy:
+            "Use the original terminal-driven Python course directly from the app, with live session management and quick action controls.",
+          metrics: [
+            { label: "Lessons", value: 10 },
+            { label: "CLI Access", value: this.pythonAvailable ? "Live" : "Local" },
+            { label: "Session", value: this.pythonSessionId ? "Running" : "Ready" },
+          ],
+        };
+      }
+
+      return {
+        kicker: "Vue + FastAPI Interview Studio",
+        title: "Backend Interview Prep, Fully Expanded",
+        copy:
+          "Every question now includes a core answer, deep-dive notes, interview framing guidance, and internet-sourced illustrations captured with Playwright.",
+        metrics: this.payload
+          ? [
+              { label: "Sections", value: this.payload.stats.section_count },
+              { label: "Total Questions", value: this.payload.stats.question_count },
+              { label: "Visible Right Now", value: this.questionCards.length },
+            ]
+          : [],
+      };
+    },
     sections() {
       return this.payload?.sections || [];
     },
@@ -912,6 +1121,76 @@ createApp({
       }
       const section = this.sections.find((item) => item.slug === this.activeSection);
       return section ? section.name : "All Sections";
+    },
+    pythonQuestLessons() {
+      return this.pythonQuestLessonsData;
+    },
+    questCompletedLessonCount() {
+      return this.pythonQuestLessons.reduce(
+        (total, lesson) => total + (this.questLessonCompleted(lesson.slug) ? 1 : 0),
+        0,
+      );
+    },
+    questUnlockedLessonCount() {
+      return this.pythonQuestLessons.reduce(
+        (total, lesson, index) => total + (this.questLessonUnlocked(index) ? 1 : 0),
+        0,
+      );
+    },
+    questXp() {
+      return this.pythonQuestLessons.reduce((total, lesson) => {
+        const slug = lesson.slug;
+        return (
+          total +
+          (this.pythonQuestProgress.quizWins[slug] ? 20 : 0) +
+          (this.pythonQuestProgress.codeWins[slug] ? 30 : 0) +
+          (this.pythonQuestProgress.completedLessons[slug] ? 25 : 0)
+        );
+      }, 0);
+    },
+    selectedQuestLessonIndex() {
+      return this.pythonQuestLessons.findIndex(
+        (lesson) => lesson.slug === this.pythonQuestSelectedLessonSlug,
+      );
+    },
+    selectedQuestLesson() {
+      return this.pythonQuestLessons[this.selectedQuestLessonIndex] || null;
+    },
+    selectedQuestLearnDeck() {
+      return questVisibleLearnCards(this.selectedQuestLesson?.learn_cards || []);
+    },
+    selectedQuestQuizDeck() {
+      return (this.selectedQuestLesson?.quiz || []).slice(0, 3);
+    },
+    selectedQuestChallenge() {
+      return this.selectedQuestLesson?.practice?.[0] || null;
+    },
+    questProgressPercent() {
+      if (!this.pythonQuestLessons.length) {
+        return 0;
+      }
+      return Math.round((this.questCompletedLessonCount / this.pythonQuestLessons.length) * 100);
+    },
+    questNextObjective() {
+      const lesson = this.selectedQuestLesson;
+      if (!lesson) {
+        return this.pythonQuestLoading
+          ? "Assembling the lesson map from your Python modules..."
+          : "Choose an unlocked realm to begin.";
+      }
+
+      if (!this.questQuizPassed(lesson.slug)) {
+        return "Win the Boss Quiz to stabilize this realm.";
+      }
+      if (!this.questCodePassed(lesson.slug)) {
+        return "Clear the Code Forge with runnable Python to unlock the next path.";
+      }
+
+      const nextLesson = this.pythonQuestLessons[this.selectedQuestLessonIndex + 1];
+      if (nextLesson) {
+        return `${nextLesson.realm.title} is the next unlock on the route.`;
+      }
+      return "All realms cleared. Use the CLI lab to keep practicing at full depth.";
     },
   },
   methods: {
@@ -1038,10 +1317,306 @@ createApp({
       });
       this.refreshSimulationVisibility();
     },
+    syncRouteState() {
+      if (typeof window === "undefined") {
+        return;
+      }
+      const url = new URL(window.location.href);
+      if (this.activeWorkspace === "interview") {
+        url.searchParams.delete("workspace");
+      } else {
+        url.searchParams.set("workspace", this.activeWorkspace);
+      }
+
+      if (this.activeWorkspace === "quest" && this.pythonQuestSelectedLessonSlug) {
+        url.searchParams.set("lesson", this.pythonQuestSelectedLessonSlug);
+      } else {
+        url.searchParams.delete("lesson");
+      }
+
+      window.history.replaceState({}, "", url);
+    },
+    persistQuestProgress() {
+      if (typeof window === "undefined") {
+        return;
+      }
+      window.localStorage.setItem(
+        PYTHON_QUEST_STORAGE_KEY,
+        JSON.stringify(this.pythonQuestProgress),
+      );
+    },
+    updateQuestProgress(mutator) {
+      const next = {
+        completedLessons: { ...this.pythonQuestProgress.completedLessons },
+        quizWins: { ...this.pythonQuestProgress.quizWins },
+        codeWins: { ...this.pythonQuestProgress.codeWins },
+        recentLesson: this.pythonQuestProgress.recentLesson || "",
+      };
+
+      mutator(next);
+
+      Object.keys({ ...next.quizWins, ...next.codeWins }).forEach((slug) => {
+        if (next.quizWins[slug] && next.codeWins[slug]) {
+          next.completedLessons[slug] = true;
+        }
+      });
+
+      this.pythonQuestProgress = next;
+      this.persistQuestProgress();
+    },
+    questRealmStyle(realm) {
+      return {
+        "--quest-accent": realm.accent,
+        "--quest-soft": realm.soft,
+        "--quest-glow": realm.glow,
+      };
+    },
+    questLessonUnlocked(index) {
+      if (index <= 0) {
+        return true;
+      }
+      const previousLesson = this.pythonQuestLessons[index - 1];
+      return previousLesson ? Boolean(this.pythonQuestProgress.completedLessons[previousLesson.slug]) : false;
+    },
+    questLessonCompleted(slug) {
+      return Boolean(this.pythonQuestProgress.completedLessons[slug]);
+    },
+    questQuizPassed(slug) {
+      return Boolean(this.pythonQuestProgress.quizWins[slug]);
+    },
+    questCodePassed(slug) {
+      return Boolean(this.pythonQuestProgress.codeWins[slug]);
+    },
+    ensureQuestSelection() {
+      if (!this.pythonQuestLessons.length) {
+        return;
+      }
+
+      const trySelect = (slug) => {
+        const index = this.pythonQuestLessons.findIndex((lesson) => lesson.slug === slug);
+        if (index >= 0 && this.questLessonUnlocked(index)) {
+          this.pythonQuestSelectedLessonSlug = slug;
+          return true;
+        }
+        return false;
+      };
+
+      if (
+        this.pythonQuestSelectedLessonSlug &&
+        trySelect(this.pythonQuestSelectedLessonSlug)
+      ) {
+        this.syncRouteState();
+        return;
+      }
+
+      if (this.pythonQuestRequestedLessonSlug && trySelect(this.pythonQuestRequestedLessonSlug)) {
+        this.pythonQuestRequestedLessonSlug = "";
+        this.syncRouteState();
+        return;
+      }
+
+      if (this.pythonQuestProgress.recentLesson && trySelect(this.pythonQuestProgress.recentLesson)) {
+        this.syncRouteState();
+        return;
+      }
+
+      const fallback =
+        this.pythonQuestLessons.find((_lesson, index) => this.questLessonUnlocked(index)) ||
+        this.pythonQuestLessons[0];
+      this.pythonQuestSelectedLessonSlug = fallback.slug;
+      this.syncRouteState();
+    },
+    async fetchPythonQuestCatalog(force = false) {
+      if (this.pythonQuestLessons.length && !force) {
+        this.ensureQuestSelection();
+        return;
+      }
+
+      this.pythonQuestLoading = true;
+      this.pythonQuestError = "";
+
+      try {
+        const response = await fetch("/api/python-quest");
+        if (!response.ok) {
+          throw new Error(`Failed to load Python quest (${response.status})`);
+        }
+        const payload = await response.json();
+        const lessons = (payload.lessons || []).map((lesson, index) => ({
+          ...lesson,
+          realm: questRealmForIndex(index),
+        }));
+
+        this.pythonQuestLessonsData = lessons;
+        this.pythonQuestValidationEnabled = Boolean(payload.validation_enabled);
+        this.pythonQuestValidationReason = payload.validation_reason || "";
+        this.pythonQuestProgress = normalizeQuestProgress(loadQuestProgress(), lessons);
+
+        const nextDrafts = { ...this.pythonQuestCodeDrafts };
+        lessons.forEach((lesson) => {
+          if (typeof nextDrafts[lesson.slug] === "string") {
+            return;
+          }
+          nextDrafts[lesson.slug] = lesson.practice?.[0]?.starter_code || "";
+        });
+        this.pythonQuestCodeDrafts = nextDrafts;
+        this.ensureQuestSelection();
+      } catch (error) {
+        this.pythonQuestError = error?.message || "Unable to load the Python quest";
+      } finally {
+        this.pythonQuestLoading = false;
+      }
+    },
     setWorkspace(value) {
       this.activeWorkspace = value;
+      this.syncRouteState();
       if (value === "python") {
         this.fetchPythonStatus();
+      }
+      if (value === "quest") {
+        this.fetchPythonQuestCatalog();
+      }
+    },
+    selectQuestLesson(slug) {
+      const index = this.pythonQuestLessons.findIndex((lesson) => lesson.slug === slug);
+      if (index < 0 || !this.questLessonUnlocked(index)) {
+        return;
+      }
+
+      this.pythonQuestSelectedLessonSlug = slug;
+      this.updateQuestProgress((progress) => {
+        progress.recentLesson = slug;
+      });
+      this.syncRouteState();
+    },
+    selectQuestAnswer(lessonSlug, questionIndex, optionIndex) {
+      const nextSelections = {
+        ...this.pythonQuestQuizSelections,
+        [lessonSlug]: [...(this.pythonQuestQuizSelections[lessonSlug] || [])],
+      };
+      nextSelections[lessonSlug][questionIndex] = optionIndex;
+      this.pythonQuestQuizSelections = nextSelections;
+
+      if (this.pythonQuestQuizResults[lessonSlug]) {
+        const nextResults = { ...this.pythonQuestQuizResults };
+        delete nextResults[lessonSlug];
+        this.pythonQuestQuizResults = nextResults;
+      }
+    },
+    questOptionClass(lessonSlug, questionIndex, optionIndex, question) {
+      const selected = this.pythonQuestQuizSelections[lessonSlug]?.[questionIndex] === optionIndex;
+      const graded = this.pythonQuestQuizResults[lessonSlug];
+      return {
+        selected,
+        correct: Boolean(graded) && question.answer === optionIndex,
+        wrong: Boolean(graded) && selected && question.answer !== optionIndex,
+      };
+    },
+    submitQuestQuiz(lesson) {
+      const quizDeck = (lesson?.quiz || []).slice(0, 3);
+      if (!quizDeck.length) {
+        return;
+      }
+
+      const answers = this.pythonQuestQuizSelections[lesson.slug] || [];
+      const correct = quizDeck.reduce(
+        (total, question, index) => total + (answers[index] === question.answer ? 1 : 0),
+        0,
+      );
+      const passed = correct >= Math.max(2, Math.ceil(quizDeck.length * 0.66));
+
+      this.pythonQuestQuizResults = {
+        ...this.pythonQuestQuizResults,
+        [lesson.slug]: {
+          total: quizDeck.length,
+          correct,
+          passed,
+        },
+      };
+
+      this.updateQuestProgress((progress) => {
+        progress.quizWins[lesson.slug] = progress.quizWins[lesson.slug] || passed;
+        progress.recentLesson = lesson.slug;
+      });
+    },
+    prefillQuestStarter(lesson) {
+      const starter = lesson?.practice?.[0]?.starter_code || "# Solve the challenge here";
+      this.pythonQuestCodeDrafts = {
+        ...this.pythonQuestCodeDrafts,
+        [lesson.slug]: starter,
+      };
+    },
+    async submitQuestCode(lesson) {
+      const challenge = lesson?.practice?.[0];
+      if (!challenge) {
+        return;
+      }
+
+      if (!this.pythonQuestValidationEnabled) {
+        this.pythonQuestCodeResults = {
+          ...this.pythonQuestCodeResults,
+          [lesson.slug]: {
+            ok: false,
+            message:
+              this.pythonQuestValidationReason ||
+              "Code validation is unavailable from this client right now.",
+            hint: challenge.hint,
+            stdout: "",
+          },
+        };
+        return;
+      }
+
+      const code = (this.pythonQuestCodeDrafts[lesson.slug] || "").trimEnd();
+      if (!code.trim()) {
+        this.pythonQuestCodeResults = {
+          ...this.pythonQuestCodeResults,
+          [lesson.slug]: {
+            ok: false,
+            message: "Write a solution before running the challenge.",
+            hint: challenge.hint,
+            stdout: "",
+          },
+        };
+        return;
+      }
+
+      this.pythonQuestSubmittingSlug = lesson.slug;
+      try {
+        const response = await fetch("/api/python-quest/validate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            lesson_slug: lesson.slug,
+            challenge_index: challenge.index,
+            code,
+          }),
+        });
+        const payload = await response.json();
+        if (!response.ok) {
+          throw new Error(payload?.detail || `Quest validation failed (${response.status})`);
+        }
+
+        this.pythonQuestCodeResults = {
+          ...this.pythonQuestCodeResults,
+          [lesson.slug]: payload,
+        };
+
+        this.updateQuestProgress((progress) => {
+          progress.codeWins[lesson.slug] = progress.codeWins[lesson.slug] || Boolean(payload.ok);
+          progress.recentLesson = lesson.slug;
+        });
+      } catch (error) {
+        this.pythonQuestCodeResults = {
+          ...this.pythonQuestCodeResults,
+          [lesson.slug]: {
+            ok: false,
+            message: error?.message || "Unable to validate challenge",
+            hint: challenge.hint,
+            stdout: "",
+          },
+        };
+      } finally {
+        this.pythonQuestSubmittingSlug = "";
       }
     },
     async fetchPythonStatus(force = false) {
@@ -1265,6 +1840,13 @@ createApp({
     window.addEventListener("resize", this.handleResize);
     window.addEventListener("scroll", this.refreshSimulationVisibility);
     await this.fetchPayload();
+    if (this.activeWorkspace === "python") {
+      this.fetchPythonStatus();
+    }
+    if (this.activeWorkspace === "quest") {
+      this.fetchPythonQuestCatalog();
+    }
+    this.syncRouteState();
     this.syncSimulations();
   },
   updated() {
@@ -1283,25 +1865,14 @@ createApp({
       <div class="bg-orb bg-orb-2" aria-hidden="true"></div>
 
       <header class="hero">
-        <p class="kicker">Vue + FastAPI Interview Studio</p>
-        <h1>Backend Interview Prep, Fully Expanded</h1>
-        <p class="hero-copy">
-          Every question now includes a core answer, deep-dive notes, interview framing guidance,
-          and internet-sourced illustrations captured with Playwright.
-        </p>
+        <p class="kicker">{{ heroContent.kicker }}</p>
+        <h1>{{ heroContent.title }}</h1>
+        <p class="hero-copy">{{ heroContent.copy }}</p>
 
-        <div class="hero-metrics" v-if="payload">
-          <article class="metric-card">
-            <h2>{{ payload.stats.section_count }}</h2>
-            <p>Sections</p>
-          </article>
-          <article class="metric-card">
-            <h2>{{ payload.stats.question_count }}</h2>
-            <p>Total Questions</p>
-          </article>
-          <article class="metric-card">
-            <h2>{{ questionCards.length }}</h2>
-            <p>Visible Right Now</p>
+        <div class="hero-metrics" v-if="heroContent.metrics && heroContent.metrics.length">
+          <article class="metric-card" v-for="metric in heroContent.metrics" :key="metric.label">
+            <h2>{{ metric.value }}</h2>
+            <p>{{ metric.label }}</p>
           </article>
         </div>
       </header>
@@ -1314,6 +1885,13 @@ createApp({
             @click="setWorkspace('interview')"
           >
             Interview Prep Studio
+          </button>
+          <button
+            class="workspace-tab"
+            :class="{ active: activeWorkspace === 'quest' }"
+            @click="setWorkspace('quest')"
+          >
+            Python Quest Academy
           </button>
           <button
             class="workspace-tab"
@@ -1501,6 +2079,237 @@ createApp({
           <p>Try clearing search text or switching sections.</p>
         </section>
         </template>
+
+        <section class="quest-lab" v-else-if="activeWorkspace === 'quest'">
+          <div class="quest-overview">
+            <div class="quest-overview-copy">
+              <p class="quest-kicker">Curriculum-driven browser game mode</p>
+              <h2>Travel through ten Python realms without leaving the site</h2>
+              <p>
+                Each realm pulls from your lesson modules, then turns the material into quick
+                learn cards, a boss quiz, and a code gate that can validate real Python locally.
+              </p>
+              <div class="quest-progress-meta">
+                <div class="quest-progress-bar">
+                  <span :style="{ width: questProgressPercent + '%' }"></span>
+                </div>
+                <small>{{ questCompletedLessonCount }} / {{ pythonQuestLessons.length || 10 }} realms cleared</small>
+              </div>
+            </div>
+
+            <aside class="quest-journal">
+              <p class="quest-journal-label">Current Objective</p>
+              <h3>{{ selectedQuestLesson ? selectedQuestLesson.realm.title : 'Summoning lesson map' }}</h3>
+              <p>
+                {{ selectedQuestLesson ? selectedQuestLesson.realm.blurb : 'Pulling the lesson content into quest format now.' }}
+              </p>
+              <small>{{ questNextObjective }}</small>
+            </aside>
+          </div>
+
+          <div class="python-lab-status">
+            <span class="status-chip" :class="{ active: pythonQuestValidationEnabled }">
+              {{ pythonQuestValidationEnabled ? "Code Forge Ready" : "Code Forge Local Only" }}
+            </span>
+            <small v-if="pythonQuestValidationReason">{{ pythonQuestValidationReason }}</small>
+          </div>
+
+          <section class="state-block" v-if="pythonQuestLoading">
+            <p>Assembling the Python realms from your lesson modules...</p>
+          </section>
+
+          <p class="python-error" v-else-if="pythonQuestError">{{ pythonQuestError }}</p>
+
+          <div class="quest-layout" v-else-if="pythonQuestLessons.length">
+            <section class="quest-map">
+              <button
+                v-for="(lesson, index) in pythonQuestLessons"
+                :key="lesson.slug"
+                class="quest-node"
+                :class="{
+                  locked: !questLessonUnlocked(index),
+                  selected: pythonQuestSelectedLessonSlug === lesson.slug,
+                  complete: questLessonCompleted(lesson.slug),
+                }"
+                :style="questRealmStyle(lesson.realm)"
+                @click="selectQuestLesson(lesson.slug)"
+              >
+                <div class="quest-node-top">
+                  <span class="quest-node-code">{{ lesson.realm.code }}</span>
+                  <span class="quest-node-badge">
+                    {{ questLessonCompleted(lesson.slug) ? "Cleared" : (questLessonUnlocked(index) ? "Open" : "Locked") }}
+                  </span>
+                </div>
+                <h3>{{ lesson.realm.title }}</h3>
+                <p>{{ lesson.title }}</p>
+                <small>{{ lesson.summary }}</small>
+              </button>
+            </section>
+
+            <section class="quest-panel" v-if="selectedQuestLesson">
+              <div class="quest-panel-hero" :style="questRealmStyle(selectedQuestLesson.realm)">
+                <div>
+                  <p class="quest-realm-code">
+                    {{ selectedQuestLesson.realm.code }} · {{ selectedQuestLesson.title }}
+                  </p>
+                  <h3>{{ selectedQuestLesson.realm.title }}</h3>
+                  <p>{{ selectedQuestLesson.realm.blurb }}</p>
+                </div>
+
+                <div class="quest-status-strip">
+                  <span class="quest-status-pill" :class="{ done: questQuizPassed(selectedQuestLesson.slug) }">Boss Quiz</span>
+                  <span class="quest-status-pill" :class="{ done: questCodePassed(selectedQuestLesson.slug) }">Code Forge</span>
+                  <span class="quest-status-pill" :class="{ done: questLessonCompleted(selectedQuestLesson.slug) }">Realm Clear</span>
+                </div>
+              </div>
+
+              <section class="quest-module">
+                <div class="quest-module-head">
+                  <div>
+                    <p class="section-tag">Scout Notes</p>
+                    <h3>Study the lesson before you engage the boss.</h3>
+                  </div>
+                </div>
+
+                <div class="quest-learn-grid">
+                  <article
+                    class="quest-learn-card"
+                    :class="'kind-' + card.kind"
+                    v-for="(card, cardIndex) in selectedQuestLearnDeck"
+                    :key="selectedQuestLesson.slug + '-learn-' + cardIndex"
+                  >
+                    <template v-if="card.kind === 'code'">
+                      <p class="quest-learn-kicker">Code Pattern {{ cardIndex + 1 }}</p>
+                      <pre class="quest-snippet">{{ card.code }}</pre>
+                      <p class="quest-output-label">Output</p>
+                      <pre class="quest-snippet">{{ card.output }}</pre>
+                    </template>
+
+                    <template v-else-if="card.kind === 'checkpoint'">
+                      <p class="quest-learn-kicker">Checkpoint</p>
+                      <h4>{{ card.title }}</h4>
+                      <p>Use this station to frame the next mechanic in the lesson.</p>
+                    </template>
+
+                    <template v-else>
+                      <p class="quest-learn-kicker">Concept</p>
+                      <h4>{{ card.title }}</h4>
+                      <p>{{ card.body }}</p>
+                    </template>
+                  </article>
+                </div>
+              </section>
+
+              <section class="quest-module">
+                <div class="quest-module-head">
+                  <div>
+                    <p class="section-tag">Boss Quiz</p>
+                    <h3>Defend the realm with fast concept checks.</h3>
+                  </div>
+                  <button class="ghost-btn" @click="submitQuestQuiz(selectedQuestLesson)">
+                    Resolve Boss Battle
+                  </button>
+                </div>
+
+                <div class="quest-quiz-stack">
+                  <article
+                    class="quest-question-card"
+                    v-for="(question, questionIndex) in selectedQuestQuizDeck"
+                    :key="selectedQuestLesson.slug + '-quiz-' + questionIndex"
+                  >
+                    <p class="quest-learn-kicker">Encounter {{ questionIndex + 1 }}</p>
+                    <h4>{{ question.question }}</h4>
+
+                    <div class="quest-option-list">
+                      <button
+                        v-for="(option, optionIndex) in question.options"
+                        :key="selectedQuestLesson.slug + '-option-' + questionIndex + '-' + optionIndex"
+                        class="quest-option"
+                        :class="questOptionClass(selectedQuestLesson.slug, questionIndex, optionIndex, question)"
+                        @click="selectQuestAnswer(selectedQuestLesson.slug, questionIndex, optionIndex)"
+                      >
+                        {{ option }}
+                      </button>
+                    </div>
+
+                    <p class="quest-explanation" v-if="pythonQuestQuizResults[selectedQuestLesson.slug]">
+                      {{ question.explanation }}
+                    </p>
+                  </article>
+                </div>
+
+                <p
+                  class="quest-result"
+                  v-if="pythonQuestQuizResults[selectedQuestLesson.slug]"
+                  :class="{
+                    success: pythonQuestQuizResults[selectedQuestLesson.slug].passed,
+                    fail: !pythonQuestQuizResults[selectedQuestLesson.slug].passed,
+                  }"
+                >
+                  {{ pythonQuestQuizResults[selectedQuestLesson.slug].passed ? "Boss defeated." : "The boss is still standing." }}
+                  Score: {{ pythonQuestQuizResults[selectedQuestLesson.slug].correct }}/{{ pythonQuestQuizResults[selectedQuestLesson.slug].total }}.
+                </p>
+              </section>
+
+              <section class="quest-module">
+                <div class="quest-module-head">
+                  <div>
+                    <p class="section-tag">Code Forge</p>
+                    <h3>Write live Python to unlock the next route.</h3>
+                  </div>
+
+                  <div class="toolbar-actions">
+                    <button class="ghost-btn" @click="prefillQuestStarter(selectedQuestLesson)">
+                      Load Starter
+                    </button>
+                    <button class="ghost-btn" @click="setWorkspace('python')">
+                      Open CLI Lab
+                    </button>
+                    <button
+                      class="ghost-btn"
+                      :disabled="pythonQuestSubmittingSlug === selectedQuestLesson.slug || !selectedQuestChallenge"
+                      @click="submitQuestCode(selectedQuestLesson)"
+                    >
+                      {{ pythonQuestSubmittingSlug === selectedQuestLesson.slug ? "Running..." : "Run Challenge" }}
+                    </button>
+                  </div>
+                </div>
+
+                <div class="quest-code-panel" v-if="selectedQuestChallenge">
+                  <p class="quest-prompt">{{ selectedQuestChallenge.prompt }}</p>
+                  <p class="quest-hint">Hint: {{ selectedQuestChallenge.hint }}</p>
+
+                  <textarea
+                    class="quest-editor"
+                    v-model="pythonQuestCodeDrafts[selectedQuestLesson.slug]"
+                    spellcheck="false"
+                    :placeholder="selectedQuestChallenge.starter_code || '# Solve the challenge here'"
+                  ></textarea>
+
+                  <p class="quest-callout" v-if="!pythonQuestValidationEnabled">
+                    Code validation stays local-only by default for safety. The mission text still lines up with the browser CLI lab.
+                  </p>
+
+                  <p
+                    class="quest-result"
+                    v-if="pythonQuestCodeResults[selectedQuestLesson.slug]"
+                    :class="{
+                      success: pythonQuestCodeResults[selectedQuestLesson.slug].ok,
+                      fail: !pythonQuestCodeResults[selectedQuestLesson.slug].ok,
+                    }"
+                  >
+                    {{ pythonQuestCodeResults[selectedQuestLesson.slug].message }}
+                  </p>
+
+                  <pre
+                    class="quest-stdout"
+                    v-if="pythonQuestCodeResults[selectedQuestLesson.slug] && pythonQuestCodeResults[selectedQuestLesson.slug].stdout"
+                  >{{ pythonQuestCodeResults[selectedQuestLesson.slug].stdout }}</pre>
+                </div>
+              </section>
+            </section>
+          </div>
+        </section>
 
         <section class="python-lab" v-else>
           <h2>Python Interactive Learning</h2>

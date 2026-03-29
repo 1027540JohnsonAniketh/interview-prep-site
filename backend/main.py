@@ -17,6 +17,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
+from .python_quest import get_python_quest_catalog, run_validation_subprocess
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_PATH = BASE_DIR / "backend" / "data" / "question_bank.json"
 FRONTEND_DIR = BASE_DIR / "frontend"
@@ -272,6 +274,47 @@ def python_cli_status(request: Request) -> dict[str, Any]:
             else "Python CLI is local-only by default. Set ENABLE_PYTHON_CLI=true to enable remotely."
         ),
     }
+
+
+@app.get("/api/python-quest")
+def python_quest_catalog(request: Request) -> dict[str, Any]:
+    catalog = get_python_quest_catalog()
+    validation_enabled = python_cli_enabled_for_request(request)
+    return {
+        **catalog,
+        "validation_enabled": validation_enabled,
+        "validation_reason": (
+            "ok"
+            if validation_enabled
+            else "Python quest code validation is local-only by default. Set ENABLE_PYTHON_CLI=true to enable remotely."
+        ),
+    }
+
+
+@app.post("/api/python-quest/validate")
+def python_quest_validate(
+    request: Request,
+    payload: dict[str, Any] = Body(...),
+) -> dict[str, Any]:
+    if not python_cli_enabled_for_request(request):
+        raise HTTPException(status_code=403, detail="Python quest validation is disabled for this client")
+
+    lesson_slug = payload.get("lesson_slug")
+    challenge_index = payload.get("challenge_index")
+    code = payload.get("code", "")
+
+    if not isinstance(lesson_slug, str) or not lesson_slug.strip():
+        raise HTTPException(status_code=400, detail="lesson_slug must be a non-empty string")
+    if not isinstance(challenge_index, int):
+        raise HTTPException(status_code=400, detail="challenge_index must be an integer")
+    if not isinstance(code, str):
+        raise HTTPException(status_code=400, detail="code must be a string")
+
+    return run_validation_subprocess(
+        lesson_slug=lesson_slug.strip(),
+        challenge_index=challenge_index,
+        code=code,
+    )
 
 
 @app.post("/api/python-cli/sessions")

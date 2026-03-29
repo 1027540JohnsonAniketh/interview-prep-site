@@ -1,0 +1,20 @@
+name: PythonQuestCompanion
+
+options:
+  minimumXcodeGenVersion: 2.38.0
+
+targets:
+  PythonQuestCompanion:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: Sources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.johnsonanikethnagamallah.pythonquestcompanion
+        SWIFT_VERSION: 5.0
+        INFOPLIST_FILE: Resources/Info.plist
+        TARGETED_DEVICE_FAMILY: "1,2"
+    info:
+      path: Resources/Info.plist

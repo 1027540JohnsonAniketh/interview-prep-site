@@ -713,6 +713,398 @@ input {
   font-size: 0.86rem;
 }
 
+.quest-lab {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 1.05rem 1rem 1rem;
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 1rem;
+}
+
+.quest-overview {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.85fr);
+  gap: 0.95rem;
+  border: 1px solid #d8e4de;
+  border-radius: 18px;
+  padding: 1rem;
+  background:
+    radial-gradient(circle at top right, rgba(146, 221, 210, 0.34), transparent 38%),
+    linear-gradient(135deg, #f7fcfb, #fff8ef 62%);
+}
+
+.quest-overview-copy h2,
+.quest-journal h3,
+.quest-panel-hero h3,
+.quest-module-head h3,
+.quest-question-card h4,
+.quest-learn-card h4,
+.quest-node h3 {
+  margin: 0;
+}
+
+.quest-kicker,
+.quest-journal-label,
+.quest-realm-code,
+.quest-learn-kicker,
+.quest-output-label {
+  margin: 0;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--brand);
+}
+
+.quest-overview-copy p,
+.quest-journal p,
+.quest-panel-hero p,
+.quest-question-card p,
+.quest-learn-card p,
+.quest-node p,
+.quest-node small,
+.quest-explanation,
+.quest-hint,
+.quest-callout {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.55;
+}
+
+.quest-progress-meta {
+  margin-top: 0.9rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.quest-progress-meta small,
+.quest-journal small {
+  color: #586474;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.quest-progress-bar {
+  height: 12px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #e5ece9;
+}
+
+.quest-progress-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #0f766e, #c26a2e);
+}
+
+.quest-journal {
+  border: 1px solid #d8e6e2;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.78);
+  padding: 0.95rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.quest-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.92fr) minmax(0, 1.38fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.quest-map {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.quest-node {
+  --quest-accent: #0f766e;
+  --quest-soft: #dff7f3;
+  --quest-glow: #92ddd2;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--quest-accent) 30%, #d9d3c2);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--quest-glow) 52%, transparent), transparent 38%),
+    linear-gradient(180deg, #ffffff, var(--quest-soft));
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
+  padding: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.quest-node:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 35px rgba(15, 23, 42, 0.11);
+}
+
+.quest-node.selected {
+  transform: translateY(-2px);
+  border-color: var(--quest-accent);
+  box-shadow: 0 20px 40px color-mix(in srgb, var(--quest-accent) 18%, transparent);
+}
+
+.quest-node.locked {
+  opacity: 0.62;
+  cursor: not-allowed;
+  filter: saturate(0.7);
+}
+
+.quest-node.complete {
+  border-color: var(--quest-accent);
+}
+
+.quest-node-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem;
+  align-items: center;
+  margin-bottom: 0.55rem;
+}
+
+.quest-node-code,
+.quest-node-badge,
+.quest-status-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.quest-node-code {
+  padding: 0.26rem 0.55rem;
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--quest-accent);
+  border: 1px solid color-mix(in srgb, var(--quest-accent) 24%, #ffffff);
+}
+
+.quest-node-badge {
+  padding: 0.24rem 0.52rem;
+  background: rgba(255, 255, 255, 0.7);
+  color: #556270;
+  border: 1px solid #d4dbd8;
+}
+
+.quest-node h3 {
+  font-size: 1rem;
+}
+
+.quest-node p {
+  margin-top: 0.22rem;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.quest-node small {
+  display: block;
+  margin-top: 0.45rem;
+}
+
+.quest-panel {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.quest-panel-hero {
+  --quest-accent: #0f766e;
+  --quest-soft: #dff7f3;
+  --quest-glow: #92ddd2;
+  border: 1px solid color-mix(in srgb, var(--quest-accent) 26%, #d7d1bf);
+  border-radius: 18px;
+  padding: 1rem;
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--quest-glow) 58%, transparent), transparent 36%),
+    linear-gradient(160deg, #ffffff, var(--quest-soft));
+  display: grid;
+  gap: 0.8rem;
+}
+
+.quest-status-strip {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.quest-status-pill {
+  padding: 0.34rem 0.62rem;
+  border: 1px solid #d7d2c4;
+  background: rgba(255, 255, 255, 0.82);
+  color: #556270;
+}
+
+.quest-status-pill.done {
+  border-color: #8dcfbe;
+  background: #e8f6f2;
+  color: #0f766e;
+}
+
+.quest-module {
+  border: 1px solid #e5ded0;
+  border-radius: 18px;
+  padding: 0.95rem;
+  background: #fffefb;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.quest-module-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.quest-module-head h3 {
+  margin-top: 0.2rem;
+  font-size: 1rem;
+}
+
+.quest-learn-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.quest-learn-card,
+.quest-question-card {
+  border: 1px solid #ebe3d5;
+  border-radius: 14px;
+  background: #ffffff;
+  padding: 0.85rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.quest-learn-card.kind-code {
+  background: linear-gradient(180deg, #fffefb, #f7fbfd);
+}
+
+.quest-snippet,
+.quest-stdout {
+  margin: 0;
+  border: 1px solid #d6e1df;
+  border-radius: 12px;
+  background: #0f1720;
+  color: #d9f4ef;
+  padding: 0.75rem;
+  overflow: auto;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  white-space: pre-wrap;
+}
+
+.quest-quiz-stack {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.quest-option-list {
+  display: grid;
+  gap: 0.52rem;
+}
+
+.quest-option {
+  border: 1px solid #ded8cb;
+  border-radius: 12px;
+  background: #fff;
+  padding: 0.72rem 0.78rem;
+  text-align: left;
+  color: #334155;
+  cursor: pointer;
+  transition: border-color 160ms ease, transform 160ms ease, background 160ms ease;
+}
+
+.quest-option:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent);
+}
+
+.quest-option.selected {
+  border-color: #8db9ef;
+  background: #edf5ff;
+}
+
+.quest-option.correct {
+  border-color: #8dcfbe;
+  background: #e8f6f2;
+  color: #0f766e;
+}
+
+.quest-option.wrong {
+  border-color: #f0b1bf;
+  background: #fff0f4;
+  color: #b42351;
+}
+
+.quest-explanation {
+  font-size: 0.84rem;
+}
+
+.quest-code-panel {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.quest-prompt {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.quest-editor {
+  width: 100%;
+  min-height: 210px;
+  resize: vertical;
+  border: 1px solid #c8d8d4;
+  border-radius: 14px;
+  background: #0f1720;
+  color: #d9f4ef;
+  padding: 0.85rem;
+  outline: none;
+  line-height: 1.45;
+  font-size: 0.84rem;
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+}
+
+.quest-editor:focus {
+  border-color: #8bcfc8;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.16);
+}
+
+.quest-callout {
+  border: 1px solid #edd3b3;
+  border-radius: 12px;
+  background: #fff6e9;
+  padding: 0.72rem 0.76rem;
+  color: #9a5413;
+}
+
+.quest-result {
+  border-radius: 12px;
+  padding: 0.68rem 0.76rem;
+  font-weight: 600;
+}
+
+.quest-result.success {
+  background: #e7f5f0;
+  color: #0f766e;
+}
+
+.quest-result.fail {
+  background: #fff1f4;
+  color: #b42351;
+}
+
 .empty-state,
 .state-block {
   margin-top: 1rem;
@@ -756,6 +1148,11 @@ input {
     padding-right: 0.8rem;
   }
 
+  .quest-overview,
+  .quest-layout {
+    grid-template-columns: 1fr;
+  }
+
   .toolbar {
     align-items: stretch;
   }
@@ -776,6 +1173,19 @@ input {
 
   .workspace-tab {
     text-align: center;
+  }
+
+  .quest-module-head,
+  .quest-node-top {
+    align-items: flex-start;
+  }
+
+  .quest-overview,
+  .quest-panel-hero,
+  .quest-module,
+  .quest-lab,
+  .python-lab {
+    padding: 0.9rem;
   }
 
   .python-input-row {
