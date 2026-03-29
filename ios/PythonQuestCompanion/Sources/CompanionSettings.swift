@@ -34,15 +34,6 @@ enum CompanionWorkspace: String, CaseIterable, Identifiable {
         }
     }
 
-    var summary: String {
-        switch self {
-        case .quest:
-            return "Open the browser game workspace directly, with the route pinned to the quest view."
-        case .lab:
-            return "Jump into the original interactive lesson CLI, now embedded in the app."
-        }
-    }
-
     var symbolName: String {
         switch self {
         case .quest:
@@ -57,6 +48,7 @@ enum CompanionWorkspace: String, CaseIterable, Identifiable {
 @Observable
 final class CompanionSettings {
     private static let baseURLKey = "companion.base_url"
+    private static let fallbackHostedBaseURL = "https://interview-prep.onrender.com"
 
     var baseURLString: String {
         didSet {
@@ -68,7 +60,13 @@ final class CompanionSettings {
         let stored = UserDefaults.standard.string(forKey: Self.baseURLKey)
         self.baseURLString = stored?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false
             ? stored!
-            : "http://localhost:8000"
+            : Self.defaultHostedBaseURL
+    }
+
+    static var defaultHostedBaseURL: String {
+        let bundled = (Bundle.main.object(forInfoDictionaryKey: "CompanionDefaultBaseURL") as? String)?
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        return bundled?.isEmpty == false ? bundled! : fallbackHostedBaseURL
     }
 
     var trimmedBaseURL: String {
@@ -85,6 +83,17 @@ final class CompanionSettings {
         }
 
         return URL(string: "http://\(trimmedBaseURL)")
+    }
+
+    var hostedBaseURLString: String {
+        Self.defaultHostedBaseURL
+    }
+
+    var usesLocalhost: Bool {
+        guard let host = baseURL?.host?.lowercased() else {
+            return false
+        }
+        return host == "localhost" || host == "127.0.0.1" || host == "::1"
     }
 
     func workspaceURL(for workspace: CompanionWorkspace) -> URL? {
@@ -107,5 +116,9 @@ final class CompanionSettings {
 
     func useLocalhost() {
         baseURLString = "http://localhost:8000"
+    }
+
+    func useHostedSite() {
+        baseURLString = Self.defaultHostedBaseURL
     }
 }

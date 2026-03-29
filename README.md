@@ -39,6 +39,25 @@ To allow remote access intentionally, set:
 export ENABLE_PYTHON_CLI=true
 ```
 
+## CI/CD
+
+This repo now includes GitHub Actions in [`.github/workflows/ci-cd.yml`](.github/workflows/ci-cd.yml).
+
+- Pull requests run backend validation, backend tests, frontend syntax checks, and an iOS simulator build.
+- Pushes to `main` run the same checks and then trigger deployment.
+
+Render deployment is configured in two layers:
+
+- [`render.yaml`](render.yaml) sets `autoDeployTrigger: checksPass`.
+- The workflow will also call a Render deploy hook automatically if you add `RENDER_DEPLOY_HOOK_URL` as a GitHub Actions repository secret.
+
+Recommended setup in Render:
+
+1. Link the Render service to this GitHub repository.
+2. Point it at the `main` branch.
+3. Keep auto deploy enabled, ideally after CI checks pass.
+4. Optionally create a Render deploy hook and store it in GitHub as `RENDER_DEPLOY_HOOK_URL`.
+
 ## Rebuild question bank from original source
 
 The enrichment source of truth is still your original `index.html` + `generated-draft-answers.js`.
@@ -60,3 +79,20 @@ python3 scripts/enrich_from_vault.py --root . --vault /Users/johnsonanikethnagam
 - `GET /api/python-cli/sessions/{session_id}/output?cursor=0`
 - `POST /api/python-cli/sessions/{session_id}/input`
 - `DELETE /api/python-cli/sessions/{session_id}`
+- `GET /api/python-quest`
+- `POST /api/python-quest/validate`
+
+## iOS App
+
+The iOS shell lives in [`ios/PythonQuestCompanion`](ios/PythonQuestCompanion).
+
+```bash
+cd /Users/johnsonanikethnagamallah/Documents/Github/interview-prep-site/ios/PythonQuestCompanion
+xcodegen generate
+open PythonQuestCompanion.xcodeproj
+```
+
+Notes:
+
+- The simulator can use `http://localhost:8000`.
+- A physical iPhone cannot use `localhost` for your Mac-hosted server. Use the deployed Render URL or your Mac's LAN IP instead.

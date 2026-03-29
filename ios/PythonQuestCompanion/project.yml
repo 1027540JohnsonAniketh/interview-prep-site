@@ -18,3 +18,8 @@ targets:
         TARGETED_DEVICE_FAMILY: "1,2"
     info:
       path: Resources/Info.plist
+      properties:
+        CompanionDefaultBaseURL: https://interview-prep.onrender.com
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoadsInWebContent: true
+          NSAllowsLocalNetworking: true
