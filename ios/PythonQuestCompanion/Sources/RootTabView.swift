@@ -31,27 +31,34 @@ struct WorkspaceHostView: View {
     @State private var reloadToken = UUID()
     @State private var isLoading = true
     @State private var loadError: String?
+    @State private var usingFallback = false
     @State private var showingSetup = false
 
     var body: some View {
         NavigationStack {
             ZStack {
-                if let url = settings.workspaceURL(for: workspace) {
-                    CompanionWebView(url: url, isLoading: $isLoading, loadError: $loadError)
-                        .id(reloadToken)
-                        .ignoresSafeArea(edges: .bottom)
+                if let primaryURL = settings.primaryWorkspaceURL(for: workspace) {
+                    CompanionWebView(
+                        primaryURL: primaryURL,
+                        fallbackURL: settings.fallbackWorkspaceURL(for: workspace),
+                        isLoading: $isLoading,
+                        loadError: $loadError,
+                        usingFallback: $usingFallback
+                    )
+                    .id(reloadToken)
+                    .ignoresSafeArea(edges: .bottom)
                 } else {
                     ContentUnavailableView(
                         "Invalid URL",
                         systemImage: "wifi.exclamationmark",
-                        description: Text("Open Setup and choose On Device mode or enter a valid hosted/local server URL.")
+                        description: Text("Open Setup and choose Auto Sync, On Device, or enter a valid hosted/local server URL.")
                     )
                 }
 
-                if let message = connectionMessage {
+                if let notice = connectionNotice {
                     VStack {
                         Spacer()
-                        ConnectionNotice(message: message) {
+                        ConnectionNotice(title: notice.title, message: notice.message) {
                             showingSetup = true
                         }
                         .padding()
@@ -74,6 +81,7 @@ struct WorkspaceHostView: View {
                     Button("Reload") {
                         isLoading = true
                         loadError = nil
+                        usingFallback = false
                         reloadToken = UUID()
                     }
                 }
@@ -84,11 +92,26 @@ struct WorkspaceHostView: View {
         }
     }
 
-    private var connectionMessage: String? {
+    private var connectionNotice: (title: String, message: String)? {
         if settings.usesLocalhost && !DeviceContext.isSimulator {
-            return "This iPhone cannot use localhost for your Mac-hosted server. Switch to the hosted Render URL or your Mac's LAN IP in Setup."
+            return (
+                "Localhost won't work",
+                "This iPhone cannot use localhost for your Mac-hosted server. Switch to Auto Sync, the hosted Render URL, or your Mac's LAN IP in Setup."
+            )
         }
-        return loadError
+
+        if usingFallback && settings.usesAutomaticSync {
+            return (
+                "Using on-device fallback",
+                "The hosted site could not be reached, so this tab switched to the bundled iPhone copy. Future web deploys will show up here again as soon as the hosted site is reachable."
+            )
+        }
+
+        if let loadError {
+            return ("Connection issue", loadError)
+        }
+
+        return nil
     }
 }
 
@@ -103,37 +126,70 @@ struct SetupView: View {
                         VStack(alignment: .leading, spacing: 12) {
                             Text("Connection")
                                 .font(.title3.weight(.semibold))
-                            Text("On Device mode runs the bundled site, lessons, and Python challenge engine directly on iPhone. Hosted and localhost remain available when you want to point the app somewhere else.")
+                            Text("Auto Sync is the recommended mode for one-prompt feature shipping. It points the app at the deployed website first, then falls back to the bundled offline copy if Render is unavailable.")
                                 .foregroundStyle(.secondary)
-                            TextField("app://local/index.html", text: $settings.baseURLString)
-                                .textInputAutocapitalization(.never)
-                                .autocorrectionDisabled()
-                                .padding(12)
-                                .background(Color.white)
-                                .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
 
-                            HStack {
-                                Button("On Device") {
-                                    settings.useOnDeviceMode()
-                                }
-                                .buttonStyle(.borderedProminent)
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text("Current mode")
+                                    .font(.subheadline.weight(.semibold))
+                                Text(settings.connectionMode.title)
+                                    .font(.headline)
+                                Text(settings.connectionMode.summary)
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                            }
 
-                                Button("Use Hosted Site") {
-                                    settings.useHostedSite()
-                                }
-                                .buttonStyle(.bordered)
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text("Custom server URL")
+                                    .font(.subheadline.weight(.semibold))
+                                TextField("https://interview-prep.onrender.com", text: customServerBinding)
+                                    .textInputAutocapitalization(.never)
+                                    .autocorrectionDisabled()
+                                    .padding(12)
+                                    .background(Color.white)
+                                    .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+                            }
 
-                                Button("Use Localhost") {
-                                    settings.useLocalhost()
-                                }
-                                .buttonStyle(.bordered)
+                            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                                ModeChoiceButton(
+                                    title: "Auto Sync",
+                                    isActive: settings.connectionMode == .automatic,
+                                    action: { settings.useAutomaticSync() }
+                                )
+                                ModeChoiceButton(
+                                    title: "On Device",
+                                    isActive: settings.connectionMode == .onDevice,
+                                    action: { settings.useOnDeviceMode() }
+                                )
+                                ModeChoiceButton(
+                                    title: "Hosted",
+                                    isActive: settings.connectionMode == .manual && !settings.usesLocalhost,
+                                    action: { settings.useHostedSite() }
+                                )
+                                ModeChoiceButton(
+                                    title: "Localhost",
+                                    isActive: settings.usesLocalhost,
+                                    action: { settings.useLocalhost() }
+                                )
                             }
 
                             if settings.usesLocalhost && !DeviceContext.isSimulator {
-                                Text("`localhost` on a real iPhone points to the phone itself, not your Mac. Use the hosted site or your Mac's LAN IP instead.")
+                                Text("`localhost` on a real iPhone points to the phone itself, not your Mac. Use Auto Sync, the hosted site, or your Mac's LAN IP instead.")
                                     .font(.footnote)
                                     .foregroundStyle(.red)
                             }
+                        }
+                    }
+
+                    CompanionCard {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Auto Sync")
+                                .font(.headline)
+                            Text(settings.hostedBaseURLString)
+                                .font(.system(.footnote, design: .monospaced))
+                                .textSelection(.enabled)
+                            Text("Best for shipping from your iPhone. Web deploys show up in the app without rebuilding, and the bundled on-device copy still works when the website is down.")
+                                .foregroundStyle(.secondary)
                         }
                     }
 
@@ -144,19 +200,7 @@ struct SetupView: View {
                             Text(settings.onDeviceBaseURLString)
                                 .font(.system(.footnote, design: .monospaced))
                                 .textSelection(.enabled)
-                            Text("Quest, Lab, and the interview browser all run from bundled assets with local lesson data and an on-device Python validator.")
-                                .foregroundStyle(.secondary)
-                        }
-                    }
-
-                    CompanionCard {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text("Hosted site")
-                                .font(.headline)
-                            Text(settings.hostedBaseURLString)
-                                .font(.system(.footnote, design: .monospaced))
-                                .textSelection(.enabled)
-                            Text("Use this when you want the iOS shell to point at the deployed website instead of the on-device bundle.")
+                            Text("Quest, Lab, and the interview browser run from bundled assets with local lesson data and an on-device Python validator.")
                                 .foregroundStyle(.secondary)
                         }
                     }
@@ -177,7 +221,7 @@ struct SetupView: View {
                         VStack(alignment: .leading, spacing: 10) {
                             Text("What the tabs load")
                                 .font(.headline)
-                            Text("Quest loads `?workspace=quest` and Lab loads `?workspace=python`, so the iOS app stays aligned with the same product surface whether it runs on device, against localhost, or against the hosted site.")
+                            Text("Quest loads `?workspace=quest` and Lab loads `?workspace=python`, so the iOS shell stays aligned with the same product surface whether it runs from the deployed site, a custom server, or the bundled app.")
                                 .foregroundStyle(.secondary)
                         }
                     }
@@ -194,6 +238,16 @@ struct SetupView: View {
             )
             .navigationTitle("Setup")
         }
+    }
+
+    private var customServerBinding: Binding<String> {
+        Binding(
+            get: { settings.baseURLString },
+            set: { newValue in
+                settings.baseURLString = newValue
+                settings.useCustomServer()
+            }
+        )
     }
 }
 
@@ -220,13 +274,38 @@ struct CompanionCard<Content: View>: View {
     }
 }
 
+struct ModeChoiceButton: View {
+    let title: String
+    let isActive: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Group {
+            if isActive {
+                Button(action: action) {
+                    Text(title)
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+            } else {
+                Button(action: action) {
+                    Text(title)
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+            }
+        }
+    }
+}
+
 struct ConnectionNotice: View {
+    let title: String
     let message: String
     let onOpenSetup: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Label("Connection issue", systemImage: "wifi.exclamationmark")
+            Label(title, systemImage: "wifi.exclamationmark")
                 .font(.headline)
             Text(message)
                 .font(.subheadline)

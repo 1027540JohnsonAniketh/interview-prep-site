@@ -58,6 +58,39 @@ Recommended setup in Render:
 3. Keep auto deploy enabled, ideally after CI checks pass.
 4. Optionally create a Render deploy hook and store it in GitHub as `RENDER_DEPLOY_HOOK_URL`.
 
+## One-Prompt Workflow From iPhone
+
+The best interface for feature shipping is the ChatGPT iPhone app or browser, not Gmail.
+
+- Use ChatGPT on iPhone as the control surface for the coding agent.
+- Use Gmail only for status notifications after the Gmail connector permissions are fixed.
+- Ask in one prompt for: implementation, validation, GitHub push, Render deploy, and iPhone compatibility.
+
+Recommended prompt:
+
+```text
+Open https://github.com/1027540JohnsonAniketh/interview-prep-site, implement [feature], keep the iPhone app compatible, run the repo validation flow, push to GitHub, and deploy to Render.
+```
+
+Important behavior notes:
+
+- Website changes should be implemented in the shared web stack so they flow into both the website and the iPhone shell.
+- The iPhone app now supports an **Auto Sync** mode that uses the deployed site first and falls back to the bundled offline copy if Render is unavailable.
+- Web-level changes can show up in the installed iPhone app immediately through Auto Sync.
+- Native Swift changes still require a new iOS build and reinstall/TestFlight push.
+
+For repo-local validation, use:
+
+```bash
+bash scripts/validate_feature_release.sh --skip-ios
+```
+
+On a Mac with Xcode installed, run the full suite:
+
+```bash
+bash scripts/validate_feature_release.sh
+```
+
 ## Rebuild question bank from original source
 
 The enrichment source of truth is still your original `index.html` + `generated-draft-answers.js`.
@@ -94,5 +127,7 @@ open PythonQuestCompanion.xcodeproj
 
 Notes:
 
+- The recommended iPhone setting is **Auto Sync**.
 - The simulator can use `http://localhost:8000`.
 - A physical iPhone cannot use `localhost` for your Mac-hosted server. Use the deployed Render URL or your Mac's LAN IP instead.
+- If the deployed site is unavailable, the app falls back to the bundled on-device copy automatically while in Auto Sync mode.

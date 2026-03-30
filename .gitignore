@@ -2,3 +2,6 @@
 .sfdx/
 __pycache__/
 *.py[cod]
+xcuserdata/
+*.xcuserdatad/
+*.xcuserstate
