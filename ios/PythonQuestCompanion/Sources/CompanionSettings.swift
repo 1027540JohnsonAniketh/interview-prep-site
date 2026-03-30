@@ -81,6 +81,9 @@ final class CompanionSettings {
     private static let baseURLKey = "companion.base_url"
     private static let onDeviceBaseURL = "app://local/index.html"
     private static let fallbackHostedBaseURL = "https://interview-prep-96ol.onrender.com"
+    private static let legacyHostedBaseURLs = [
+        "https://interview-prep.onrender.com",
+    ]
 
     var connectionMode: CompanionConnectionMode {
         didSet {
@@ -95,8 +98,10 @@ final class CompanionSettings {
     }
 
     init() {
-        let storedBaseURL = UserDefaults.standard.string(forKey: Self.baseURLKey)?
-            .trimmingCharacters(in: .whitespacesAndNewlines)
+        let storedBaseURL = Self.migratedBaseURL(
+            UserDefaults.standard.string(forKey: Self.baseURLKey)?
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+        )
         let storedMode = UserDefaults.standard.string(forKey: Self.connectionModeKey)
 
         if let storedMode, let parsedMode = CompanionConnectionMode(rawValue: storedMode) {
@@ -221,5 +226,18 @@ final class CompanionSettings {
         }
 
         return URL(string: "http://\(trimmed)")
+    }
+
+    private static func migratedBaseURL(_ baseURL: String?) -> String? {
+        guard let baseURL else {
+            return nil
+        }
+
+        if legacyHostedBaseURLs.contains(baseURL) {
+            UserDefaults.standard.set(defaultHostedBaseURL, forKey: baseURLKey)
+            return defaultHostedBaseURL
+        }
+
+        return baseURL
     }
 }
