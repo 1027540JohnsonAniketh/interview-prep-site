@@ -80,7 +80,7 @@ final class CompanionSettings {
     private static let connectionModeKey = "companion.connection_mode"
     private static let baseURLKey = "companion.base_url"
     private static let onDeviceBaseURL = "app://local/index.html"
-    private static let fallbackHostedBaseURL = "https://interview-prep.onrender.com"
+    private static let fallbackHostedBaseURL = "https://interview-prep-96ol.onrender.com"
 
     var connectionMode: CompanionConnectionMode {
         didSet {

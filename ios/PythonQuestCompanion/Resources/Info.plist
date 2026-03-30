@@ -19,7 +19,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>CompanionDefaultBaseURL</key>
-	<string>https://interview-prep.onrender.com</string>
+	<string>https://interview-prep-96ol.onrender.com</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoadsInWebContent</key>

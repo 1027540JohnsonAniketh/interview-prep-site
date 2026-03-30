@@ -142,7 +142,7 @@ struct SetupView: View {
                             VStack(alignment: .leading, spacing: 8) {
                                 Text("Custom server URL")
                                     .font(.subheadline.weight(.semibold))
-                                TextField("https://interview-prep.onrender.com", text: customServerBinding)
+                                TextField("https://interview-prep-96ol.onrender.com", text: customServerBinding)
                                     .textInputAutocapitalization(.never)
                                     .autocorrectionDisabled()
                                     .padding(12)
