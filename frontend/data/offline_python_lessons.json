@@ -964,7 +964,7 @@
           "hint": "Check if balance - amount >= 0 before withdrawing",
           "starter_code": "# Solve the challenge here",
           "solution": "class BankAccount:\n    def __init__(self, balance):\n        self.balance = balance\n    def deposit(self, amount):\n        self.balance += amount\n    def withdraw(self, amount):\n        if self.balance - amount >= 0:\n            self.balance -= amount",
-          "validator_source": "lambda ns, code: 'BankAccount' in ns and (lambda: ((a := ns['BankAccount'](100)) or True, a.deposit(50), a.withdraw(30), a.withdraw(200), a.balance == 120))()[-1]"
+          "validator_source": "lambda ns, code: 'BankAccount' in ns and (lambda : ((a := ns['BankAccount'](100)) or True, a.deposit(50), a.withdraw(30), a.withdraw(200), a.balance == 120))()[-1]"
         },
         {
           "index": 2,
@@ -1874,7 +1874,7 @@
           "hint": "def shout(func): def wrapper(...): return func(...).upper(); return wrapper",
           "starter_code": "def shout(func):\n    ",
           "solution": "def shout(func):\n    def wrapper(*args, **kwargs):\n        return func(*args, **kwargs).upper()\n    return wrapper",
-          "validator_source": "lambda ns, code: callable(ns.get('shout')) and ns['shout'](lambda: 'hello')() == 'HELLO'"
+          "validator_source": "lambda ns, code: callable(ns.get('shout')) and ns['shout'](lambda : 'hello')() == 'HELLO'"
         },
         {
           "index": 2,
@@ -1882,7 +1882,7 @@
           "hint": "Use wrapper.calls = 0 and increment it in the wrapper",
           "starter_code": "def count_calls(func):\n    ",
           "solution": "def count_calls(func):\n    def wrapper(*args, **kwargs):\n        wrapper.calls += 1\n        return func(*args, **kwargs)\n    wrapper.calls = 0\n    return wrapper",
-          "validator_source": "lambda ns, code: callable(ns.get('count_calls')) and (lambda: ((f := ns['count_calls'](lambda: None)), f(), f(), f(), f.calls == 3))()[-1]"
+          "validator_source": "lambda ns, code: callable(ns.get('count_calls')) and (lambda : ((f := ns['count_calls'](lambda : None)), f(), f(), f(), f.calls == 3))()[-1]"
         }
       ]
     }

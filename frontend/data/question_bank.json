@@ -3,7 +3,9 @@
   "version": "2.0.0",
   "stats": {
     "section_count": 15,
-    "question_count": 144
+    "question_count": 144,
+    "total_questions": 148,
+    "total_sections": 15
   },
   "sections": [
     {
@@ -4092,6 +4094,94 @@
             "Technical/System Design/Problems/1. Design Spotify.md",
             "Technical/System Design/Distributed Concepts/5. Apache Kafka/Apache Kafka\u00ae Tiered Storage in Depth - How Writes and Metadata Flow.md"
           ]
+        },
+        {
+          "id": "infrastructure-7",
+          "order": 7,
+          "question": "Process vs thread?",
+          "core_answer": "A process has its own virtual address space and resources; threads are lightweight execution units inside a process sharing memory. Processes isolate failures better; threads switch faster and share data easily but need synchronization.",
+          "deep_dive": "Process: independent program with separate memory map, file descriptor table, and security context. Thread: execution path within a process sharing heap and open resources.\n\nInterview framing: mention trade-offs. Use processes for isolation and security boundaries. Use threads for low-latency parallel work inside one service.\n\nCommon pitfall: saying threads are always faster. Too many threads increase context switching and lock contention. For CPU-bound workloads, match active worker threads roughly to available cores.",
+          "notes": [
+            "Process crash usually does not corrupt another process memory.",
+            "Thread bugs (race conditions) can corrupt shared in-process state.",
+            "Context switch between processes is typically heavier than between threads."
+          ],
+          "interview_tip": "State isolation vs sharing first, then give one production example.",
+          "ascii_diagram": "Process A [Thread1, Thread2]  |  Process B [Thread1]\nAddress spaces are separate between processes, shared across threads in same process.",
+          "illustrations": [],
+          "references": [
+            {
+              "label": "Linux process model overview",
+              "url": "https://man7.org/linux/man-pages/man7/pthreads.7.html"
+            }
+          ],
+          "vault_sources": []
+        },
+        {
+          "id": "infrastructure-8",
+          "order": 8,
+          "question": "What is a deadlock and how do you prevent it?",
+          "core_answer": "Deadlock is when threads/processes wait forever on each other\u2019s resources. Prevent by avoiding circular waits: consistent lock ordering, timeouts, try-lock with backoff, smaller critical sections, and deadlock-safe designs like single-writer ownership.",
+          "deep_dive": "Deadlock needs four conditions (Coffman): mutual exclusion, hold-and-wait, no preemption, circular wait. If you break any one, deadlock cannot occur.\n\nInterview framing: explain one concrete case (Thread A holds Lock1 waiting Lock2, Thread B holds Lock2 waiting Lock1) and one prevention policy (global lock order).\n\nDetection/recovery: use thread dumps, lock diagnostics, and timeout-based retries in distributed systems.",
+          "notes": [
+            "Global lock ordering is the most practical prevention strategy.",
+            "Timeouts avoid permanent hangs but require idempotent retry logic.",
+            "Deadlock differs from starvation: starvation means progress is possible but unfair scheduling delays one actor."
+          ],
+          "interview_tip": "Name Coffman conditions, then immediately give lock-ordering as prevention.",
+          "ascii_diagram": "T1: lock(A) -> wait(B)\nT2: lock(B) -> wait(A)\nCycle => deadlock",
+          "illustrations": [],
+          "references": [
+            {
+              "label": "Deadlock conditions (OS concepts)",
+              "url": "https://en.wikipedia.org/wiki/Deadlock"
+            }
+          ],
+          "vault_sources": []
+        },
+        {
+          "id": "infrastructure-9",
+          "order": 9,
+          "question": "How does virtual memory work?",
+          "core_answer": "Each process sees a large virtual address space. The MMU translates virtual pages to physical frames via page tables. This enables isolation, memory overcommit, and paging to disk when RAM is limited.",
+          "deep_dive": "Virtual memory separates logical addresses used by programs from physical RAM addresses. CPU memory access goes through MMU; TLB caches translations for speed. Page faults happen when a page is missing or protection is violated.\n\nMajor fault: page loaded from disk (slow). Minor fault: page already in memory but page table update needed.\n\nInterview framing: connect to performance: high major page faults cause latency spikes and can lead to thrashing when working set exceeds RAM.",
+          "notes": [
+            "Virtual memory gives per-process isolation and simplifies programming.",
+            "TLB misses add overhead; locality of reference improves performance.",
+            "Swapping is a symptom to watch in production latency incidents."
+          ],
+          "interview_tip": "Mention MMU, page tables, TLB, and page faults in that order.",
+          "ascii_diagram": "Virtual Address -> [TLB] -> Page Table -> Physical Frame\n(miss) => page fault handler",
+          "illustrations": [],
+          "references": [
+            {
+              "label": "Linux virtual memory docs",
+              "url": "https://www.kernel.org/doc/html/latest/admin-guide/mm/index.html"
+            }
+          ],
+          "vault_sources": []
+        },
+        {
+          "id": "infrastructure-10",
+          "order": 10,
+          "question": "How are processes, threads, deadlocks, and virtual memory connected in debugging?",
+          "core_answer": "Performance incidents often combine all four: too many threads increase contention, poor lock design creates deadlocks, and memory pressure triggers page faults. Debug by correlating thread state, lock waits, and memory metrics together.",
+          "deep_dive": "Practical workflow: (1) Check run queue and CPU saturation. (2) Inspect thread dumps for BLOCKED/WAITING threads and lock cycles. (3) Check vmstat/sar for swap, page faults, and memory pressure. (4) Verify whether latency is CPU-bound, lock-bound, or memory-bound before tuning.\n\nInterview framing: show systems thinking\u2014single-metric debugging is risky. Always combine CPU, scheduler, lock, and memory signals.",
+          "notes": [
+            "High CPU with runnable threads suggests compute pressure.",
+            "Low CPU with many blocked threads often suggests lock or I/O bottlenecks.",
+            "High major faults with growing latency suggests RAM pressure or bad memory limits."
+          ],
+          "interview_tip": "Answer as an incident playbook, not as isolated definitions.",
+          "ascii_diagram": "Latency spike\n  -> Thread dump (locks?)\n  -> vmstat (faults/swap?)\n  -> top/perf (CPU hotspots?)",
+          "illustrations": [],
+          "references": [
+            {
+              "label": "vmstat man page",
+              "url": "https://man7.org/linux/man-pages/man8/vmstat.8.html"
+            }
+          ],
+          "vault_sources": []
         }
       ]
     },
