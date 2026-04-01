@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import ast
 import json
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -19,6 +20,11 @@ FRONTEND_DATA_DIR = ROOT / "frontend" / "data"
 QUESTION_BANK_TARGET = FRONTEND_DATA_DIR / "question_bank.json"
 LESSONS_TARGET = FRONTEND_DATA_DIR / "offline_python_lessons.json"
 IOS_WEBAPP_TARGET = ROOT / "ios" / "PythonQuestCompanion" / "Resources" / "WebApp"
+
+
+def normalize_validator_source(source: str) -> str:
+    # Keep generated validator strings stable across Python patch versions.
+    return re.sub(r"lambda\s+:", "lambda:", source)
 
 
 def ensure_data_dir() -> None:
@@ -60,7 +66,7 @@ def extract_practice_metadata(module_path: Path) -> tuple[str, list[dict[str, st
                     for key_node, value_node in zip(item.keys, item.values):
                         key = ast.literal_eval(key_node)
                         if key == "validator":
-                            record["validator_source"] = ast.unparse(value_node)
+                            record["validator_source"] = normalize_validator_source(ast.unparse(value_node))
                         elif key in {"prompt", "hint", "solution"}:
                             record[key] = ast.literal_eval(value_node)
                     practice_items.append(record)

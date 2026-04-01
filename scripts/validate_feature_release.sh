@@ -50,10 +50,12 @@ run_shared_checks() {
 run_ios_checks() {
   ensure_ios_tools
 
+  local destination='generic/platform=iOS Simulator'
+
   xcodebuild \
     -project "$IOS_PROJECT" \
     -scheme PythonQuestCompanion \
-    -destination 'platform=iOS Simulator,name=iPhone 16' \
+    -destination "$destination" \
     CODE_SIGNING_ALLOWED=NO \
     build
 }
