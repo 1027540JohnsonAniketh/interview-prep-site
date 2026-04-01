@@ -4524,8 +4524,8 @@
     {
       "id": 12,
       "slug": "java",
-      "name": "Java",
-      "summary": "Runtime internals, concurrency, memory management, and modern Java backend coding patterns.",
+      "name": "Java Interview Questions",
+      "summary": "Java interview prep across basics, OOP, SOLID, design patterns, threading, streams, and concurrency.",
       "references": [
         {
           "title": "Java language docs",
